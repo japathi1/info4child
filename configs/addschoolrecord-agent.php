@@ -1,60 +1,164 @@
 <?php
-
+include 'connection.php';
 //Add Management begins
 if(isset($_POST['AddManagement'])){
-	echo $AddManagement = $_POST['AddManagement'];echo "<br>";
-	if($AddManagement == "AddManagement"){		
-		echo $OwnerFirstName = $_POST['OwnerFirstName'];echo "<br>";
-		echo $OwnerLastName = $_POST['OwnerLastName'];echo "<br>";
-		echo $ContactNo = $_POST['ContactNo'];echo "<br>";
-		echo $EmailId = $_POST['EmailId'];echo "<br>";
-		echo $Sex = $_POST['Sex'];echo "<br>";
-		//$ImageUpload = $_POST['ImageUpload'];
-		echo $MAUID = $_POST['MAUID'];echo "<br>";
-		echo $MaTemporaryPassword = $_POST['MaTemporaryPassword'];echo "<br>";
+	$AddManagement = $_POST['AddManagement'];
+	if($AddManagement == "AddManagement"){
+						
+		$OwnerFirstName = $_POST['OwnerFirstName'];
+		$OwnerLastName = $_POST['OwnerLastName'];
+		$ContactNo = $_POST['ContactNo'];
+		$EmailId = $_POST['EmailId'];
+		$Sex = $_POST['Sex'];
+		$ImageUpload = "No Image";
+		$MAUID = $_POST['MAUID'];
+		$MaTemporaryPassword = $_POST['MaTemporaryPassword'];
+		
+		$sql = "INSERT INTO management (OwnerFirstName,
+										OwnerLastName,
+										ContactNo,
+										EmailId,
+										Sex,
+										ImageUpload,
+										MAUID,
+										MaTemporaryPassword
+										) VALUES (							
+										'$OwnerFirstName',
+										'$OwnerLastName',
+										'$ContactNo',
+										'$EmailId',
+										'$Sex',
+										'$ImageUpload',
+										'$MAUID',
+										'$MaTemporaryPassword'										
+										)";
+									
+		if ($conn->query($sql) === TRUE) {
+			header('Location: ../admin/addschoolrecord.php?success=yes');
+			//echo "New record created successfully";
+		} else {
+			header('Location: ../admin/addschoolrecord.php?success=no');
+			//echo "Error: " . $sql . "<br>" . $conn->error;
+		}		
 	}
 }
 //Add Management begins
 
 //Add Principal begins
 if(isset($_POST['AddPrincipal'])){
-	echo $AddPrincipal = $_POST['AddPrincipal'];echo "<br>";
+	$AddPrincipal = $_POST['AddPrincipal'];
 	if($AddPrincipal == "AddPrincipal"){	
-		echo $SchoolName = $_POST['SchoolName'];echo "<br>";
-		echo $Title = $_POST['Title'];echo "<br>";
-		echo $PrincipalFirstName = $_POST['PrincipalFirstName'];echo "<br>";
-		echo $PrincipalLastName = $_POST['PrincipalLastName'];echo "<br>";
-		echo $Sex = $_POST['Sex'];echo "<br>";
-		//echo $IDProof = $_POST['IDProof'];echo "<br>";
-		echo $PhoneCode = $_POST['PhoneCode'];echo "<br>";
-		echo $PhoneNo = $_POST['PhoneNo'];echo "<br>";
-		echo $MobileCode = $_POST['MobileCode'];echo "<br>";
-		echo $MobileNo = $_POST['MobileNo'];echo "<br>";
-		echo $Email = $_POST['Email'];echo "<br>";
-		echo $EducationalQualification = $_POST['EducationalQualification'];echo "<br>";
-		//echo $ImageUpload = $_POST['ImageUpload'];echo "<br>";
-		echo $Salary = $_POST['Salary'];echo "<br>";
-		echo $PRUID = $_POST['PRUID'];echo "<br>";
-		echo $PrTemporaryPassword = $_POST['PrTemporaryPassword'];echo "<br>";	
+		$SchoolName = $_POST['SchoolName'];
+		$Title = $_POST['Title'];
+		$PrincipalFirstName = $_POST['PrincipalFirstName'];
+		$PrincipalLastName = $_POST['PrincipalLastName'];
+		$Sex = $_POST['Sex'];
+		$IDProof = "No ID Proof";
+		$PhoneCode = $_POST['PhoneCode'];
+		$PhoneNo = $_POST['PhoneNo'];
+		$MobileCode = $_POST['MobileCode'];
+		$MobileNo = $_POST['MobileNo'];
+		$Email = $_POST['Email'];
+		$EducationalQualification = $_POST['EducationalQualification'];
+		$ImageUpload = "No Image";
+		$Salary = $_POST['Salary'];
+		$PRUID = $_POST['PRUID'];
+		$PrTemporaryPassword = $_POST['PrTemporaryPassword'];	
+		
+		$sql = "INSERT INTO principal (SchoolName,
+										Title,
+										PrincipalFirstName,
+										PrincipalLastName,
+										Sex,
+										IDProof,
+										PhoneCode,
+										PhoneNo,
+										MobileCode,
+										MobileNo,
+										Email,
+										EducationalQualification,
+										ImageUpload,
+										Salary,
+										PRUID,
+										PrTemporaryPassword
+										) VALUES (							
+										'$SchoolName',
+										'$Title',
+										'$PrincipalFirstName',
+										'$PrincipalLastName',
+										'$Sex',
+										'$IDProof',
+										'$PhoneCode',
+										'$PhoneNo',
+										'$MobileCode',
+										'$MobileNo',
+										'$Email',
+										'$EducationalQualification',
+										'$ImageUpload',
+										'$Salary',
+										'$PRUID',
+										'$PrTemporaryPassword'	
+										)";
+									
+		if ($conn->query($sql) === TRUE) {
+			header('Location: ../admin/addschoolrecord.php?success=yes');
+			//echo "New record created successfully";
+		} else {
+			header('Location: ../admin/addschoolrecord.php?success=no');
+			//echo "Error: " . $sql . "<br>" . $conn->error;
+		}		
 	}
 }
 //Add Principal ends
 
 //Add Teacher ends
 if(isset($_POST['AddTeacher'])){
-	echo $AddTeacher = $_POST['AddTeacher'];echo "<br>";
+	echo $AddTeacher = $_POST['AddTeacher'];
 	if($AddTeacher == "AddTeacher"){
-		echo $TeacherSchoolName = $_POST['TeacherSchoolName'];echo "<br>";	
-		echo $TeacherFirstName = $_POST['TeacherFirstName'];echo "<br>";	
-		echo $TeacherLastName = $_POST['TeacherLastName'];echo "<br>";	
-		echo $ContactNo = $_POST['ContactNo'];echo "<br>";	
-		echo $EmailId = $_POST['ContactNo'];echo "<br>";	
-		echo $Subject = $_POST['Subject'];echo "<br>";	
-		echo $Sex = $_POST['Sex'];echo "<br>";	
-		//echo $ImageUpload = $_POST['ImageUpload'];echo "<br>";	
-		echo $Salary = $_POST['Salary'];echo "<br>";	
-		echo $TEUID = $_POST['TEUID'];echo "<br>";	
-		echo $TeTemporaryPassword = $_POST['TeTemporaryPassword'];echo "<br>";			
+		$TeacherSchoolName = $_POST['TeacherSchoolName'];	
+		$TeacherFirstName = $_POST['TeacherFirstName'];	
+		$TeacherLastName = $_POST['TeacherLastName'];	
+		$ContactNo = $_POST['ContactNo'];	
+		$EmailId = $_POST['ContactNo'];	
+		$Subject = $_POST['Subject'];	
+		$Sex = $_POST['Sex'];	
+		$ImageUpload = "No Image";;	
+		$Salary = $_POST['Salary'];	
+		$TEUID = $_POST['TEUID'];	
+		$TeTemporaryPassword = $_POST['TeTemporaryPassword'];			
+		
+		$sql = "INSERT INTO teacher (TeacherSchoolName,
+										TeacherFirstName,
+										TeacherLastName,
+										ContactNo,
+										EmailId,
+										Subject,
+										Sex,
+										ImageUpload,
+										Salary,
+										TEUID,
+										TeTemporaryPassword
+										) VALUES (							
+										'$TeacherSchoolName',
+										'$TeacherFirstName',
+										'$TeacherLastName',
+										'$ContactNo',
+										'$EmailId',
+										'$Subject',
+										'$Sex',
+										'$ImageUpload',
+										'$Salary',
+										'$TEUID',
+										'$TeTemporaryPassword'
+										)";
+									
+		if ($conn->query($sql) === TRUE) {
+			header('Location: ../admin/addschoolrecord.php?success=yes');
+			//echo "New record created successfully";
+		} else {
+			header('Location: ../admin/addschoolrecord.php?success=no');
+			//echo "Error: " . $sql . "<br>" . $conn->error;
+		}		
 	}
 }
 //Add Teacher begins
@@ -62,35 +166,84 @@ if(isset($_POST['AddTeacher'])){
 
 //Add Student begins
 if(isset($_POST['AddStudent'])){
-	echo $AddStudent = $_POST['AddStudent'];echo "<br>";
+	echo $AddStudent = $_POST['AddStudent'];
 	if($AddStudent == "AddStudent"){
-		echo $School = $_POST['School'];echo "<br>";
-		echo $FirstName = $_POST['FirstName'];echo "<br>";
-		echo $LastName = $_POST['LastName'];echo "<br>";
-		echo $ContactNo = $_POST['ContactNo'];echo "<br>";
-		echo $EmailId = $_POST['EmailId'];echo "<br>";
-		echo $Class = $_POST['Class'];echo "<br>";
-		echo $Section = $_POST['Section'];echo "<br>";
-		echo $ClassTeacherName = $_POST['ClassTeacherName'];echo "<br>";
-		echo $DateofBirth = $_POST['DateofBirth'];echo "<br>";
-		echo $Sex = $_POST['Sex'];echo "<br>";
-		//echo $ImageUpload = $_POST['ImageUpload'];
-		echo $BloodGroup = $_POST['BloodGroup'];echo "<br>";
-		echo $FatherName = $_POST['FatherName'];echo "<br>";
-		echo $FaterEmailID = $_POST['FaterEmailID'];echo "<br>";
-		echo $FatherContactNo = $_POST['FatherContactNo'];echo "<br>";
-		echo $MotherName = $_POST['MotherName'];echo "<br>";
-		echo $MotherEmailID = $_POST['MotherEmailID'];echo "<br>";
-		echo $MotherContactNo = $_POST['MotherContactNo'];echo "<br>";
-		echo $Sibling = $_POST['Sibling'];echo "<br>";
-		//echo $ChooseaUsername = $_POST['ChooseaUsername'];echo "<br>";
-		//echo $ChooseaPassword = $_POST['ChooseaPassword'];echo "<br>";
-		//echo $ConfirmPassword = $_POST['ConfirmPassword'];
-		echo $stuid = $_POST['STUID']; echo "<br>";
-		echo $TemporaryPassword = $_POST['TemporaryPassword'];
+		$School = $_POST['School'];
+		$FirstName = $_POST['FirstName'];
+		$LastName = $_POST['LastName'];
+		$ContactNo = $_POST['ContactNo'];
+		$EmailId = $_POST['EmailId'];
+		$Class = $_POST['Class'];
+		$Section = $_POST['Section'];
+		$ClassTeacherName = $_POST['ClassTeacherName'];
+		$DateofBirth = $_POST['DateofBirth'];
+		$Sex = $_POST['Sex'];
+		$ImageUpload = "No Image";
+		$BloodGroup = $_POST['BloodGroup'];
+		$FatherName = $_POST['FatherName'];
+		$FaterEmailID = $_POST['FaterEmailID'];
+		$FatherContactNo = $_POST['FatherContactNo'];
+		$MotherName = $_POST['MotherName'];
+		$MotherEmailID = $_POST['MotherEmailID'];
+		$MotherContactNo = $_POST['MotherContactNo'];
+		$Sibling = $_POST['Sibling'];
+		$stuid = $_POST['STUID'];
+		$TemporaryPassword = $_POST['TemporaryPassword'];
 		
+		$sql = "INSERT INTO student (School,
+									FirstName,
+									LastName,
+									ContactNo,
+									EmailId,
+									Class,
+									Section,
+									ClassTeacherName,
+									DateofBirth,
+									Sex,
+									ImageUpload,
+									BloodGroup,
+									FatherName,
+									FatherEmailID,
+									FatherContactNo,
+									MotherName,
+									MotherEmailID,
+									MotherContactNo,
+									Sibling,
+									stuid,
+									TemporaryPassword
+									) VALUES (							
+									'$School',
+									'$FirstName',
+									'$LastName',
+									'$ContactNo',
+									'$EmailId',
+									'$Class',
+									'$Section',
+									'$ClassTeacherName',
+									'$DateofBirth',
+									'$Sex',
+									'$ImageUpload',
+									'$BloodGroup',
+									'$FatherName',
+									'$FaterEmailID',
+									'$FatherContactNo',
+									'$MotherName',
+									'$MotherEmailID',
+									'$MotherContactNo',
+									'$Sibling',
+									'$stuid',
+									'$TemporaryPassword'
+									)";
+									
+		if ($conn->query($sql) === TRUE) {
+			header('Location: ../admin/addschoolrecord.php?success=yes');
+			//echo "New record created successfully";
+		} else {
+			header('Location: ../admin/addschoolrecord.php?success=no');
+			//echo "Error: " . $sql . "<br>" . $conn->error;
+		}		
 	}	
 }
 //Add Student ends
-
+include 'connection-close.php';
 ?>

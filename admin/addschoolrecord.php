@@ -160,6 +160,36 @@ $TemporaryPassword =  generateRandomString();
 		}		
 		//Add Principal ends
 		
+		//Add Teacher  begins
+		function validAddTeacher(){
+			if(document.AddTeacher.TeacherSchoolName.value == "ChooseSchool"){
+					alert("Please select School Name");
+					document.AddTeacher.TeacherSchoolName.focus();
+					return false;
+			}
+			if(document.AddTeacher.TeacherFirstName.value == ""){
+					alert("Please enter First Name");
+					document.AddTeacher.TeacherFirstName.focus();
+					return false;
+			}
+			if(document.AddTeacher.ContactNo.value == ""){
+					alert("Please enter Contact No");
+					document.AddTeacher.ContactNo.focus();
+					return false;
+			}			
+			if(document.AddTeacher.EmailId.value == ""){
+					alert("Please enter Email Id");
+					document.AddTeacher.EmailId.focus();
+					return false;
+			}			
+			if(document.AddTeacher.Salary.value == ""){
+					alert("Please enter Salary");
+					document.AddTeacher.Salary.focus();
+					return false;
+			}						
+		}
+		//Add Teacher  ends
+		
 		//Add Student form begins
 		function validAddStudent(){
 			if(document.AddStudent.School.value == "ChooseSchool"){

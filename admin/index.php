@@ -17,11 +17,21 @@ $schoolsql="SELECT SchoolName FROM school ORDER BY SchoolName";
 if ($schoolresult=mysqli_query($conn,$schoolsql)){
 	// Return the number of rows
 	$schoolrowcount=mysqli_num_rows($schoolresult);
-	$schoolrowcount;
 	}else{
 		echo "error while fetching school";
 	}
 //fetch data from school table ends
+
+//fetch data from student table begins
+$studentsql="SELECT FirstName FROM student ORDER BY FirstName";
+
+if ($studentresult=mysqli_query($conn,$studentsql)){
+	// Return the number of rows
+	$studentrowcount=mysqli_num_rows($studentresult);
+	}else{
+		echo "error while fetching school";
+	}
+//fetch data from student table ends
 
 
 	
@@ -152,7 +162,7 @@ if ($schoolresult=mysqli_query($conn,$schoolsql)){
         <div><?php echo $schoolrowcount; ?></div>
         <span class="notification">6</span> </a> <a data-rel="tooltip" title="4 student added this month." class="well span3 top-block" href="#"> <span class="icon32 icon-color icon-user"></span>
         <div>Total Students</div>
-        <div>228</div>
+        <div><?php echo $studentrowcount; ?></div>
         <span class="notification green">4</span> </a> <a data-rel="tooltip" title="Rs 34 new payment generated." class="well span3 top-block" href="#"> <span class="icon32 icon-color icon-cart"></span>
         <div> Payment Generated</div>
         <div>RS 13320</div>
