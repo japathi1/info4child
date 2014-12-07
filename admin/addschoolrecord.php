@@ -1,3 +1,53 @@
+<?php
+session_start();
+
+$uid = $_SESSION['uid'];
+$FirstName = $_SESSION['FirstName'];
+//echo $_SESSION['addschool'] ="NotSuccess";
+
+if(isset($_GET['success'])){
+	$success = $_GET['success'];
+}else{
+	$success = "NotYesOrNo";	
+}
+
+if($_SESSION['uid']==""){
+	header('Location: ../index.php');
+	exit();	
+}
+
+include '../configs/connection.php';
+
+//fetch data from school table begins
+$schoolsql = "SELECT * FROM school";
+$schoolresult = mysqli_query($conn, $schoolsql);
+
+$schoolsqlPr = "SELECT * FROM school";
+$schoolresultPr = mysqli_query($conn, $schoolsqlPr);
+
+$schoolsqlTe = "SELECT * FROM school";
+$schoolresultTe = mysqli_query($conn, $schoolsqlTe);
+//fetch data from school table ends
+
+//Temporary credential begins
+$UniqId = uniqid();
+$STUID = "st".$UniqId;
+$MAUID = "ma".$UniqId;
+$PRUID = "pr".$UniqId;
+$TEUID = "te".$UniqId;
+
+function generateRandomString($length = 8) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+$TemporaryPassword =  generateRandomString();
+////Temporary credential ends
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +88,123 @@
 	<![endif]-->
 <!-- The fav icon -->
 <link rel="shortcut icon" href="../img/favicon.ico">
+    <script type="text/javascript">
+		//Add Management begins
+		function validAddManagement(){
+			if(document.AddManagement.OwnerFirstName.value == ""){
+					alert("Please enter Owner First Name");
+					document.AddManagement.OwnerFirstName.focus();
+					return false;
+			}
+			
+			if(document.AddManagement.ContactNo.value == ""){
+					alert("Please enter Contact No");
+					document.AddManagement.ContactNo.focus();
+					return false;
+			}
+			if(document.AddManagement.EmailId.value == ""){
+					alert("Please enter Email Id");
+					document.AddManagement.EmailId.focus();
+					return false;
+			}						
+		}
+		//Add Management ends
+		
+		//Add Principal begins
+		function validAddPrincipal(){
+			if(document.AddPrincipal.SchoolName.value == "ChooseSchool"){
+					alert("Please select School Name");
+					document.AddPrincipal.SchoolName.focus();
+					return false;
+			}
+			if(document.AddPrincipal.Title.value == "ChooseTitle"){
+					alert("Please select Title");
+					document.AddPrincipal.Title.focus();
+					return false;
+			}			
+			if(document.AddPrincipal.PrincipalFirstName.value == ""){
+					alert("Please enter Principal First Name");
+					document.AddPrincipal.PrincipalFirstName.focus();
+					return false;
+			}			
+			if(document.AddPrincipal.PhoneCode.value == ""){
+					alert("Please enter Phone Code");
+					document.AddPrincipal.PhoneCode.focus();
+					return false;
+			}			
+			if(document.AddPrincipal.PhoneNo.value == ""){
+					alert("Please enter Phone No");
+					document.AddPrincipal.PhoneNo.focus();
+					return false;
+			}			
+			if(document.AddPrincipal.MobileCode.value == ""){
+					alert("Please enter Mobile Code");
+					document.AddPrincipal.MobileCode.focus();
+					return false;
+			}			
+			if(document.AddPrincipal.MobileNo.value == ""){
+					alert("Please enter MobileNo");
+					document.AddPrincipal.MobileNo.focus();
+					return false;
+			}			
+			if(document.AddPrincipal.Email.value == ""){
+					alert("Please enter Email");
+					document.AddPrincipal.Email.focus();
+					return false;
+			}			
+			if(document.AddPrincipal.Salary.value == ""){
+					alert("Please enter Salary");
+					document.AddPrincipal.Salary.focus();
+					return false;
+			}			
+		}		
+		//Add Principal ends
+		
+		//Add Student form begins
+		function validAddStudent(){
+			if(document.AddStudent.School.value == "ChooseSchool"){
+					alert("Please select School Name");
+					document.AddStudent.School.focus();
+					return false;
+			}
+			if(document.AddStudent.FirstName.value == ""){
+					alert("Please enter First Name");
+					document.AddStudent.FirstName.focus();
+					return false;
+			}
+			if(document.AddStudent.Class.value == ""){
+					alert("Please enter Class");
+					document.AddStudent.Class.focus();
+					return false;
+			}			
+			if(document.AddStudent.DateofBirth.value == ""){
+					alert("Please enter Date of Birth");
+					document.AddStudent.DateofBirth.focus();
+					return false;
+			}			
+			if(document.AddStudent.BloodGroup.value == "BloodGroup"){
+					alert("Please select Blood Group");
+					document.AddStudent.BloodGroup.focus();
+					return false;
+			}			
+			if(document.AddStudent.FatherName.value == ""){
+					alert("Please enter Father Name");
+					document.AddStudent.FatherName.focus();
+					return false;
+			}	
+			if(document.AddStudent.FatherContactNo.value == ""){
+					alert("Please enter Father Contact No");
+					document.AddStudent.FatherContactNo.focus();
+					return false;
+			}
+			if(document.AddStudent.MotherName.value == ""){
+					alert("Please enter Mother Name");
+					document.AddStudent.MotherName.focus();
+					return false;
+			}									
+		}
+		//Add Student form ends
+	</script>
 </head>
 
 <body>
@@ -61,7 +228,7 @@
       </div>
       <!-- theme selector ends -->
       <!-- user dropdown starts -->
-      <div class="btn-group pull-right" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i><span class="hidden-phone"> admin</span> <span class="caret"></span> </a>
+      <div class="btn-group pull-right" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i><span class="hidden-phone"><?php echo $FirstName; ?></span> <span class="caret"></span> </a>
         <ul class="dropdown-menu">
           <li><a href="../index.php">Logout</a></li>
         </ul>
@@ -131,7 +298,22 @@
 					</li>
 				</ul>
 			</div>
-			
+            <!--submit alert begins --->
+            <?php
+			if($success == "yes"){
+                echo "<div class=\"alert alert-success\">";
+                    echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
+                    echo "<strong>Well done!</strong> You successfully added this school in our database.";
+                echo "</div>";
+			}
+			if($success == "no"){
+                echo "<div class=\"alert alert-danger\">";
+                  echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
+                  echo "<strong>Oh snap!</strong> Change a few things up and try submitting again.";
+                echo "</div>";
+			}				
+			?>	            
+            <!--submit alert ends --->				
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -152,455 +334,298 @@
 						 
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane" id="mgmt">
-								<form class="form-horizontal" action="#">
-						  <fieldset>
-							<legend>Please fill the form for management detail</legend>
-							<div class="control-group">
-								<label class="control-label" for="focusedInput">Owner Name:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Contact No:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Email Id:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  
-							
-							  <div class="control-group">
-							  <label class="control-label" for="date01">Date of Birth:</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="">
-							  </div>
-							</div>
-							<div class="control-group">
-								<label class="control-label">Sex:</label>
-								<div class="controls">
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Male
-								  </label>
-								  <div style="clear:both"></div>
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Female
-								  </label>
-								</div>
-							  </div>
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">Image Upload</label>
-							  <div class="controls">
-								<div class="uploader" id="uniform-fileInput"><input class="input-file uniform_on" id="fileInput" type="file" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div>
-							  </div>
-							</div>        
-		
-						<legend>Choose Username and Password</legend>
-						
-						<div class="control-group">
-								<label class="control-label" for="focusedInput">Choose a Username:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Choose a Password:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="Password" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Confirn Password:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="Password" value="">
-								</div>
-							  </div>
-							
-							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Save</button>
-							  <button type="reset" class="btn">Cancel</button>
-							</div>
-							<div class="alert alert-success">
-							<button type="button" class="close" data-dismiss="alert">×</button>
-							<strong>Well done!</strong> You successfully added School Management in our database.
-						</div>
-						  </fieldset>
-						</form>
-								 
+								<form name="AddManagement" class="form-horizontal" action="../configs/addschoolrecord-agent.php" method="post" onSubmit="return validAddManagement();">
+									<fieldset>
+										<legend>Please fill the form for management detail</legend>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Owner First Name:</label>
+											<div class="controls">
+                                              <input name="AddManagement" type="hidden" value="AddManagement">
+											  <input name="OwnerFirstName" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Owner Last Name:</label>
+											<div class="controls">
+											  <input name="OwnerLastName" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>                                        
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Contact No:</label>
+											<div class="controls">
+											  <input name="ContactNo" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Email Id:</label>
+											<div class="controls">
+											  <input name="EmailId" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Sex:</label>
+											<div class="controls">
+											  <label class="radio">
+												<input type="radio" name="Sex" id="optionsRadios1" value="male" checked="">
+												Male
+											  </label>
+											  <div style="clear:both"></div>
+											  <label class="radio">
+												<input type="radio" name="Sex" id="optionsRadios2" value="female">
+												Female
+											  </label>
+											</div>
+										</div>										
+										<div class="control-group">
+										  <label class="control-label" for="fileInput">Image Upload</label>
+										  <div class="controls">
+											<div class="uploader" id="uniform-fileInput"><input class="input-file uniform_on" id="fileInput" type="file" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div>
+										  </div>
+										</div>        
+										<legend>Choose Username and Password</legend>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">MAUID:</label>
+											<div class="controls">
+											  <input name="MAUID" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $MAUID; ?>" readonly>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Temporary Password:</label>
+											<div class="controls">
+											  <input name="MaTemporaryPassword" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $TemporaryPassword; ?>" readonly>
+											</div>
+										</div>																				
+										<div class="form-actions">
+										  <button type="submit" class="btn btn-primary">Save</button>
+										  <button type="reset" class="btn">Cancel</button>
+										</div>
+									</fieldset>
+								</form>
 							</div>
 							<div class="tab-pane" id="pnple">
-						<form class="form-horizontal" action="#">
-						  <fieldset>
-							<legend>Please fill the form for Principal detail</legend>
-                            <div class="control-group">
-								<label class="control-label" for="selectError3">School Name:</label>
-								<div class="controls">
-								  <select id="selectError3">
-									<option>School Name</option>
-									<option>School Name</option>
-									<option>School Name</option>
-									<option>School Name</option>
-									<option>School Name</option>
-									<option>School Name</option>
-									<option>School Name</option>
-									<option>School Name</option>
-								  </select>
-								</div>
-							  </div>
-                              <div class="control-group">
-								<label class="control-label" for="selectError3">Title:</label>
-								<div class="controls">
-								  <select id="selectError3">
-									<option>Mr.</option>
-									<option>Miss.</option>
-									<option>Ms.</option>
-									
-								  </select>
-								</div>
-							  </div>
-							<div class="control-group">
-								<label class="control-label" for="focusedInput">Principal First Name:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-                              <div class="control-group">
-								<label class="control-label" for="focusedInput">Principal Last Name:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-                              <div class="control-group">
-								<label class="control-label">Sex:</label>
-								<div class="controls">
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Male
-								  </label>
-								  <div style="clear:both"></div>
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Female
-								  </label>
-								</div>
-							  </div>
-                              <div class="control-group">
-								<label class="control-label" for="focusedInput">School Title</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-                              <div class="control-group">
-							  <label class="control-label" for="fileInput">ID Proof:</label>
-							  <div class="controls">
-								<div class="uploader" id="uniform-fileInput"><input class="input-file uniform_on" id="fileInput" type="file" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div>
-							  </div>
-							</div>
-                              <div class="control-group">
-								<label class="control-label" for="selectError3">Select Country:</label>
-								<div class="controls">
-								  <select id="selectError3">
-									<option>A.</option>
-									<option>b.</option>
-									<option>c.</option>
-									
-								  </select>
-								</div>
-							  </div>
-                              <div class="control-group">
-								<label class="control-label" for="selectError3">Select State:</label>
-								<div class="controls">
-								  <select id="selectError3">
-									<option>A.</option>
-									<option>b.</option>
-									<option>c.</option>
-									
-								  </select>
-								</div>
-							  </div>
-                              <div class="control-group">
-								<label class="control-label" for="selectError2">Select City:</label>
-								<div class="controls">
-									<select data-placeholder="Select City" id="selectError2" data-rel="chosen">
-										<option value=""></option>
-										<optgroup label="State">
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										</optgroup>
-										<optgroup label="State">
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										</optgroup>
-										<optgroup label="State">
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										</optgroup>
-										<optgroup label="State">
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										</optgroup>
-										<optgroup label="State">
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										</optgroup>
-										<optgroup label="State">
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										</optgroup>
-										<optgroup label="State">
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										</optgroup>
-										<optgroup label="State">
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										  <option>City Name</option>
-										</optgroup>
-								  </select>
-								</div>
-							  </div>
-                                <div class="control-group">
-								<label class="control-label" for="focusedInput">Pin Code:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-                              <div class="control-group">
-								<label class="control-label" for="focusedInput">Landmark:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-                              
-							  <div class="control-group">
-							  <label class="control-label" for="textarea2">Address:</label>
-							  <div class="controls">
-								<textarea  id="textarea1" rows="3"></textarea>
-							  </div>
-							</div>
-                             <div class="control-group">
-								<label class="control-label" for="focusedInput">Phone Code:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div><div class="control-group">
-								<label class="control-label" for="focusedInput">Phone no:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div><div class="control-group">
-								<label class="control-label" for="focusedInput">Mobile Code:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div><div class="control-group">
-								<label class="control-label" for="focusedInput">Mobile No:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-                              <div class="control-group">
-								<label class="control-label" for="focusedInput">Email:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Educational Qualification:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Add More Qualification:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-                              <div class="control-group">
-								<label class="control-label" for="focusedInput">Achivements:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  
-							<div class="control-group">
-								<label class="control-label" for="selectError3">Role:</label>
-								<div class="controls">
-								  <select id="selectError3">
-									<option>A.</option>
-									<option>b.</option>
-									<option>c.</option>
-									
-								  </select>
-								</div>
-							  </div>
-							  
-							
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">Image Upload</label>
-							  <div class="controls">
-								<div class="uploader" id="uniform-fileInput"><input class="input-file uniform_on" id="fileInput" type="file" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div>
-							  </div>
-							</div>  
-							<div class="control-group">
-								<label class="control-label" for="focusedInput">Salary:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>      
-		
-						<legend>Choose Username and Password</legend>
-						
-						<div class="control-group">
-								<label class="control-label" for="focusedInput">Choose a Username:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Choose a Password:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="Password" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Confirn Password:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="Password" value="">
-								</div>
-							  </div>
-							
-							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Save</button>
-							  <button type="reset" class="btn">Cancel</button>
-							</div>
-							<div class="alert alert-success">
-							<button type="button" class="close" data-dismiss="alert">×</button>
-							<strong>Well done!</strong> You successfully added School's Principal in our database.
-						</div>
-						  </fieldset>
-						</form>
+								<form name="AddPrincipal" class="form-horizontal" action="../configs/addschoolrecord-agent.php" method="post" onSubmit="return validAddPrincipal();">
+								  <fieldset>
+									<legend>Please fill the form for Principal detail</legend>
+										<div class="control-group">
+											<label class="control-label" for="selectError3">Choose School:</label>
+											<div class="controls">
+                                              <input name="AddPrincipal" type="hidden" value="AddPrincipal">
+											  <select name="SchoolName" id="selectError3">
+												<option value="ChooseSchool">Choose School</option>
+												<?php                                                
+                                                while($schoolrowPr = mysqli_fetch_assoc($schoolresultPr)){
+                                                    echo "<option value='".$schoolrowPr["SchoolName"]."'>".$schoolrowPr["SchoolName"]."</option>";
+                                                }
+                                                ?>                                                
+											  </select>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="selectError3">Title:</label>
+											<div class="controls">
+											  <select name="Title" id="selectError3">
+												<option value="ChooseTitle">Choose Title</option>
+												<option value="Mr">Mr.</option>
+												<option value="Miss">Miss.</option>
+												<option value="Ms">Ms.</option>
+											  </select>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Principal First Name:</label>
+											<div class="controls">
+											  <input name="PrincipalFirstName" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Principal Last Name:</label>
+											<div class="controls">
+											  <input name="PrincipalLastName" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Sex:</label>
+											<div class="controls">
+											  <label class="radio">
+												<input type="radio" name="Sex" id="optionsRadios1" value="Male" checked="">
+												Male
+											  </label>
+											  <div style="clear:both"></div>
+											  <label class="radio">
+												<input type="radio" name="Sex" id="optionsRadios2" value="Female">
+												Female
+											  </label>
+											</div>
+										</div>
+										<div class="control-group">
+										  <label class="control-label" for="fileInput">ID Proof:</label>
+										  <div class="controls">
+											<div class="uploader" id="uniform-fileInput"><input class="input-file uniform_on" id="fileInput" type="file" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div>
+										  </div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Phone Code:</label>
+											<div class="controls">
+											  <input name="PhoneCode" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Phone No:</label>
+											<div class="controls">
+											  <input name="PhoneNo" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Mobile Code:</label>
+											<div class="controls">
+											  <input name="MobileCode" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Mobile No:</label>
+											<div class="controls">
+											  <input name="MobileNo" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Email:</label>
+											<div class="controls">
+											  <input name="Email" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Educational Qualification:</label>
+											<div class="controls">
+											  <input name="EducationalQualification" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>							  
+										<div class="control-group">
+										  <label class="control-label" for="fileInput">Image Upload</label>
+										  <div class="controls">
+											<div class="uploader" id="uniform-fileInput"><input class="input-file uniform_on" id="fileInput" type="file" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div>
+										  </div>
+										</div>  
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Salary:</label>
+											<div class="controls">
+											  <input name="Salary" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>      
+										<legend>Choose Username and Password</legend>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">PRUID:</label>
+											<div class="controls">
+											  <input name="PRUID" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $PRUID; ?>" readonly>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Temporary Password:</label>
+											<div class="controls">
+											  <input name="PrTemporaryPassword" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $TemporaryPassword; ?>" readonly>
+											</div>
+										</div>											
+										<div class="form-actions">
+										  <button type="submit" class="btn btn-primary">Save</button>
+										  <button type="reset" class="btn">Cancel</button>
+										</div>
+									</fieldset>
+								</form>
 								
 							</div>
 							<div class="tab-pane" id="tec">
-							<form class="form-horizontal" action="#">
-						  <fieldset>
-							<legend>Please fill the form for Teacher detail</legend>
-							<div class="control-group">
-								<label class="control-label" for="focusedInput">Name:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Contact No:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Email Id:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Subject:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  
-							
-							  <div class="control-group">
-							  <label class="control-label" for="date01">Date of Birth:</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="">
-							  </div>
+								<form name="AddTeacher" class="form-horizontal" action="../configs/addschoolrecord-agent.php" method="post" onSubmit="return validAddTeacher();">
+									<fieldset>
+										<legend>Please fill the form for Teacher detail</legend>
+										<div class="control-group">
+											<label class="control-label" for="selectError3">Choose School:</label>
+											<div class="controls">
+                                              <input name="AddTeacher" type="hidden" value="AddTeacher">
+											  <select name="TeacherSchoolName" id="selectError3">
+												<option value="ChooseSchool">Choose School</option>
+												<?php                                                
+                                                while($schoolrowTe = mysqli_fetch_assoc($schoolresultTe)){
+                                                    echo "<option value='".$schoolrowTe["SchoolName"]."'>".$schoolrowTe["SchoolName"]."</option>";
+                                                }
+                                                ?>                                                
+											  </select>
+											</div>
+										</div>				
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Teacher First Name:</label>
+											<div class="controls">
+											  <input name="TeacherFirstName" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Teacher Last Name:</label>
+											<div class="controls">
+											  <input name="TeacherLastName" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>							  
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Contact No:</label>
+											<div class="controls">
+											  <input name="ContactNo" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Email Id:</label>
+											<div class="controls">
+											  <input name="EmailId" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Subject:</label>
+											<div class="controls">
+											  <input name="Subject" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Sex:</label>
+											<div class="controls">
+											  <label class="radio">
+												<input type="radio" name="Sex" id="optionsRadios1" value="Male" checked="">
+												Male
+											  </label>
+											  <div style="clear:both"></div>
+											  <label class="radio">
+												<input type="radio" name="Sex" id="optionsRadios2" value="Female">
+												Female
+											  </label>
+											</div>
+										</div>
+										<div class="control-group">
+										  <label class="control-label" for="fileInput">Image Upload</label>
+										  <div class="controls">
+											<div class="uploader" id="uniform-fileInput"><input class="input-file uniform_on" id="fileInput" type="file" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div>
+										  </div>
+										</div>        
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Salary:</label>
+											<div class="controls">
+											  <input name="Salary" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>
+										<legend>Choose Username and Password</legend>										
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">TEUID:</label>
+											<div class="controls">
+											  <input name="TEUID" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $TEUID; ?>" readonly>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Temporary Password:</label>
+											<div class="controls">
+											  <input name="TeTemporaryPassword" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $TemporaryPassword; ?>" readonly>
+											</div>
+										</div>										
+										<div class="form-actions">
+										  <button type="submit" class="btn btn-primary">Save</button>
+										  <button type="reset" class="btn">Cancel</button>
+										</div>
+									</fieldset>
+								</form>	
 							</div>
-							<div class="control-group">
-								<label class="control-label">Sex:</label>
-								<div class="controls">
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-									Male
-								  </label>
-								  <div style="clear:both"></div>
-								  <label class="radio">
-									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									Female
-								  </label>
-								</div>
-							  </div>
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">Image Upload</label>
-							  <div class="controls">
-								<div class="uploader" id="uniform-fileInput"><input class="input-file uniform_on" id="fileInput" type="file" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div>
-							  </div>
-							</div>        
-							<div class="control-group">
-								<label class="control-label" for="focusedInput">Salary:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-		
-						<legend>Choose Username and Password</legend>
-						
-						<div class="control-group">
-								<label class="control-label" for="focusedInput">Choose a Username:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="text" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Choose a Password:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="Password" value="">
-								</div>
-							  </div>
-							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Confirn Password:</label>
-								<div class="controls">
-								  <input class="input-xlarge focused" id="focusedInput" type="Password" value="">
-								</div>
-							  </div>
-							
-							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Save</button>
-							  <button type="reset" class="btn">Cancel</button>
-							</div>
-							<div class="alert alert-success">
-							<button type="button" class="close" data-dismiss="alert">×</button>
-							<strong>Well done!</strong> You successfully added School's Teacher in our database.
-						</div>
-						  </fieldset>
-						</form>	
-							</div>
-							
 							<div class="tab-pane" id="Stu">
 								<form name="AddStudent" class="form-horizontal" action="../configs/addschoolrecord-agent.php" method="post" onSubmit="return validAddStudent();">
 									<fieldset>
@@ -611,10 +636,11 @@
                                               <input name="AddStudent" type="hidden" value="AddStudent">
 											  <select name="School" id="selectError3">
 												<option value="ChooseSchool">Choose School</option>
-												<option value="School1">School1</option>
-												<option value="School2">School2</option>
-												<option value="School3">School3</option>
-												<option value="School4">School4</option>
+												<?php                                                
+                                                while($schoolrow = mysqli_fetch_assoc($schoolresult)){
+                                                    echo "<option value='".$schoolrow["SchoolName"]."'>".$schoolrow["SchoolName"]."</option>";
+                                                }
+                                                ?>                                                
 											  </select>
 											</div>
 										</div>
@@ -659,11 +685,11 @@
 											<div class="controls">
 											  <input name="ClassTeacherName" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
-										</div>							
+										</div>
 										<div class="control-group">
 										  <label class="control-label" for="date01">Date of Birth:</label>
 										  <div class="controls">
-											<input name="DateofBirth" type="text" class="input-xlarge datepicker" id="date01" value="">
+											<input name="DateofBirth" type="text" class="input-xlarge datepicker" id="date01">
 										  </div>
 										</div>
 										<div class="control-group">
@@ -750,31 +776,20 @@
 										</div>
 										<legend>Choose Username and Password</legend>
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Choose a Username:</label>
+											<label class="control-label" for="focusedInput">STUID:</label>
 											<div class="controls">
-											  <input name="ChooseaUsername" class="input-xlarge focused" id="focusedInput" type="text">
+											  <input name="STUID" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $STUID; ?>" readonly>
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Choose a Password:</label>
+											<label class="control-label" for="focusedInput">Temporary Password:</label>
 											<div class="controls">
-											  <input name="ChooseaPassword" class="input-xlarge focused" id="focusedInput" type="Password">
+											  <input name="TemporaryPassword" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $TemporaryPassword; ?>" readonly>
 											</div>
 										</div>
-										<div class="control-group">
-											<label class="control-label" for="focusedInput">Confirm Password:</label>
-											<div class="controls">
-												<input name="ConfirmPassword" class="input-xlarge focused" id="focusedInput" type="Password">
-											</div>
-										</div>
-							
 										<div class="form-actions">
 										  <button type="submit" class="btn btn-primary">Save</button>
 										  <button type="reset" class="btn">Cancel</button>
-										</div>
-										<div class="alert alert-success">
-											<button type="button" class="close" data-dismiss="alert">×</button>
-											<strong>Well done!</strong> You successfully added School's Teacher in our database.
 										</div>
 									</fieldset>
 								</form>
@@ -895,3 +910,6 @@
 		
 </body>
 </html>
+<?php
+include '../configs/connection-close.php';
+?>

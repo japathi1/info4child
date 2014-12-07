@@ -22,7 +22,7 @@ $Email = $_POST['Email'];
 
 $SchoolUniqId = uniqid();
 $sid = "sc".$SchoolUniqId;
-echo $sid;
+
 $sql = "INSERT INTO school (SchoolName,
 							SchoolTitle,
 							SchoolLogo,
