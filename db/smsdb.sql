@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2014 at 07:39 AM
+-- Generation Time: Dec 08, 2014 at 09:09 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -55,6 +55,68 @@ INSERT INTO `login` (`id`, `username`, `password`, `designation`, `email`, `uid`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `management`
+--
+
+CREATE TABLE IF NOT EXISTS `management` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `OwnerFirstName` varchar(255) NOT NULL,
+  `OwnerLastName` varchar(255) NOT NULL,
+  `ContactNo` varchar(255) NOT NULL,
+  `EmailId` varchar(255) NOT NULL,
+  `Sex` varchar(255) NOT NULL,
+  `ImageUpload` varchar(255) NOT NULL,
+  `MAUID` varchar(255) NOT NULL,
+  `MaTemporaryPassword` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `management`
+--
+
+INSERT INTO `management` (`id`, `OwnerFirstName`, `OwnerLastName`, `ContactNo`, `EmailId`, `Sex`, `ImageUpload`, `MAUID`, `MaTemporaryPassword`) VALUES
+(1, 'Owner First Name', 'Owner Last Name', '9043038157', 'owner@gmail.com', 'male', 'No Image', 'ma5484675c5db99', 'IOiyLSNY'),
+(2, 'Owner First Name', 'Owner Last Name', '9043038157', 'owner@gmail.com', 'male', 'No Image', 'ma548467d3ebc0a', '1HUEn7AN');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `principal`
+--
+
+CREATE TABLE IF NOT EXISTS `principal` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `SchoolName` varchar(255) NOT NULL,
+  `Title` varchar(255) NOT NULL,
+  `PrincipalFirstName` varchar(255) NOT NULL,
+  `PrincipalLastName` varchar(255) NOT NULL,
+  `Sex` varchar(255) NOT NULL,
+  `IDProof` varchar(255) NOT NULL,
+  `PhoneCode` varchar(255) NOT NULL,
+  `PhoneNo` varchar(255) NOT NULL,
+  `MobileCode` varchar(255) NOT NULL,
+  `MobileNo` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `EducationalQualification` varchar(255) NOT NULL,
+  `ImageUpload` varchar(255) NOT NULL,
+  `Salary` varchar(255) NOT NULL,
+  `PRUID` varchar(255) NOT NULL,
+  `PrTemporaryPassword` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `principal`
+--
+
+INSERT INTO `principal` (`id`, `SchoolName`, `Title`, `PrincipalFirstName`, `PrincipalLastName`, `Sex`, `IDProof`, `PhoneCode`, `PhoneNo`, `MobileCode`, `MobileNo`, `Email`, `EducationalQualification`, `ImageUpload`, `Salary`, `PRUID`, `PrTemporaryPassword`) VALUES
+(1, 'UCA-2', 'Miss', 'Principal First Name', 'Principal Last Name', 'Male', 'No ID Proof', '22-', '4444444-', '91-', '9043038157-', 'alisftpp@gmail.com', 'b.tech', 'No Image', '6000000', 'pr54846b14a9d33', 'lQgVLVjN'),
+(2, 'UCA-2', 'Ms', 'Principal First Name', 'Principal Last Name', 'Female', 'No ID Proof', '22-', '4444444-', '91-', '9043038157-', 'alisftpp@gmail.com', 'b.tech', 'No Image', '6000000', 'pr54846bb18cd6b', '6V4bwqxK');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `school`
 --
 
@@ -85,9 +147,82 @@ CREATE TABLE IF NOT EXISTS `school` (
 --
 
 INSERT INTO `school` (`id`, `SchoolName`, `SchoolTitle`, `SchoolLogo`, `Document`, `Country`, `State`, `City`, `PinCode`, `Landmark`, `Address`, `PhoneCode`, `PhoneNo`, `MobileCode`, `MobileNo`, `Website`, `Email`, `sid`) VALUES
-(5, 'UCA-', 'tUSA-', 'SchoolLogo', 'Document', 'India-', 'TN-', 'Chennai-', '600095-', 'MGR-', 'hjhj', '22-', '4444444-', '91-', '9043038157-', 'ali.com-', 'alisftpp@gmail.com', 'sc547edde156873'),
-(6, 'UCA-', 'tUSA-', 'SchoolLogo', 'Document', 'India-', 'TN-', 'Chennai-', '600095-', 'MGR-', 'fs', '22-', '4444444-', '91-', '9043038157-', 'ali.com-', 'alisftpp@gmail.com', 'sc547ef9f463a4e'),
-(7, 'UCA-', 'tUSA-', 'SchoolLogo', 'Document', 'India-', 'TN-', 'Chennai-', '600095-', 'MGR-', 'hjjk', '22-', '4444444-', '91-', '9043038157-', 'ali.com-', 'alisftpp@gmail.com', 'sc547f37d3bb437');
+(5, 'UCA-1', 'tUSA-', 'SchoolLogo', 'Document', 'India-', 'TN-', 'Chennai-', '600095-', 'MGR-', 'hjhj', '22-', '4444444-', '91-', '9043038157-', 'ali.com-', 'alisftpp@gmail.com', 'sc547edde156873'),
+(6, 'UCA-2', 'tUSA-', 'SchoolLogo', 'Document', 'India-', 'TN-', 'Chennai-', '600095-', 'MGR-', 'fs', '22-', '4444444-', '91-', '9043038157-', 'ali.com-', 'alisftpp@gmail.com', 'sc547ef9f463a4e'),
+(7, 'UCA-3', 'tUSA-', 'SchoolLogo', 'Document', 'India-', 'TN-', 'Chennai-', '600095-', 'MGR-', 'hjjk', '22-', '4444444-', '91-', '9043038157-', 'ali.com-', 'alisftpp@gmail.com', 'sc547f37d3bb437');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student`
+--
+
+CREATE TABLE IF NOT EXISTS `student` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `School` varchar(255) NOT NULL,
+  `FirstName` varchar(255) NOT NULL,
+  `LastName` varchar(255) NOT NULL,
+  `ContactNo` varchar(255) NOT NULL,
+  `EmailId` varchar(255) NOT NULL,
+  `Class` varchar(255) NOT NULL,
+  `Section` varchar(255) NOT NULL,
+  `ClassTeacherName` varchar(255) NOT NULL,
+  `DateofBirth` varchar(255) NOT NULL,
+  `Sex` varchar(255) NOT NULL,
+  `ImageUpload` varchar(255) NOT NULL,
+  `BloodGroup` varchar(255) NOT NULL,
+  `FatherName` varchar(255) NOT NULL,
+  `FatherEmailID` varchar(255) NOT NULL,
+  `FatherContactNo` varchar(255) NOT NULL,
+  `MotherName` varchar(255) NOT NULL,
+  `MotherEmailID` varchar(255) NOT NULL,
+  `MotherContactNo` varchar(255) NOT NULL,
+  `Sibling` varchar(255) NOT NULL,
+  `stuid` varchar(255) NOT NULL,
+  `TemporaryPassword` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`id`, `School`, `FirstName`, `LastName`, `ContactNo`, `EmailId`, `Class`, `Section`, `ClassTeacherName`, `DateofBirth`, `Sex`, `ImageUpload`, `BloodGroup`, `FatherName`, `FatherEmailID`, `FatherContactNo`, `MotherName`, `MotherEmailID`, `MotherContactNo`, `Sibling`, `stuid`, `TemporaryPassword`) VALUES
+(1, 'UCA-2', 'fname', 'lname', 'student mob', 'owner@gmail.com', 'class', 'section', 'class teacher', '12/24/2014', 'male', 'No Image', 'A-', 'father name', 'father email', 'father contact', 'mother name', 'mother email', 'mother contact', 'sibling', 'st548477415160d', '4RFwY0Ob'),
+(2, 'UCA-3', 'fname', 'lname', 'student mob', 'student emaai', 'class', 'section', 'class teacher', '12/10/2014', 'male', 'No Image', 'AB-', 'father name', 'father email', 'father contact', 'mother name', 'mother email', 'mother contact', 'sibling', 'st5484781c8098c', '2E5hy41E');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teacher`
+--
+
+CREATE TABLE IF NOT EXISTS `teacher` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `TeacherSchoolName` varchar(255) NOT NULL,
+  `TeacherFirstName` varchar(255) NOT NULL,
+  `TeacherLastName` varchar(255) NOT NULL,
+  `ContactNo` varchar(255) NOT NULL,
+  `EmailId` varchar(255) NOT NULL,
+  `Subject` varchar(255) NOT NULL,
+  `Sex` varchar(255) NOT NULL,
+  `ImageUpload` varchar(255) NOT NULL,
+  `Salary` varchar(255) NOT NULL,
+  `TEUID` varchar(255) NOT NULL,
+  `TeTemporaryPassword` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `teacher`
+--
+
+INSERT INTO `teacher` (`id`, `TeacherSchoolName`, `TeacherFirstName`, `TeacherLastName`, `ContactNo`, `EmailId`, `Subject`, `Sex`, `ImageUpload`, `Salary`, `TEUID`, `TeTemporaryPassword`) VALUES
+(1, 'UCA-3', 'Teacher First Name', 'Teacher Last Name', '9043038157', '9043038157', 'fsdfsd', 'Female', '', '6000000', 'te5484733b6461d', 'TBRuVNxu'),
+(2, 'UCA-3', 'Teacher First Name', 'Teacher Last Name', '9043038157', '9043038157', 'fsdfsd', 'Female', 'No Image', '6000000', 'te5484733b6461d', 'TBRuVNxu'),
+(3, 'UCA-1', 'Teacher First Name', 'Teacher Last Name', 'student mob', 'student mob', 'fsdfsd', 'Male', 'No Image', '6000000', 'te5484740c8e90c', 'tLra40WR'),
+(4, 'ChooseSchool', '', '', '', '', '', 'Male', 'No Image', '', 'te54847a87de860', 'wN7iKfiK'),
+(5, 'UCA-1', 'Teacher First Name', 'Teacher Last Name', 'student mob', 'student mob', 'fsdfsd', 'Male', 'No Image', '6000000xx', 'te54847c01b2c96', 'Zvx0pbc3');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
