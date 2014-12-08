@@ -1,4 +1,4 @@
 <?php
-echo "azure new";
+echo "azure new new";
 
 ?>
