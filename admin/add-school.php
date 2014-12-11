@@ -3,7 +3,6 @@ session_start();
 
 $uid = $_SESSION['uid'];
 $FirstName = $_SESSION['FirstName'];
-//echo $_SESSION['addschool'] ="NotSuccess";
 
 if(isset($_GET['success'])){
 	$success = $_GET['success'];

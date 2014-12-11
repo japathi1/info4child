@@ -42,7 +42,7 @@ if(isset($_POST['AddManagement'])){
 		}		
 	}
 }
-//Add Management begins
+//Add Management ends
 
 //Add Principal begins
 if(isset($_POST['AddPrincipal'])){

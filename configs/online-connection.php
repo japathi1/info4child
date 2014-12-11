@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "smsdb";
+$servername = "sql2.freemysqlhosting.net";
+$username = "sql260707";
+$password = "tZ3%vF9%";
+$dbname = "sql260707";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
