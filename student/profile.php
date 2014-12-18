@@ -43,7 +43,7 @@
 <!-- topbar starts -->
 <div class="navbar">
   <div class="navbar-inner">
-    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.html"> <img alt=""/> <span>ABC</span></a>
+    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.php"> <img alt=""/> <span>ABC</span></a>
       <!-- theme selector starts -->
       <div class="btn-group pull-right theme-container" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-tint"></i><span class="hidden-phone"> Change Theme / Skin</span> <span class="caret"></span> </a>
         <ul class="dropdown-menu" id="themes">
@@ -68,7 +68,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="#">View Profile</a></li>
 						<li class="divider"></li>
-						<li><a href="login.html">Logout</a></li>
+						<li><a href="login.php">Logout</a></li>
 					</ul>
 				</div>
       <!-- user dropdown ends -->
@@ -94,20 +94,20 @@
       <div class="well nav-collapse sidebar-nav">
         <ul class="nav nav-tabs nav-stacked main-menu">
           <li class="nav-header hidden-tablet">Menu</li>
-          <li><a class="ajax-link" href="index.html"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-          <li><a class="ajax-link" href="profile.html"><i class="icon-camera"></i><span class="hidden-tablet"> View Profile</span></a></li>
-		   <li><a class="ajax-link" href="edit-profile.html"><i class="icon-edit"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
-          <li><a class="ajax-link" href="message.html"><i class="icon-inbox"></i><span class="hidden-tablet"> Message Center</span></a></li>
-          <li><a class="ajax-link" href="assignment.html"><i class="icon-book"></i><span class="hidden-tablet">View Assignment </span></a></li>
-		  <li><a class="ajax-link" href="school-result.html"><i class="icon-star"></i><span class="hidden-tablet"> School Exam/Result</span></a></li>
-		    <li><a class="ajax-link" href="notice-board.html"><i class="icon-bullhorn"></i><span class="hidden-tablet">School Notice Board</span></a></li>
-          <li><a class="ajax-link" href="attandance.html"><i class="icon-signal"></i><span class="hidden-tablet">Attandance Record</span></a></li>
-          <li><a class="ajax-link" href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet">Photo Gallery </span></a></li>
-		  <li><a class="ajax-link" href="medical.html"><i class="icon-plus"></i><span class="hidden-tablet"> Medical Report</span></a></li>
-		   <li><a class="ajax-link" href="holiday.html"><i class="icon-bell"></i><span class="hidden-tablet"> Holiday Calender</span></a></li>
-		    <li><a class="ajax-link" href="event.html"><i class="icon-calendar"></i><span class="hidden-tablet"> Event Calender</span></a></li>
-			<li><a class="ajax-link" href="time-table.html"><i class="icon-time"></i><span class="hidden-tablet"> School Time Table</span></a></li>
-			 <li><a class="ajax-link" href="exam-center.html"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> I4C Exam Center</span></a></li>
+          <li><a class="ajax-link" href="index.php"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+          <li><a class="ajax-link" href="profile.php"><i class="icon-camera"></i><span class="hidden-tablet"> View Profile</span></a></li>
+		   <li><a class="ajax-link" href="edit-profile.php"><i class="icon-edit"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
+          <li><a class="ajax-link" href="message.php"><i class="icon-inbox"></i><span class="hidden-tablet"> Message Center</span></a></li>
+          <li><a class="ajax-link" href="assignment.php"><i class="icon-book"></i><span class="hidden-tablet">View Assignment </span></a></li>
+		  <li><a class="ajax-link" href="school-result.php"><i class="icon-star"></i><span class="hidden-tablet"> School Exam/Result</span></a></li>
+		    <li><a class="ajax-link" href="notice-board.php"><i class="icon-bullhorn"></i><span class="hidden-tablet">School Notice Board</span></a></li>
+          <li><a class="ajax-link" href="attandance.php"><i class="icon-signal"></i><span class="hidden-tablet">Attandance Record</span></a></li>
+          <li><a class="ajax-link" href="gallery.php"><i class="icon-picture"></i><span class="hidden-tablet">Photo Gallery </span></a></li>
+		  <li><a class="ajax-link" href="medical.php"><i class="icon-plus"></i><span class="hidden-tablet"> Medical Report</span></a></li>
+		   <li><a class="ajax-link" href="holiday.php"><i class="icon-bell"></i><span class="hidden-tablet"> Holiday Calender</span></a></li>
+		    <li><a class="ajax-link" href="event.php"><i class="icon-calendar"></i><span class="hidden-tablet"> Event Calender</span></a></li>
+			<li><a class="ajax-link" href="time-table.php"><i class="icon-time"></i><span class="hidden-tablet"> School Time Table</span></a></li>
+			 <li><a class="ajax-link" href="exam-center.php"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> I4C Exam Center</span></a></li>
         </ul>
         <label id="for-is-ajax" class="hidden-tablet" for="is-ajax">
         <input id="is-ajax" type="checkbox">
@@ -127,8 +127,8 @@
       <!-- content starts -->
       <div>
         <ul class="breadcrumb">
-          <li> <a href="index.html">Home</a> <span class="divider">/</span> </li>
-          <li> <a href="gallery.html">Gallery</a> </li>
+          <li> <a href="index.php">Home</a> <span class="divider">/</span> </li>
+          <li> <a href="gallery.php">Gallery</a> </li>
         </ul>
       </div>
       <div class="row-fluid sortable">

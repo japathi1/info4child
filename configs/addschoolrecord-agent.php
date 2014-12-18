@@ -178,7 +178,7 @@ if(isset($_POST['AddStudent'])){
 		$ClassTeacherName = $_POST['ClassTeacherName'];
 		$DateofBirth = $_POST['DateofBirth'];
 		$Sex = $_POST['Sex'];
-		$ImageUpload = "No Image";
+		//$ImageUpload = "No Image";
 		$BloodGroup = $_POST['BloodGroup'];
 		$FatherName = $_POST['FatherName'];
 		$FaterEmailID = $_POST['FaterEmailID'];
@@ -200,7 +200,6 @@ if(isset($_POST['AddStudent'])){
 									ClassTeacherName,
 									DateofBirth,
 									Sex,
-									ImageUpload,
 									BloodGroup,
 									FatherName,
 									FatherEmailID,
@@ -222,7 +221,6 @@ if(isset($_POST['AddStudent'])){
 									'$ClassTeacherName',
 									'$DateofBirth',
 									'$Sex',
-									'$ImageUpload',
 									'$BloodGroup',
 									'$FatherName',
 									'$FaterEmailID',

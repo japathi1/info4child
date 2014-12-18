@@ -29,7 +29,7 @@ $sql = "INSERT INTO login (username,
 							)";
 							
 if ($conn->query($sql) === TRUE) {
-	$sql = "UPDATE student SET IsActive='yes' WHERE stuid='uid'";
+	$sql = "UPDATE student SET IsActive='yes' WHERE stuid='$uid'";
 	
 	if ($conn->query($sql) === TRUE) {
 		header('Location: ../login/register-done.php');

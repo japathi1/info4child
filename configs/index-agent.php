@@ -21,7 +21,8 @@ if(mysqli_num_rows($result) > 0){
 		If($row["designation"] == "admin"){
 			session_regenerate_id();
 			$_SESSION['uid'] = $row["uid"];
-			$_SESSION['FirstName'] = $row["FirstName"];			
+			$_SESSION['FirstName'] = $row["FirstName"];	
+			$_SESSION['DesignationHardCode'] = "admin";		
 			header('Location: ../admin/index.php');
 			//echo $row["designation"]."<br> Under construction";
 		}elseif($row["designation"] == "management"){
@@ -30,12 +31,19 @@ if(mysqli_num_rows($result) > 0){
 			echo $row["designation"]."<br> Under construction";	
 		}elseif($row["designation"] == "teacher"){
 			echo $row["designation"]."<br> Under construction";
+		}elseif($row["designation"] == "student"){
+			session_regenerate_id();
+			$_SESSION['uid'] = $row["uid"];
+			$_SESSION['FirstName'] = $row["FirstName"];	
+			$_SESSION['DesignationHardCode'] = "student";	
+			header('Location: ../student/index.php');			
+			echo $row["designation"]."<br> Under construction";
 		}else{
-			echo $row["designation"]."<br> Under construction";	
+			echo "no designation";	
 		}		
     }
 }else{
-	header('Location: ../login/login.php');
+	header('Location: ../login/login.php?success=no');
     //echo "0 results";
 }
 

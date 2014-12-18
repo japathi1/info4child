@@ -38,7 +38,7 @@ if(isset($_POST['designation'])){
 		$uid = $_POST['uid'];
 		$password = $_POST['password'];
 		
-		$sql = "SELECT * FROM student WHERE stuid='$uid' AND TemporaryPassword='$password' AND designation='$designation'";
+		$sql = "SELECT * FROM student WHERE stuid='$uid' AND TemporaryPassword='$password' AND designation='$designation' AND IsActive='no'";
 		$result = mysqli_query($conn, $sql);
 		
 		if(mysqli_num_rows($result) > 0){

@@ -3,6 +3,12 @@ session_start();
 
 unset($_SESSION['uid']);
 unset($_SESSION['FirstName']);	
+
+if(isset($_GET['success'])){
+	$success = $_GET['success'];
+}else{
+	$success = "NotYesOrNo";	
+}
 	
 ?>
 <!DOCTYPE html>
@@ -79,9 +85,20 @@ unset($_SESSION['FirstName']);
 			
 			<div class="row-fluid">
 				<div class="well span5 center login-box">
-					<div class="alert alert-info">
-						The Username or Password you entered is incorrect.
-					</div>
+					<?php
+                    if($success == "yes"){
+                        echo "<div class=\"alert alert-success\">";
+                            echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
+                            echo "<strong>Well done!</strong> The Username or Password you entered is correct.";
+                        echo "</div>";
+                    }
+                    if($success == "no"){
+                        echo "<div class=\"alert alert-danger\">";
+                          echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
+                          echo "<strong>Oh snap!</strong> The Username or Password you entered is incorrect.";
+                        echo "</div>";
+                    }				
+                    ?>                    
 					<form name="loginform" class="form-horizontal" action="../configs/index-agent.php" method="post" onSubmit="return validlogin();">
 						<fieldset>
 							<div class="input-prepend" title="Username" data-rel="tooltip">

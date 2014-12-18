@@ -1,3 +1,61 @@
+<?php
+session_start();
+
+$uid = $_SESSION['uid'];
+$FirstName = $_SESSION['FirstName'];
+$DesignationHardCode = $_SESSION['DesignationHardCode'];
+
+if(($_SESSION['uid'] == "") || ($DesignationHardCode != "student")){
+	header('Location: ../index.php');
+	exit();	
+}
+
+include '../configs/connection.php';
+
+//fetch data from school table begins
+$sql = "SELECT * FROM student WHERE stuid='$uid'";
+$result = mysqli_query($conn, $sql);
+
+if(mysqli_num_rows($result) > 0){
+    // login success - output data of each row
+    while($row = mysqli_fetch_assoc($result)){
+		$FirstName = $row["FirstName"];
+		$LastName = $row["LastName"];
+		$DateofBirth = $row["DateofBirth"];	
+		$ContactNo = $row["ContactNo"];
+		$EmailId = $row["EmailId"];
+		$Class = $row["Class"];
+		$Section = $row["Section"];
+		$ImageUpload = $row["ImageUpload"];
+		
+		$FatherName = $row["FatherName"];
+		$FatherContactNo = $row["FatherContactNo"];
+		$FatherEmailID = $row["FatherEmailID"];
+		
+		$MotherName = $row["MotherName"];
+		$MotherContactNo = $row["MotherContactNo"];
+		$MotherEmailID = $row["MotherEmailID"];
+		
+		$ClassTeacherName = $row["ClassTeacherName"];		
+    }
+}else{
+    echo "0 results";
+}
+//fetch data from school table ends
+
+// profile picture begins
+$DBPPPath = "../configs/student-profile-pic.php?stuid=".$uid;
+$DirectoryPPPath ="img/profile-pic.jpg";
+
+if(!empty($ImageUpload)){
+	$ProfilePicture = $DBPPPath;
+}else{
+	$ProfilePicture = $DirectoryPPPath;	
+}
+// profile picture ends
+
+	
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +101,7 @@
 <!-- topbar starts -->
 <div class="navbar">
   <div class="navbar-inner">
-    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.html"> <img alt=""/> <span>ABC</span></a>
+    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.php"> <img alt=""/> <span>ABC</span></a>
       <!-- theme selector starts -->
       <div class="btn-group pull-right theme-container" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-tint"></i><span class="hidden-phone"> Change Theme / Skin</span> <span class="caret"></span> </a>
         <ul class="dropdown-menu" id="themes">
@@ -62,13 +120,13 @@
       <!-- user dropdown starts -->
       <div class="btn-group pull-right">
 					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-user"></i><span class="hidden-phone">Welcome! Rakesh Goyal </span>
+						<i class="icon-user"></i><span class="hidden-phone">Welcome <?php echo $FirstName; ?>!</span>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">View Profile</a></li>
+						<li><a href="profile.php">View Profile</a></li>
 						<li class="divider"></li>
-						<li><a href="login.html">Logout</a></li>
+						<li><a href="../login/login.php">Logout</a></li>
 					</ul>
 				</div>
       <!-- user dropdown ends -->
@@ -94,20 +152,20 @@
       <div class="well nav-collapse sidebar-nav">
         <ul class="nav nav-tabs nav-stacked main-menu">
           <li class="nav-header hidden-tablet">Menu</li>
-          <li><a class="ajax-link" href="index.html"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-          <li><a class="ajax-link" href="profile.html"><i class="icon-camera"></i><span class="hidden-tablet"> View Profile</span></a></li>
-		   <li><a class="ajax-link" href="edit-profile.html"><i class="icon-edit"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
-          <li><a class="ajax-link" href="message.html"><i class="icon-inbox"></i><span class="hidden-tablet"> Message Center</span></a></li>
-          <li><a class="ajax-link" href="assignment.html"><i class="icon-book"></i><span class="hidden-tablet">View Assignment </span></a></li>
-		  <li><a class="ajax-link" href="school-result.html"><i class="icon-star"></i><span class="hidden-tablet"> School Exam/Result</span></a></li>
-		    <li><a class="ajax-link" href="notice-board.html"><i class="icon-bullhorn"></i><span class="hidden-tablet">School Notice Board</span></a></li>
-          <li><a class="ajax-link" href="attandance.html"><i class="icon-signal"></i><span class="hidden-tablet">Attandance Record</span></a></li>
-          <li><a class="ajax-link" href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet">Photo Gallery </span></a></li>
-		  <li><a class="ajax-link" href="medical.html"><i class="icon-plus"></i><span class="hidden-tablet"> Medical Report</span></a></li>
-		   <li><a class="ajax-link" href="holiday.html"><i class="icon-bell"></i><span class="hidden-tablet"> Holiday Calender</span></a></li>
-		    <li><a class="ajax-link" href="event.html"><i class="icon-calendar"></i><span class="hidden-tablet"> Event Calender</span></a></li>
-			<li><a class="ajax-link" href="time-table.html"><i class="icon-time"></i><span class="hidden-tablet"> School Time Table</span></a></li>
-			 <li><a class="ajax-link" href="exam-center.html"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> I4C Exam Center</span></a></li>
+          <li><a class="ajax-link" href="index.php"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+          <li><a class="ajax-link" href="profile.php"><i class="icon-camera"></i><span class="hidden-tablet"> View Profile</span></a></li>
+		   <li><a class="ajax-link" href="edit-profile.php"><i class="icon-edit"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
+          <li><a class="ajax-link" href="message.php"><i class="icon-inbox"></i><span class="hidden-tablet"> Message Center</span></a></li>
+          <li><a class="ajax-link" href="assignment.php"><i class="icon-book"></i><span class="hidden-tablet">View Assignment </span></a></li>
+		  <li><a class="ajax-link" href="school-result.php"><i class="icon-star"></i><span class="hidden-tablet"> School Exam/Result</span></a></li>
+		    <li><a class="ajax-link" href="notice-board.php"><i class="icon-bullhorn"></i><span class="hidden-tablet">School Notice Board</span></a></li>
+          <li><a class="ajax-link" href="attandance.php"><i class="icon-signal"></i><span class="hidden-tablet">Attandance Record</span></a></li>
+          <li><a class="ajax-link" href="gallery.php"><i class="icon-picture"></i><span class="hidden-tablet">Photo Gallery </span></a></li>
+		  <li><a class="ajax-link" href="medical.php"><i class="icon-plus"></i><span class="hidden-tablet"> Medical Report</span></a></li>
+		   <li><a class="ajax-link" href="holiday.php"><i class="icon-bell"></i><span class="hidden-tablet"> Holiday Calender</span></a></li>
+		    <li><a class="ajax-link" href="event.php"><i class="icon-calendar"></i><span class="hidden-tablet"> Event Calender</span></a></li>
+			<li><a class="ajax-link" href="time-table.php"><i class="icon-time"></i><span class="hidden-tablet"> School Time Table</span></a></li>
+			 <li><a class="ajax-link" href="exam-center.php"><i class="icon-thumbs-up"></i><span class="hidden-tablet"> I4C Exam Center</span></a></li>
         </ul>
         <label id="for-is-ajax" class="hidden-tablet" for="is-ajax">
         <input id="is-ajax" type="checkbox">
@@ -148,47 +206,47 @@
 		
 		<div class="row-fluid show-grid">
 		<div class="span12">
-				<div class="span2"><img src="img/profile-pic.jpg" height="230" width="159"></div>
+				<div class="span3"><img src="<?php echo $ProfilePicture; ?>" height="240" width="240"></div>
 				<div class="span4">
-                <h2 align="left">Welcome Rakesh Goyal ! </h2>
+                <h2 align="left">Welcome <?php echo $FirstName . " ".$LastName; ?>!</h2>
              <h4 align="left">Class - <span>9</span>  </h4>
              <table class="table table-condensed">
 							
 							  <tbody>
 								<tr>
 									<td style="border:none"><strong>Full Name:</strong></td>
-									<td class="center" style="border:none">Mr. Rakesh Goyal</td>
+									<td class="center" style="border:none"><?php echo $FirstName . " ".$LastName; ?></td>
 								                        
 								</tr>
 								<tr>
 									<td style="border:none"><strong>Date of Birth:</strong></td>
-									<td class="center" style="border:none">yyyy/mm/dd</td>
+									<td class="center" style="border:none"><?php echo $DateofBirth; ?></td>
 									                               
 								</tr>
 								<tr>
 									<td style="border:none"><strong>Phone:</strong></td>
-									<td class="center" style="border:none">+91- 9430284579</td>
+									<td class="center" style="border:none"><?php echo $ContactNo; ?></td>
 								                         
 								</tr>
 								<tr>
 									<td style="border:none"><strong>Email:</strong></td>
-									<td style="border:none" class="center">sanskarvalley.school@gmail.com</td>
+									<td style="border:none" class="center"><?php echo $EmailId; ?></td>
 									                         
 								</tr>
 								         	<tr>
 									<td style="border:none"><strong>Class:</strong></td>
-									<td style="border:none" class="center">nine</td>
+									<td style="border:none" class="center"><?php echo $Class; ?></td>
 									                         
 								</tr>
                                 	<tr>
 									<td style="border:none"><strong>Section</strong></td>
-									<td style="border:none" class="center">B</td>
+									<td style="border:none" class="center"><?php echo $Section; ?></td>
 									                         
 								</tr>                 
 							  </tbody>
 						 </table>
                 </div>
-				<div class="span4">
+				<div class="span3">
                <table class="table table-condensed">
 							
 							  <tbody>
@@ -202,32 +260,32 @@
                               </tr>
 								<tr>
 									<td style="border:none"><strong>Father Full Name:</strong></td>
-									<td class="center" style="border:none">Mr. Fida Hussain</td>
+									<td class="center" style="border:none"><?php echo $FatherName; ?></td>
 								                        
 								</tr>
 								<tr>
 									<td style="border:none"><strong>Mobile:</strong></td>
-									<td class="center" style="border:none">9879347593475</td>
+									<td class="center" style="border:none"><?php echo $FatherContactNo; ?></td>
 									                               
 								</tr>
 								<tr>
 									<td style="border:none"><strong>Email:</strong></td>
-									<td class="center" style="border:none">Fida@gmail.com</td>
+									<td class="center" style="border:none"><?php echo $FatherEmailID; ?></td>
 								                         
 								</tr>
 								<tr>
 									<td style="border:none"><strong>Mother Full Name:</strong></td>
-									<td style="border:none" class="center">Anjelina Joli</td>
+									<td style="border:none" class="center"><?php echo $MotherName; ?></td>
 									                         
 								</tr>
                                 <tr>
 									<td style="border:none"><strong>Mobile:</strong></td>
-									<td class="center" style="border:none">9879347593475</td>
+									<td class="center" style="border:none"><?php echo $MotherContactNo; ?></td>
 									                               
 								</tr>
 								<tr>
 									<td style="border:none"><strong>Email:</strong></td>
-									<td class="center" style="border:none">Joli@gmail.com</td>
+									<td class="center" style="border:none"><?php echo $MotherEmailID; ?></td>
 								                         
 								</tr>
 								                          
@@ -273,7 +331,7 @@
 								</tr>
 								<tr>
 									
-									<td style="border:none" class="center">Mr. Sanjeev Kumar</td>
+									<td style="border:none" class="center"><?php echo $ClassTeacherName; ?></td>
 									                         
 								</tr>
 								                          
@@ -498,3 +556,6 @@
 <script src="js/charisma.js"></script>
 </body>
 </html>
+<?php
+include '../configs/connection-close.php';
+?>

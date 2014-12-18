@@ -13,7 +13,7 @@ if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0){
 		fclose($fp);
 	
 	
-		$sql = "UPDATE student SET ImageUpload='$content' WHERE stuid='st5484781c8098c'";
+		$sql = "UPDATE student SET ImageUpload='$content' WHERE stuid='st548a77447e23f'";
 		
 		if ($conn->query($sql) === TRUE) {
 			echo "File $fileName uploaded";

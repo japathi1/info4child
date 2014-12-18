@@ -3,8 +3,9 @@ session_start();
 
 $uid = $_SESSION['uid'];
 $FirstName = $_SESSION['FirstName'];
+$DesignationHardCode = $_SESSION['DesignationHardCode'];
 
-if($_SESSION['uid']==""){
+if($_SESSION['uid' ]== "" || ($DesignationHardCode != "admin")){
 	header('Location: ../index.php');
 	exit();	
 }

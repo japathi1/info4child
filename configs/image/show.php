@@ -6,7 +6,7 @@
 
 <body>
 <?php
-echo "<img src=\"see.php?id=2\" width=\"40\" height=\"40\">";
+echo "<img src=\"see.php?id=5\" width=\"240\" height=\"240\">";
 ?>
 </body>
 </html>
