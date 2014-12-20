@@ -3,7 +3,7 @@ session_start();
 
 $uid = $_SESSION['uid'];
 $FirstName = $_SESSION['FirstName'];
-//echo $_SESSION['addschool'] ="NotSuccess";
+$DesignationHardCode = $_SESSION['DesignationHardCode'];
 
 if(isset($_GET['success'])){
 	$success = $_GET['success'];
@@ -11,8 +11,8 @@ if(isset($_GET['success'])){
 	$success = "NotYesOrNo";	
 }
 
-if($_SESSION['uid']==""){
-	header('Location: ../index.php');
+if($_SESSION['uid' ]== "" || ($DesignationHardCode != "admin")){
+	header('Location: ../login/login.php');
 	exit();	
 }
 
@@ -258,9 +258,9 @@ $TemporaryPassword =  generateRandomString();
       </div>
       <!-- theme selector ends -->
       <!-- user dropdown starts -->
-      <div class="btn-group pull-right" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i><span class="hidden-phone"><?php echo $FirstName; ?></span> <span class="caret"></span> </a>
+      <div class="btn-group pull-right" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i><span class="hidden-phone">Welcome <?php echo $FirstName; ?>!</span> <span class="caret"></span> </a>
         <ul class="dropdown-menu">
-          <li><a href="../index.php">Logout</a></li>
+          <li><a href="../login/login.php">Logout</a></li>
         </ul>
       </div>
       <!-- user dropdown ends -->
