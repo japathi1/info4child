@@ -1,3 +1,61 @@
+<?php
+session_start();
+
+$uid = $_SESSION['uid'];
+$FirstName = $_SESSION['FirstName'];
+$DesignationHardCode = $_SESSION['DesignationHardCode'];
+
+if(($_SESSION['uid'] == "") || ($DesignationHardCode != "student")){
+	header('Location: ../login/login.php');
+	exit();	
+}
+
+include '../configs/connection.php';
+
+//fetch data from school table begins
+$sql = "SELECT * FROM student WHERE stuid='$uid'";
+$result = mysqli_query($conn, $sql);
+
+if(mysqli_num_rows($result) > 0){
+    // login success - output data of each row
+    while($row = mysqli_fetch_assoc($result)){
+		$FirstName = $row["FirstName"];
+		$LastName = $row["LastName"];
+		$DateofBirth = $row["DateofBirth"];	
+		$ContactNo = $row["ContactNo"];
+		$EmailId = $row["EmailId"];
+		$Class = $row["Class"];
+		$Section = $row["Section"];
+		$ImageUpload = $row["ImageUpload"];
+		
+		$FatherName = $row["FatherName"];
+		$FatherContactNo = $row["FatherContactNo"];
+		$FatherEmailID = $row["FatherEmailID"];
+		
+		$MotherName = $row["MotherName"];
+		$MotherContactNo = $row["MotherContactNo"];
+		$MotherEmailID = $row["MotherEmailID"];
+		
+		$ClassTeacherName = $row["ClassTeacherName"];		
+    }
+}else{
+    echo "0 results";
+}
+//fetch data from school table ends
+
+// profile picture begins
+$DBPPPath = "../configs/student-profile-pic.php?stuid=".$uid;
+$DirectoryPPPath ="img/profile-pic.jpg";
+
+if(!empty($ImageUpload)){
+	$ProfilePicture = $DBPPPath;
+}else{
+	$ProfilePicture = $DirectoryPPPath;	
+}
+// profile picture ends
+
+	
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,13 +120,13 @@
       <!-- user dropdown starts -->
       <div class="btn-group pull-right">
 					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-user"></i><span class="hidden-phone">Welcome! Rakesh Goyal </span>
+						<i class="icon-user"></i><span class="hidden-phone">Welcome <?php echo $FirstName; ?>!</span>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">View Profile</a></li>
+						<!--<li><a href="#">View Profile</a></li>-->
 						<li class="divider"></li>
-						<li><a href="login.php">Logout</a></li>
+						<li><a href="../login/login.php">Logout</a></li>
 					</ul>
 				</div>
       <!-- user dropdown ends -->
@@ -149,19 +207,19 @@
                         <div class="widget-body">
                             <div class="span3">
                                 <div class="text-center profile-pic">
-                                    <img src="img/profile-pic.jpg" alt="">
+                                    <img src="<?php echo $ProfilePicture; ?>" height="240" width="240">
                                 </div>
                                 <br>
 
                                 <ul class="nav nav-tabs nav-stacked">
-                                    <li><a href="javascript:void(0)"><i class="icon-adjust"></i>Change Profile Picture</a></li>
-                                    <li><a href="javascript:void(0)"><i class="icon-picture"></i> View Gallery</a></li>
-                                    <li><a href="javascript:void(0)"><i class="icon-edit" ></i> Edit Profile</a></li>
+                                    <li><a href="edit-profile.php#five"><i class="icon-adjust"></i>Change Profile Picture</a></li>
+                                    <li><a href="#"><i class="icon-picture"></i> View Gallery</a></li>
+                                    <li><a href="edit-profile.php"><i class="icon-edit" ></i> Edit Profile</a></li>
                                 </ul>
                              
                             </div>
                             <div class="span6">
-                                <h3>Rakesh Goyal <br/><small>Class - 9</small></h3>
+                                <h3><?php echo $FirstName . " ".$LastName; ?> <br/><small>Class - <?php echo $Class; ?></small></h3>
                                 
                                 <h5>Student Section </h5>
                               <table class="table table-condensed">
@@ -169,32 +227,32 @@
 							  <tbody>
 								<tr>
 									<td>First Name:</td>
-									<td>Rakesh</td>
+									<td><?php echo $FirstName; ?></td>
 									
 										
 									                                 
 								</tr>
 								<tr>
 									<td>Last Name:</td>
-									<td>Goyal</td>
+									<td><?php echo $LastName; ?></td>
 									
 										                            
 								</tr>
 								<tr>
 									<td>Date of Birth</td>
-									<td>1998/09/29</td>
+									<td><?php echo $DateofBirth; ?></td>
 								
 										                               
 								</tr>
 								<tr>
 									<td>Class:</td>
-									<td>nine</td>
+									<td><?php echo $Class; ?><sup>th</sup></td>
 								
 									                                  
 								</tr>
 								<tr>
 									<td>Mobile:</td>
-									<td>1234567890</td>
+									<td><?php echo $ContactNo; ?></td>
 									                              
 								</tr>                                   
 							  </tbody>
@@ -204,33 +262,21 @@
 							  
 							  <tbody>
 								<tr>
-									<td>First Name:</td>
-									<td>Rakesh</td>
+									<td>Father Name:</td>
+									<td><?php echo $FatherName;?></td>
 									
 										
 									                                 
 								</tr>
 								<tr>
-									<td>Last Name:</td>
-									<td>Goyal</td>
-									
-										                            
-								</tr>
-								<tr>
-									<td>Date of Birth</td>
-									<td>1998/09/29</td>
+									<td>Father Email ID</td>
+									<td><?php echo $FatherEmailID; ?></td>
 								
 										                               
 								</tr>
 								<tr>
-									<td>Class:</td>
-									<td>nine</td>
-								
-									                                  
-								</tr>
-								<tr>
 									<td>Mobile</td>
-									<td>1234567890</td>
+									<td><?php echo $FatherContactNo; ?></td>
 									                              
 								</tr>                                   
 							  </tbody>
@@ -384,3 +430,6 @@
 <script src="js/charisma.js"></script>
 </body>
 </html>
+<?php
+include '../configs/connection-close.php';
+?>

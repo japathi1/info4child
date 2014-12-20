@@ -6,7 +6,7 @@ $FirstName = $_SESSION['FirstName'];
 $DesignationHardCode = $_SESSION['DesignationHardCode'];
 
 if(($_SESSION['uid'] == "") || ($DesignationHardCode != "student")){
-	header('Location: ../index.php');
+	header('Location: ../login/login.php');
 	exit();	
 }
 

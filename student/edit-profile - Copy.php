@@ -6,7 +6,7 @@ $FirstName = $_SESSION['FirstName'];
 $DesignationHardCode = $_SESSION['DesignationHardCode'];
 
 if(($_SESSION['uid'] == "") || ($DesignationHardCode != "student")){
-	header('Location: ../login/login.php');
+	header('Location: ../index.php');
 	exit();	
 }
 
@@ -159,137 +159,6 @@ $(function(){
 
 
 </script>
-<script type="text/javascript">
-//Edit Student Information begins
-function validEditStudentInformation(){
-	if(document.EditStudentInformation.FirstName.value == ""){
-			alert("Please enter First Name");
-			document.EditStudentInformation.FirstName.focus();
-			return false;
-	}
-	if(document.EditStudentInformation.LastName.value == ""){
-			alert("Please enter Last Name");
-			document.EditStudentInformation.LastName.focus();
-			return false;
-	}
-	if(document.EditStudentInformation.DateofBirth.value == ""){
-			alert("Please select Date of Birth");
-			document.EditStudentInformation.DateofBirth.focus();
-			return false;
-	}		
-}
-//Edit Student Information ends
-
-//Edit Parent Information begins
-function validEditParentInformation(){
-	if(document.EditParentInformation.FatherName.value == ""){
-			alert("Please enter Father Name");
-			document.EditParentInformation.FatherName.focus();
-			return false;
-	}
-	if(document.EditParentInformation.FatherOccupation.value == ""){
-			alert("Please enter Father Occupation");
-			document.EditParentInformation.FatherOccupation.focus();
-			return false;
-	}
-	if(document.EditParentInformation.MotherName.value == ""){
-			alert("Please enter Mother Name");
-			document.EditParentInformation.MotherName.focus();
-			return false;
-	}
-	if(document.EditParentInformation.MotherOccupation.value == ""){
-			alert("Please enter Mother Occupation");
-			document.EditParentInformation.MotherOccupation.focus();
-			return false;
-	}	
-		
-}
-//Edit Parent Information ends
-
-//Edit Address Information begins
-function validEditAddressInformation(){
-	if(document.EditAddressInformation.PermanentAddress.value == ""){
-			alert("Please enter Permanent Address");
-			document.EditAddressInformation.PermanentAddress.focus();
-			return false;
-	}
-	if(document.EditAddressInformation.PermanentCountry.value == ""){
-			alert("Please enter Country");
-			document.EditAddressInformation.PermanentCountry.focus();
-			return false;
-	}
-	if(document.EditAddressInformation.PermanentState.value == ""){
-			alert("Please enter State");
-			document.EditAddressInformation.PermanentState.focus();
-			return false;
-	}
-	if(document.EditAddressInformation.PermanentCity.value == ""){
-			alert("Please enter City");
-			document.EditAddressInformation.PermanentCity.focus();
-			return false;
-	}
-	if(document.EditAddressInformation.PermanentPinCode.value == ""){
-			alert("Please enter Pin Code");
-			document.EditAddressInformation.PermanentPinCode.focus();
-			return false;
-	}	
-			
-}
-//Edit Address Information ends
-
-//Edit Academic Information begins
-function validEditAcademicInformation(){
-	if(document.EditAcademicInformation.ClassTeacherName.value == ""){
-			alert("Please enter Class Teacher Name");
-			document.EditAcademicInformation.ClassTeacherName.focus();
-			return false;
-	}	
-			
-}
-//Edit Academic Information ends	
-
-//Change Profile Picture begins
-function validChangeProfilePicture(){
-	if(document.ChangeProfilePicture.userfile.value == ""){
-			alert("Please select Profile Picture");
-			document.ChangeProfilePicture.userfile.focus();
-			return false;
-	}	
-			
-}
-//Change Profile Picture ends
-
-//Change Your Password begins
-function validChangeYourPassword(){
-	if(document.ChangeYourPassword.OldPassword.value == ""){
-			alert ( "Please enter Old Password");
-			document.ChangeYourPassword.OldPassword.focus();
-			return false;
-	}
-	if(document.ChangeYourPassword.password.value == ""){
-			alert ( "Please enter Password");
-			document.ChangeYourPassword.password.focus();
-			return false;
-	}
-	if(document.ChangeYourPassword.repassword.value == ""){
-			alert ( "Please re enter Password");
-			document.ChangeYourPassword.repassword.focus();
-			return false;
-	}
-	var password = document.getElementById ("password");
-	var repassword = document.getElementById ("repassword");
-	if (password.value.length < 8) {
-		alert ("The password must be at least 8 characters long");
-		return false;
-	}
-	if (repassword.value != password.value) {
-		alert ("These passwords don't match");
-		return false;
-	}	
-			
-}
-//Change Your Password ends	
-</script>
 </head>
 <body>
 <!-- topbar starts -->
@@ -318,9 +187,9 @@ function validChangeYourPassword(){
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="profile.php">View Profile</a></li>
+						<li><a href="#">View Profile</a></li>
 						<li class="divider"></li>
-						<li><a href="../login/login.php">Logout</a></li>
+						<li><a href="login.php">Logout</a></li>
 					</ul>
 				</div>
       <!-- user dropdown ends -->

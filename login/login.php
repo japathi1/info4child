@@ -3,6 +3,7 @@ session_start();
 
 unset($_SESSION['uid']);
 unset($_SESSION['FirstName']);	
+unset($_SESSION['DesignationHardCode']);
 
 if(isset($_GET['success'])){
 	$success = $_GET['success'];
