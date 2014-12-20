@@ -68,7 +68,7 @@ unset($_SESSION['CheckUsername']);
 			<div class="row-fluid">
 				<div class="well span5 center login-box">
 					<p>Registration done successfully</p>
-					<a href="../index.php">Click here to login</a>
+					<a href="login.php">Click here to login</a>
 				</div><!--/span-->
 			</div><!--/row-->
 				</div><!--/fluid-row-->

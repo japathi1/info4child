@@ -190,7 +190,8 @@ if(isset($_POST['AddStudent'])){
 		$stuid = $_POST['STUID'];
 		$TemporaryPassword = $_POST['TemporaryPassword'];
 		
-		$sql = "INSERT INTO student (School,
+		$sql = "INSERT INTO student (designation,
+									School,
 									FirstName,
 									LastName,
 									ContactNo,
@@ -209,8 +210,10 @@ if(isset($_POST['AddStudent'])){
 									MotherContactNo,
 									Sibling,
 									stuid,
-									TemporaryPassword
-									) VALUES (							
+									TemporaryPassword,
+									IsActive
+									) VALUES (
+									'student',							
 									'$School',
 									'$FirstName',
 									'$LastName',
@@ -230,7 +233,8 @@ if(isset($_POST['AddStudent'])){
 									'$MotherContactNo',
 									'$Sibling',
 									'$stuid',
-									'$TemporaryPassword'
+									'$TemporaryPassword',
+									'no'
 									)";
 									
 		if ($conn->query($sql) === TRUE) {

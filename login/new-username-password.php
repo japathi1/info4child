@@ -3,7 +3,7 @@ session_start();
 
 $uid = $_SESSION['uid'];
 if($_SESSION['uid']==""){
-	header('Location: ../index.php');
+	header('Location: login.php');
 	exit();	
 }
 $CheckedUsername = $_SESSION['CheckUsername']
