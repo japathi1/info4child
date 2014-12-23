@@ -435,7 +435,7 @@ function validChangeYourPassword(){
 							<form name="EditStudentInformation" class="form-horizontal" action="../configs/student-edit-profile-agent.php" method="post" onSubmit="return validEditStudentInformation();">
 								<div class="form-horizontal">
 								<div class="control-group">
-									<label class="control-label" for="focusedInput">First Name:</label>
+									<label class="control-label" for="focusedInput">First Name:*</label>
 									<div class="controls">
                                       <input name="EditStudentInformation" type="hidden" value="EditStudentInformation">
                                       <input name="stuid" type="hidden" value="<?php echo $uid; ?>">
@@ -443,13 +443,13 @@ function validChangeYourPassword(){
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="focusedInput">Last Name:</label>
+									<label class="control-label" for="focusedInput">Last Name:*</label>
 									<div class="controls">
 									  <input name="LastName" class="input-xlarge focused" id="focusedInput"   type="text" value="<?php echo $LastName; ?>">
 									</div>
 								</div>
 								<div class="control-group">
-								  <label class="control-label" for="date01">Date of Birth:</label>
+								  <label class="control-label" for="date01">Date of Birth:*</label>
 								  <div class="controls">
 									<input name="DateofBirth" type="text" class="input-xlarge datepicker" id="date01" value="<?php echo $DateofBirth; ?>">
 								  </div>
@@ -512,7 +512,7 @@ function validChangeYourPassword(){
 								<div class="form-horizontal">
 								<h4> Father's Information </h4>
 								<div class="control-group">
-									<label class="control-label" for="focusedInput">Father Name:</label>
+									<label class="control-label" for="focusedInput">Father Name:*</label>
 									<div class="controls">
                                       <input name="EditParentInformation" type="hidden" value="EditParentInformation">
                                       <input name="stuid" type="hidden" value="<?php echo $uid; ?>">									
@@ -583,7 +583,7 @@ function validChangeYourPassword(){
                                 </div>  							
 								<h4>Mother's Information </h4>
 								<div class="control-group">
-									<label class="control-label" for="focusedInput">Mother Name:</label>
+									<label class="control-label" for="focusedInput">Mother Name:*</label>
 									<div class="controls">
 									  <input name="MotherName" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $MotherName; ?>">
 									</div>
@@ -707,7 +707,7 @@ function validChangeYourPassword(){
                                 </label>
 								-->
 								<div class="control-group">
-								  <label class="control-label" for="textarea2">Address:</label>
+								  <label class="control-label" for="textarea2">Address:*</label>
 								  <div class="controls">
 									<textarea name="PermanentAddress"  id="permanent_address" rows="3"><?php echo $PermanentAddress; ?></textarea>
 								  </div>
@@ -719,25 +719,25 @@ function validChangeYourPassword(){
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="focusedInput">Country:</label>
+									<label class="control-label" for="focusedInput">Country:*</label>
 									<div class="controls">
 									  <input name="PermanentCountry" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $PermanentCountry; ?>">
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="focusedInput">State:</label>
+									<label class="control-label" for="focusedInput">State:*</label>
 									<div class="controls">
 									  <input name="PermanentState" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $PermanentState; ?>">
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="focusedInput">City:</label>
+									<label class="control-label" for="focusedInput">City:*</label>
 									<div class="controls">
 									  <input name="PermanentCity" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $PermanentCity; ?>">
 									</div>
 								</div>	
 								<div class="control-group">
-									<label class="control-label" for="focusedInput">Pin Code:</label>
+									<label class="control-label" for="focusedInput">Pin Code:*</label>
 									<div class="controls">
 									  <input name="PermanentPinCode" class="input-xlarge focused" name="myinput" id="myinput" onKeyPress="return isNumber(event);"  type="text" value="<?php echo $PermanentPinCode; ?>">
 									</div>
@@ -783,7 +783,7 @@ function validChangeYourPassword(){
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="focusedInput">Class Teacher:</label>
+									<label class="control-label" for="focusedInput">Class Teacher:*</label>
 									<div class="controls">
 									  <input name="ClassTeacherName" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $ClassTeacherName; ?>">
 									</div>
@@ -845,19 +845,19 @@ function validChangeYourPassword(){
 								<div class="control-group">
                                     <input name="ChangeYourPassword" type="hidden" value="ChangeYourPassword">
                                     <input name="stuid" type="hidden" value="<?php echo $uid; ?>">								
-									<label class="control-label" for="focusedInput">Old Password:</label>
+									<label class="control-label" for="focusedInput">Old Password:*</label>
 									<div class="controls">
 									  <input name="OldPassword" class="input-xlarge focused" id="focusedInput2" type="Password">
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="focusedInput">New Password:</label>
+									<label class="control-label" for="focusedInput">New Password:*</label>
 									<div class="controls">
 									  <input name="password" class="input-xlarge focused" id="password" data-rel="popover" data-content="Password Should be Alphanumeric Contents Only" title="Password Hint's" type="Password">
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="focusedInput">Confirm New Password:</label>
+									<label class="control-label" for="focusedInput">Confirm New Password:*</label>
 									<div class="controls">
 									  <input name="repassword" class="input-xlarge focused" id="repassword" type="password">
 									</div>

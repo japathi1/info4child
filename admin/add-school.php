@@ -269,13 +269,13 @@ include '../configs/connection.php';
 						  <fieldset>
 							<legend>Please fill this form for add school</legend>
 							<div class="control-group">
-								<label class="control-label" for="focusedInput">School Name:</label>
+								<label class="control-label" for="focusedInput">School Name:*</label>
 								<div class="controls">
 								  <input name="SchoolName" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
 							</div>
                               <div class="control-group">
-								<label class="control-label" for="focusedInput">School Title:</label>
+								<label class="control-label" for="focusedInput">School Title:*</label>
 								<div class="controls">
 								  <input name="SchoolTitle" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
@@ -293,73 +293,73 @@ include '../configs/connection.php';
 							  </div>
 							</div>
                               <div class="control-group">
-								<label class="control-label" for="focusedInput">Country:</label>
+								<label class="control-label" for="focusedInput">Country:*</label>
 								<div class="controls">
 								  <input name="Country" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
 							  </div>                            
                               <div class="control-group">
-								<label class="control-label" for="focusedInput">State:</label>
+								<label class="control-label" for="focusedInput">State:*</label>
 								<div class="controls">
 								  <input name="State" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
 							  </div>
                               <div class="control-group">
-								<label class="control-label" for="focusedInput">City:</label>
+								<label class="control-label" for="focusedInput">City:*</label>
 								<div class="controls">
 								  <input name="City" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
 							  </div>
 							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Pin Code:</label>
+								<label class="control-label" for="focusedInput">Pin Code:*</label>
 								<div class="controls">
 								  <input name="PinCode" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
 							  </div>
                               <div class="control-group">
-								<label class="control-label" for="focusedInput">Landmark:</label>
+								<label class="control-label" for="focusedInput">Landmark:*</label>
 								<div class="controls">
 								  <input name="Landmark" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
 							  </div>
 							  <div class="control-group">
-							  <label class="control-label" for="textarea2">Address:</label>
+							  <label class="control-label" for="textarea2">Address:*</label>
 							  <div class="controls">
 								<textarea name="Address"  id="textarea1" rows="3"></textarea>
 							  </div>
 							  </div>
                               <div class="control-group">
-								<label class="control-label" for="focusedInput">Phone Code:</label>
+								<label class="control-label" for="focusedInput">Phone Code:*</label>
 								<div class="controls">
 								  <input name="PhoneCode" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
 							  </div>
 							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Phone No:</label>
+								<label class="control-label" for="focusedInput">Phone No:*</label>
 								<div class="controls">
 								  <input name="PhoneNo" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
 							  </div>
 							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Mobile Code:</label>
+								<label class="control-label" for="focusedInput">Mobile Code:*</label>
 								<div class="controls">
 								  <input name="MobileCode" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
 							  </div>
 							  <div class="control-group">
-								<label class="control-label" for="focusedInput">Mobile No:</label>
+								<label class="control-label" for="focusedInput">Mobile No:*</label>
 								<div class="controls">
 								  <input name="MobileNo" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
 							  </div>
                               <div class="control-group">
-								<label class="control-label" for="focusedInput">Website:</label>
+								<label class="control-label" for="focusedInput">Website:*</label>
 								<div class="controls">
 								  <input name="Website" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>
 							  </div>
                               <div class="control-group">
-								<label class="control-label" for="focusedInput">Email:</label>
+								<label class="control-label" for="focusedInput">Email:*</label>
 								<div class="controls">
 								  <input name="Email" class="input-xlarge focused" id="focusedInput" type="text" value="">
 								</div>

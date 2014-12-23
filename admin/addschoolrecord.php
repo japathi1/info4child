@@ -661,7 +661,7 @@ $TemporaryPassword =  generateRandomString();
 									<fieldset>
 										<legend>Please fill the form for Student detail</legend>
 										<div class="control-group">
-											<label class="control-label" for="selectError3">School:</label>
+											<label class="control-label" for="selectError3">School:*</label>
 											<div class="controls">
                                               <input name="AddStudent" type="hidden" value="AddStudent">
 											  <select name="School" id="selectError3">
@@ -675,7 +675,7 @@ $TemporaryPassword =  generateRandomString();
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">First Name:</label>
+											<label class="control-label" for="focusedInput">First Name:*</label>
 											<div class="controls">
 											  <input name="FirstName" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
@@ -699,7 +699,7 @@ $TemporaryPassword =  generateRandomString();
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Class:</label>
+											<label class="control-label" for="focusedInput">Class:*</label>
 											<div class="controls">
 											  <input name="Class" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
@@ -717,7 +717,7 @@ $TemporaryPassword =  generateRandomString();
 											</div>
 										</div>
 										<div class="control-group">
-										  <label class="control-label" for="date01">Date of Birth:</label>
+										  <label class="control-label" for="date01">Date of Birth:*</label>
 										  <div class="controls">
 											<input name="DateofBirth" type="text" class="input-xlarge datepicker" id="date01">
 										  </div>
@@ -743,7 +743,7 @@ $TemporaryPassword =  generateRandomString();
 										  </div>
 										</div>        
 										<div class="control-group">
-											<label class="control-label" for="selectError3">Blood Group:</label>
+											<label class="control-label" for="selectError3">Blood Group:*</label>
 											<div class="controls">
 											  <select name="BloodGroup" id="selectError3">
 											  <option value="BloodGroup">Choose Blood Group</option>
@@ -760,7 +760,7 @@ $TemporaryPassword =  generateRandomString();
 										</div>
 										<legend>Family Details</legend>
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Father Name:</label>
+											<label class="control-label" for="focusedInput">Father Name:*</label>
 											<div class="controls">
 											  <input name="FatherName" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
@@ -772,13 +772,13 @@ $TemporaryPassword =  generateRandomString();
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Father Contact No:</label>
+											<label class="control-label" for="focusedInput">Father Contact No:*</label>
 											<div class="controls">
 											  <input name="FatherContactNo" class="input-xlarge focused" id="focusedInput" type="Text">
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Mother Name:</label>
+											<label class="control-label" for="focusedInput">Mother Name:*</label>
 											<div class="controls">
 											  <input name="MotherName" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
