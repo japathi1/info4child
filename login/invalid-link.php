@@ -1,14 +1,12 @@
 <?php
 session_start();
 
+unset($_SESSION['designation']);
+unset($_SESSION['EmailId']);
 unset($_SESSION['uid']);
-unset($_SESSION['FirstName']);	
+unset($_SESSION['FirstName']);
+unset($_SESSION['CheckUsername']);
 
-if(isset($_GET['success'])){
-	$success = $_GET['success'];
-}else{
-	$success = "NotYesOrNo";	
-}	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,26 +49,7 @@ if(isset($_GET['success'])){
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
-    <script type="text/javascript">
-		function validregister(){
-			if(document.register.designation.value == "designation"){
-					alert ( "Please select designation");
-					document.register.designation.focus();
-					return false;
-			}		
-			if(document.register.username.value == ""){
-					alert("Please enter UID");
-					document.register.username.focus();
-					return false;
-			}
-			if(document.register.password.value == ""){
-					alert ( "Please enter Password");
-					document.register.password.focus();
-					return false;
-			}							
-		}	
-	</script>		
+	<link rel="shortcut icon" href="img/favicon.ico">		
 </head>
 
 <body>
@@ -84,50 +63,8 @@ if(isset($_GET['success'])){
 			
 			<div class="row-fluid">
 				<div class="well span5 center login-box">
-					<?php
-                    if($success == "yes"){
-                        echo "<div class=\"alert alert-success\">";
-                            echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
-                            echo "<strong>Well done!</strong> available";
-                        echo "</div>";
-                    }
-                    if($success == "no"){
-                        echo "<div class=\"alert alert-danger\">";
-                          echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
-                          echo "<strong>Oh snap!</strong> The Username or Password you entered is incorrect";
-                        echo "</div>";
-                    }				
-                    ?>                
-					<form name="register" class="form-horizontal" action="../configs/register-agent.php" method="post" onSubmit="return validregister();">
-						<fieldset>
-							<div class="control-group">
-								  <select name="designation" id="selectError3" style="width:196px;">
-									<option value="designation">Choose your Designation</option>
-									<option value="student">Student</option>
-									<option value="teacher">Teacher</option>
-									<option value="principal">Principal</option>
-									<option value="management">Management</option>
-									<option value="admin">Admin</option>
-								  </select>
-							</div>
-							<div class="clearfix"></div>						
-							<div class="input-prepend" title="Username" data-rel="tooltip">
-								<span class="add-on"><i class="icon-user"></i></span><input autofocus class="input-large span10" name="uid" id="username" placeholder="UID" type="text" />
-							</div>
-							<div class="clearfix"></div>
-							<div class="input-prepend" title="Password" data-rel="tooltip">
-								<span class="add-on"><i class="icon-lock"></i></span><input class="input-large span10" name="password" id="password" placeholder="Password" type="password" />
-							</div>
-							<div class="clearfix"></div>
-							<div class="input-prepend">
-								<label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
-							</div>
-							<div class="clearfix"></div>
-							<p class="center span5">
-								<button type="submit" class="btn btn-primary">Login</button>
-							</p>
-						</fieldset>
-					</form>
+					<p>Sorry, Link has already been used and can not be used again for the safety of your account.</p>
+					<a href="login.php">Click here to login</a>
 				</div><!--/span-->
 			</div><!--/row-->
 				</div><!--/fluid-row-->

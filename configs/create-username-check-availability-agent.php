@@ -1,13 +1,11 @@
 <?php
-session_start();
-
 include 'connection.php';
 
 if(isset($_POST['CheckAvailability'])){
 	$CheckAvailability = $_POST['CheckAvailability'];
-	//Register Management begins
 	if($CheckAvailability == "CheckAvailability"){
 		$username = $_POST['username'];
+		session_start();
 		$_SESSION['CheckUsername'] = $_POST['username'];
 		
 		$sql = "SELECT * FROM login WHERE username='$username' LIMIT 1";
@@ -30,4 +28,5 @@ if(isset($_POST['CheckAvailability'])){
 
 
 include 'connection-close.php';
+
 ?>

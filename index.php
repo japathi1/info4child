@@ -184,7 +184,6 @@ unset($_SESSION['FirstName']);
             	<label class="chk" for="chk">Remember Password</label>
             </p>
 			<p><button type="submit">Sign In</button></p>
-            <p><a href="login/register.php" target="_blank"><label for="service">Are you a new user? Register</label></a></p>
 		</form>
 	</section>
 

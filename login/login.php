@@ -131,7 +131,6 @@ if(isset($_GET['success'])){
 							</p>
 						</fieldset>
 					</form>
-                    <a href="register.php">Are you a new user? Register</a>
 				</div><!--/span-->
 			</div><!--/row-->
 				</div><!--/fluid-row-->

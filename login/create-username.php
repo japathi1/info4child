@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+$_SESSION['uid'];
 $uid = $_SESSION['uid'];
 if($_SESSION['uid']==""){
 	header('Location: login.php');
@@ -8,14 +9,13 @@ if($_SESSION['uid']==""){
 }
 $_SESSION['FirstName'];
 $_SESSION['designation'];
-$_SESSION['EmailId'];
+$_SESSION['EmailId'];	
 
 if(isset($_GET['success'])){
 	$success = $_GET['success'];
 }else{
 	$success = "NotYesOrNo";	
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +62,7 @@ if(isset($_GET['success'])){
     <script type="text/javascript">
 		function valiCreateUsername(){	
 			if(document.CreateUsername.username.value == ""){
-					alert("Please enter Username");
+					alert("Please enter new Username");
 					document.CreateUsername.username.focus();
 					return false;
 			}							
@@ -81,7 +81,7 @@ if(isset($_GET['success'])){
 			
 			<div class="row-fluid">
 				<div class="well span5 center login-box">
-					<p>Create a username</p>
+					<p>Create a new Username</p>
 					<form name="CreateUsername" class="form-horizontal" action="../configs/create-username-check-availability-agent.php" method="post" onSubmit="return valiCreateUsername();">
 						<fieldset>
 							<div class="clearfix"></div>						

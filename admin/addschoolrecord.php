@@ -804,19 +804,23 @@ $TemporaryPassword =  generateRandomString();
 											  <span class="help-inline">If Studying in same School</span>
 											</div>
 										</div>
+										<input name="STUID" type="hidden" value="<?php echo $STUID; ?>">
+										<input name="TemporaryPassword" type="hidden" value="<?php echo $TemporaryPassword; ?>">
+										<!--
 										<legend>Choose Username and Password</legend>
 										<div class="control-group">
 											<label class="control-label" for="focusedInput">STUID:</label>
 											<div class="controls">
-											  <input name="STUID" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $STUID; ?>" readonly>
+											  <input name="STUID" class="input-xlarge focused" id="focusedInput" type="text" value="<?php //echo $STUID; ?>" readonly>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="focusedInput">Temporary Password:</label>
 											<div class="controls">
-											  <input name="TemporaryPassword" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $TemporaryPassword; ?>" readonly>
+											  <input name="TemporaryPassword" class="input-xlarge focused" id="focusedInput" type="text" value="<?php //echo $TemporaryPassword; ?>" readonly>
 											</div>
 										</div>
+										-->
 										<div class="form-actions">
 										  <button type="submit" class="btn btn-primary">Save</button>
 										  <button type="reset" class="btn">Cancel</button>

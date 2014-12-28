@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-unset($_SESSION['uid']);
-unset($_SESSION['FirstName']);	
-
-
 unset($_SESSION['designation']);
 unset($_SESSION['EmailId']);
 unset($_SESSION['uid']);
