@@ -1,11 +1,96 @@
 <?php
 session_start();
 
-echo "<br>". $uid = $_SESSION['uid'];
-echo "<br>". $FirstName = $_SESSION['FirstName'];	
-echo "<br>". $DesignationHardCode = $_SESSION['DesignationHardCode'];	
+$uid = $_SESSION['uid'];
+$FirstName = $_SESSION['FirstName'];	
+$DesignationHardCode = $_SESSION['DesignationHardCode'];	
 
+if(($_SESSION['uid'] == "") || ($DesignationHardCode != "teacher")){
+	header('Location: ../login/login.php');
+	exit();	
+}
 
+include '../configs/connection.php';
+
+//fetch data from teacher table begins
+$sql = "SELECT * FROM teacher WHERE teuid='$uid'";
+$result = mysqli_query($conn, $sql);
+
+if(mysqli_num_rows($result) > 0){
+    // login success - output data of each row
+    while($row = mysqli_fetch_assoc($result)){
+		$TeacherFirstName = $row["TeacherFirstName"];
+		$TeacherLastName = $row["TeacherLastName"];
+		$DateofBirth = $row["DateofBirth"];
+		$EmailId = $row["EmailId"];
+		$Mobile = $row["Mobile"];
+		$Sex = $row["Sex"];
+		$ImageUpload = $row["ImageUpload"];
+
+		$TenthBoard = $row["TenthBoard"];
+		$TenthSchoolName = $row["TenthSchoolName"];
+		$TenthDateOfCompleted = $row["TenthDateOfCompleted"];
+		$TenthMarksObtained = $row["TenthMarksObtained"];
+		$TwelfthBoard = $row["TwelfthBoard"];
+		$TwelftSchoolCollegeUniversity = $row["TwelftSchoolCollegeUniversity"];
+		$TwelftDateOfCompleted = $row["TwelftDateOfCompleted"];
+		$TwelftMarksObtained = $row["TwelftMarksObtained"];
+		$Graduation = $row["Graduation"];
+		$GraduationCollegeUniversity = $row["GraduationCollegeUniversity"];
+		$GraduationHonoursSubject = $row["GraduationHonoursSubject"];
+		$GraduationDateOfCompleted = $row["GraduationDateOfCompleted"];
+		$GraduationMarksObtained = $row["GraduationMarksObtained"];
+		$MasterDegree = $row["MasterDegree"];
+		$MasterCollegeUniversity = $row["MasterCollegeUniversity"];
+		$MasterHonoursSubject = $row["MasterHonoursSubject"];
+		$MasterDateOfCompleted = $row["MasterDateOfCompleted"];
+		$MasterMarksObtained = $row["MasterMarksObtained"];
+		$OtherDegree = $row["OtherDegree"];
+		$OtherCollegeUniversity = $row["OtherCollegeUniversity"];
+		$OtherHonoursSubject = $row["OtherHonoursSubject"];
+		$OtherDateOfCompleted = $row["OtherDateOfCompleted"];
+		$OtherMarksObtained = $row["OtherMarksObtained"];	
+		
+		$OrganisationName = $row["OrganisationName"];
+		$Designation = $row["Designation"];
+		$TimePeriod = $row["TimePeriod"];
+		$OrganisationRemarks = $row["OrganisationRemarks"];	
+		
+		$PresentAddress = $row["PresentAddress"];	
+		$PresentLandmark = $row["PresentLandmark"];	
+		$PresentCountry = $row["PresentCountry"];	
+		$PresentState = $row["PresentState"];	
+		$PresentCity = $row["PresentCity"];	
+		$PresentPinCode = $row["PresentPinCode"];	
+		$PermanentAddress = $row["PermanentAddress"];	
+		$PermanentLandmark = $row["PermanentLandmark"];	
+		$PermanentCountry = $row["PermanentCountry"];	
+		$PermanentState = $row["PermanentState"];	
+		$PermanentCity = $row["PermanentCity"];	
+		$PermanentPinCode = $row["PermanentPinCode"];	
+		
+		$TeacherSchoolName = $row["TeacherSchoolName"];
+		$YourClass = $row["YourClass"];
+		$YourSection = $row["YourSection"];
+		$YourSubject = $row["YourSubject"];
+		$YourClassRemarks = $row["YourClassRemarks"];
+
+    }
+}else{
+    echo "0 results";
+}
+//fetch data from teacher table ends
+
+// profile picture begins
+$DBPPPath = "../configs/teacher-profile-pic.php?teuid=".$uid;
+$DirectoryPPPath ="img/profile-pic.jpg";
+
+if(!empty($ImageUpload)){
+	$ProfilePicture = $DBPPPath;
+}else{
+	$ProfilePicture = $DirectoryPPPath;	
+}
+// profile picture ends
 
 ?>
 <!DOCTYPE html>
@@ -72,8 +157,8 @@ echo "<br>". $DesignationHardCode = $_SESSION['DesignationHardCode'];
       <!-- user dropdown starts -->
       <div class="btn-group pull-right" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i><span class="hidden-phone">Welcome <?php echo $FirstName; ?>!</span> <span class="caret"></span> </a>
         <ul class="dropdown-menu">
-        <li><a href="#">View Profile</a></li>
-          <li><a href="#">Logout</a></li>
+        <li><a href="profile.php">View Profile</a></li>
+          <li><a href="../login/login.php">Logout</a></li>
         </ul>
       </div>
       <!-- user dropdown ends -->
@@ -154,36 +239,36 @@ echo "<br>". $DesignationHardCode = $_SESSION['DesignationHardCode'];
 		
 		<div class="row-fluid">
 		<div class="span12">
-				<div class="span3"><img src="img/profile-pic.jpg"></div>
+				<div class="span3"><img src="<?php echo $ProfilePicture; ?>" width="240" height="240"></div>
 				<div class="span5 show-grid">
-                <h2>Welcome Teacher! </h2>
-             <h4>Sanskar Valley Patna </h4>
+                <h2>Welcome <?php echo $TeacherFirstName . " ".$TeacherLastName; ?>!</h2>
+             <h4><?php echo $TeacherSchoolName; ?></h4>
              <table class="table table-condensed">
 							
 							  <tbody>
 								<tr>
 									<td style="border:none">Full Name:</td>
-									<td class="center" style="border:none">Cdr. Nirad Sinha</td>
+									<td class="center" style="border:none"><?php echo $TeacherFirstName . " ".$TeacherLastName; ?></td>
 								                        
 								</tr>
 								<tr>
 									<td style="border:none">Date of Birth:</td>
-									<td class="center" style="border:none">yyyy/mm/dd</td>
+									<td class="center" style="border:none"><?php echo $DateofBirth; ?></td>
 									                               
 								</tr>
 								<tr>
 									<td style="border:none">Phone:</td>
-									<td class="center" style="border:none">+91- 9430284579</td>
+									<td class="center" style="border:none"><?php echo $Mobile; ?></td>
 								                         
 								</tr>
 								<tr>
 									<td style="border:none">Email:</td>
-									<td style="border:none" class="center">sanskarvalley.school@gmail.com</td>
+									<td style="border:none" class="center"><?php echo $EmailId; ?></td>
 									                         
 								</tr>
                                 	<tr>
 									<td style="border:none">Subject:</td>
-									<td style="border:none" class="center">Mathematics</td>
+									<td style="border:none" class="center"><?php echo $YourSubject; ?></td>
 									                         
 								</tr>
 								                          
@@ -400,3 +485,6 @@ echo "<br>". $DesignationHardCode = $_SESSION['DesignationHardCode'];
 <script src="js/charisma.js"></script>
 </body>
 </html>
+<?php
+include '../configs/connection-close.php';
+?>

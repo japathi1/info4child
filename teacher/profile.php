@@ -1,3 +1,98 @@
+<?php
+session_start();
+
+$uid = $_SESSION['uid'];
+$FirstName = $_SESSION['FirstName'];	
+$DesignationHardCode = $_SESSION['DesignationHardCode'];	
+
+if(($_SESSION['uid'] == "") || ($DesignationHardCode != "teacher")){
+	header('Location: ../login/login.php');
+	exit();	
+}
+
+include '../configs/connection.php';
+
+//fetch data from teacher table begins
+$sql = "SELECT * FROM teacher WHERE teuid='$uid'";
+$result = mysqli_query($conn, $sql);
+
+if(mysqli_num_rows($result) > 0){
+    // login success - output data of each row
+    while($row = mysqli_fetch_assoc($result)){
+		$TeacherFirstName = $row["TeacherFirstName"];
+		$TeacherLastName = $row["TeacherLastName"];
+		$DateofBirth = $row["DateofBirth"];
+		$EmailId = $row["EmailId"];
+		$Mobile = $row["Mobile"];
+		$Sex = $row["Sex"];
+		$ImageUpload = $row["ImageUpload"];
+
+		$TenthBoard = $row["TenthBoard"];
+		$TenthSchoolName = $row["TenthSchoolName"];
+		$TenthDateOfCompleted = $row["TenthDateOfCompleted"];
+		$TenthMarksObtained = $row["TenthMarksObtained"];
+		$TwelfthBoard = $row["TwelfthBoard"];
+		$TwelftSchoolCollegeUniversity = $row["TwelftSchoolCollegeUniversity"];
+		$TwelftDateOfCompleted = $row["TwelftDateOfCompleted"];
+		$TwelftMarksObtained = $row["TwelftMarksObtained"];
+		$Graduation = $row["Graduation"];
+		$GraduationCollegeUniversity = $row["GraduationCollegeUniversity"];
+		$GraduationHonoursSubject = $row["GraduationHonoursSubject"];
+		$GraduationDateOfCompleted = $row["GraduationDateOfCompleted"];
+		$GraduationMarksObtained = $row["GraduationMarksObtained"];
+		$MasterDegree = $row["MasterDegree"];
+		$MasterCollegeUniversity = $row["MasterCollegeUniversity"];
+		$MasterHonoursSubject = $row["MasterHonoursSubject"];
+		$MasterDateOfCompleted = $row["MasterDateOfCompleted"];
+		$MasterMarksObtained = $row["MasterMarksObtained"];
+		$OtherDegree = $row["OtherDegree"];
+		$OtherCollegeUniversity = $row["OtherCollegeUniversity"];
+		$OtherHonoursSubject = $row["OtherHonoursSubject"];
+		$OtherDateOfCompleted = $row["OtherDateOfCompleted"];
+		$OtherMarksObtained = $row["OtherMarksObtained"];	
+		
+		$OrganisationName = $row["OrganisationName"];
+		$Designation = $row["Designation"];
+		$TimePeriod = $row["TimePeriod"];
+		$OrganisationRemarks = $row["OrganisationRemarks"];	
+		
+		$PresentAddress = $row["PresentAddress"];	
+		$PresentLandmark = $row["PresentLandmark"];	
+		$PresentCountry = $row["PresentCountry"];	
+		$PresentState = $row["PresentState"];	
+		$PresentCity = $row["PresentCity"];	
+		$PresentPinCode = $row["PresentPinCode"];	
+		$PermanentAddress = $row["PermanentAddress"];	
+		$PermanentLandmark = $row["PermanentLandmark"];	
+		$PermanentCountry = $row["PermanentCountry"];	
+		$PermanentState = $row["PermanentState"];	
+		$PermanentCity = $row["PermanentCity"];	
+		$PermanentPinCode = $row["PermanentPinCode"];	
+		
+		$TeacherSchoolName = $row["TeacherSchoolName"];
+		$YourClass = $row["YourClass"];
+		$YourSection = $row["YourSection"];
+		$YourSubject = $row["YourSubject"];
+		$YourClassRemarks = $row["YourClassRemarks"];
+
+    }
+}else{
+    echo "0 results";
+}
+//fetch data from teacher table ends
+
+// profile picture begins
+$DBPPPath = "../configs/teacher-profile-pic.php?teuid=".$uid;
+$DirectoryPPPath ="img/profile-pic.jpg";
+
+if(!empty($ImageUpload)){
+	$ProfilePicture = $DBPPPath;
+}else{
+	$ProfilePicture = $DirectoryPPPath;	
+}
+// profile picture ends
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,13 +157,12 @@
       <!-- user dropdown starts -->
       <div class="btn-group pull-right">
 					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-user"></i><span class="hidden-phone">Welcome! Rakesh Goyal </span>
+						<i class="icon-user"></i><span class="hidden-phone">Welcome <?php echo $FirstName; ?>!</span>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">View Profile</a></li>
 						<li class="divider"></li>
-						<li><a href="login.php">Logout</a></li>
+						<li><a href="../login/login.php">Logout</a></li>
 					</ul>
 				</div>
       <!-- user dropdown ends -->
@@ -150,19 +244,19 @@
                         <div class="widget-body">
                             <div class="span3">
                                 <div class="text-center profile-pic">
-                                    <img src="img/profile-pic.jpg" alt="">
+                                    <img src="<?php echo $ProfilePicture; ?>" width="240" height="240">
                                 </div>
                                 <br>
 
                                 <ul class="nav nav-tabs nav-stacked">
-                                    <li><a href="javascript:void(0)"><i class="icon-adjust"></i>Change Profile Picture</a></li>
-                                    <li><a href="javascript:void(0)"><i class="icon-picture"></i> View Gallery</a></li>
-                                    <li><a href="javascript:void(0)"><i class="icon-edit" ></i> Edit Profile</a></li>
+                                    <li><a href="edit-profile.php#five"><i class="icon-adjust"></i>Change Profile Picture</a></li>
+                                    <li><a href="#"><i class="icon-picture"></i> View Gallery</a></li>
+                                    <li><a href="edit-profile.php"><i class="icon-edit" ></i> Edit Profile</a></li>
                                 </ul>
                              
                             </div>
                             <div class="span6">
-                                <h3>Rakesh Goyal <br/><small>(mathematics)</small></h3>
+                                <h3><?php echo $TeacherFirstName . " ".$TeacherLastName; ?> <br/><small>(<?php echo $YourSubject; ?>)</small></h3>
                                 
                                 <h5>Personal Information </h5>
                               <table class="table table-condensed">
@@ -170,37 +264,37 @@
 							  <tbody>
 								<tr>
 									<td>Full Name:</td>
-									<td>Mr. Rakesh Goyal</td>
+									<td><?php echo $TeacherFirstName . " ".$TeacherLastName; ?></td>
 									
 										
 									                                 
 								</tr>
 								<tr>
 									<td>Date of Birth</td>
-									<td>1998/09/29</td>
+									<td><?php echo $DateofBirth; ?></td>
 									
 										                            
 								</tr>
 						
 								<tr>
 									<td>Email Id: </td>
-									<td>sanskarvalley.school@gmail.com</td>
+									<td><?php echo $EmailId; ?></td>
 								
 									                                  
 								</tr>
 								<tr>
 									<td>Mobile:</td>
-									<td>1234567890</td>
+									<td><?php echo $Mobile; ?></td>
 									                              
 								</tr>    
                                 <tr>
 									<td>Subject:</td>
-									<td>Mathematics</td>
+									<td><?php echo $YourSubject; ?></td>
 									                              
 								</tr>      
                                 	<tr>
 									<td>Class Teacher Of:</td>
-									<td>Class 9</td>
+									<td><?php echo $YourClass; ?>th</td>
 									                              
 								</tr>                                     
 							  </tbody>
@@ -212,14 +306,14 @@
 							  <tbody>
 								<tr>
 									<td>Qualification:</td>
-									<td>B.tech (computer Science )</td>
+									<td><?php echo $Graduation; ?></td>
 									
 										
 									                                 
 								</tr>
 								<tr>
 									<td>last Job:</td>
-									<td>Deen Dayal Public School</td>
+									<td><?php echo $Designation; ?></td>
 									
 										                            
 								</tr>
@@ -375,3 +469,6 @@
 <script src="js/charisma.js"></script>
 </body>
 </html>
+<?php
+include '../configs/connection-close.php';
+?>

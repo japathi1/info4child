@@ -79,8 +79,7 @@ if(mysqli_num_rows($result) > 0){
 		$YourSection = $row["YourSection"];
 		$YourSubject = $row["YourSubject"];
 		$YourClassRemarks = $row["YourClassRemarks"];
-		
-		
+
     }
 }else{
     echo "0 results";
@@ -97,7 +96,6 @@ if(!empty($ImageUpload)){
 	$ProfilePicture = $DirectoryPPPath;	
 }
 // profile picture ends
-
 
 ?>
 <!DOCTYPE html>
@@ -168,9 +166,9 @@ if(!empty($ImageUpload)){
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">View Profile</a></li>
+						<li><a href="profile.php">View Profile</a></li>
 						<li class="divider"></li>
-						<li><a href="login.php">Logout</a></li>
+						<li><a href="../login/login.php">Logout</a></li>
 					</ul>
 				</div>
       <!-- user dropdown ends -->
