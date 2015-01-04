@@ -18,7 +18,7 @@ if(mysqli_num_rows($result) > 0){
 		$row["password"];
 		$row["designation"];
 		$row["email"];
-		If($row["designation"] == "admin"){
+		if($row["designation"] == "admin"){
 			session_regenerate_id();
 			$_SESSION['uid'] = $row["uid"];
 			$_SESSION['FirstName'] = $row["FirstName"];	
@@ -30,14 +30,19 @@ if(mysqli_num_rows($result) > 0){
 		}elseif($row["designation"] == "principal"){
 			echo $row["designation"]."<br> Under construction";	
 		}elseif($row["designation"] == "teacher"){
-			echo $row["designation"]."<br> Under construction";
+			session_regenerate_id();
+			echo $_SESSION['uid'] = $row["uid"];
+			echo $_SESSION['FirstName'] = $row["FirstName"];	
+			echo $_SESSION['DesignationHardCode'] = "teacher";	
+			header('Location: ../teacher/index.php');				
+			//echo $row["designation"]."<br> Under construction";
 		}elseif($row["designation"] == "student"){
 			session_regenerate_id();
 			$_SESSION['uid'] = $row["uid"];
 			$_SESSION['FirstName'] = $row["FirstName"];	
 			$_SESSION['DesignationHardCode'] = "student";	
 			header('Location: ../student/index.php');			
-			echo $row["designation"]."<br> Under construction";
+			//echo $row["designation"]."<br> Under construction";
 		}else{
 			echo "no designation";	
 		}		

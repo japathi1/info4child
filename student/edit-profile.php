@@ -398,7 +398,7 @@ function validChangeYourPassword(){
         echo "</div>";
     }				
     ?>	            
-            <!--submit alert ends --->	      
+    <!--submit alert ends --->	      
       <div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>

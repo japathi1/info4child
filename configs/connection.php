@@ -1,8 +1,8 @@
 <?php
-$servername = "85.10.205.173";
-$username = "info4childroot";
-$password = "rootpass";
-$dbname = "info4childdb";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "smsdb";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

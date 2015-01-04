@@ -567,7 +567,7 @@ $TemporaryPassword =  generateRandomString();
 									<fieldset>
 										<legend>Please fill the form for Teacher detail</legend>
 										<div class="control-group">
-											<label class="control-label" for="selectError3">Choose School:</label>
+											<label class="control-label" for="selectError3">Choose School:*</label>
 											<div class="controls">
                                               <input name="AddTeacher" type="hidden" value="AddTeacher">
 											  <select name="TeacherSchoolName" id="selectError3">
@@ -581,7 +581,7 @@ $TemporaryPassword =  generateRandomString();
 											</div>
 										</div>				
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Teacher First Name:</label>
+											<label class="control-label" for="focusedInput">Teacher First Name:*</label>
 											<div class="controls">
 											  <input name="TeacherFirstName" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
@@ -593,13 +593,13 @@ $TemporaryPassword =  generateRandomString();
 											</div>
 										</div>							  
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Contact No:</label>
+											<label class="control-label" for="focusedInput">Contact No:*</label>
 											<div class="controls">
 											  <input name="ContactNo" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Email Id:</label>
+											<label class="control-label" for="focusedInput">Email Id:*</label>
 											<div class="controls">
 											  <input name="EmailId" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
@@ -614,12 +614,12 @@ $TemporaryPassword =  generateRandomString();
 											<label class="control-label">Sex:</label>
 											<div class="controls">
 											  <label class="radio">
-												<input type="radio" name="Sex" id="optionsRadios1" value="Male" checked="">
+												<input type="radio" name="Sex" id="optionsRadios1" value="male" checked="">
 												Male
 											  </label>
 											  <div style="clear:both"></div>
 											  <label class="radio">
-												<input type="radio" name="Sex" id="optionsRadios2" value="Female">
+												<input type="radio" name="Sex" id="optionsRadios2" value="female">
 												Female
 											  </label>
 											</div>
@@ -631,7 +631,7 @@ $TemporaryPassword =  generateRandomString();
 										  </div>
 										</div>        
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Salary:</label>
+											<label class="control-label" for="focusedInput">Salary:*</label>
 											<div class="controls">
 											  <input name="Salary" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
