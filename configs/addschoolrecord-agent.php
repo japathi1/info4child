@@ -127,18 +127,20 @@ if(isset($_POST['AddTeacher'])){
 		$TEUID = $_POST['TEUID'];	
 		$TeTemporaryPassword = $_POST['TeTemporaryPassword'];			
 		
-		$sql = "INSERT INTO teacher (TeacherSchoolName,
+		$sql = "INSERT INTO teacher (TitleDesignation,
+										TeacherSchoolName,
 										TeacherFirstName,
 										TeacherLastName,
 										Mobile,
 										EmailId,
 										YourSubject,
 										Sex,
-										ImageUpload,
 										Salary,
 										teuid,
-										TeTemporaryPassword
-										) VALUES (							
+										TeTemporaryPassword,
+										IsActive
+										) VALUES (
+										'teacher',										
 										'$TeacherSchoolName',
 										'$TeacherFirstName',
 										'$TeacherLastName',
@@ -146,10 +148,10 @@ if(isset($_POST['AddTeacher'])){
 										'$EmailId',
 										'$Subject',
 										'$Sex',
-										'$ImageUpload',
 										'$Salary',
 										'$TEUID',
-										'$TeTemporaryPassword'
+										'$TeTemporaryPassword',
+										'no'
 										)";
 
 

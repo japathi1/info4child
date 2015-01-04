@@ -29,7 +29,12 @@ $sql = "INSERT INTO login (username,
 							)";
 							
 if ($conn->query($sql) === TRUE) {
-	$sql = "UPDATE student SET IsActive='yes' WHERE stuid='$uid'";
+	if($designation == "student"){
+		$sql = "UPDATE student SET IsActive='yes' WHERE stuid='$uid'";
+	}
+	if($designation == "teacher"){
+		$sql = "UPDATE teacher SET IsActive='yes' WHERE teuid='$uid'";
+	}	
 	
 	if ($conn->query($sql) === TRUE) {
 		header('Location: ../login/register-done.php');
