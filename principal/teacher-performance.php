@@ -43,7 +43,7 @@
 <!-- topbar starts -->
 <div class="navbar">
   <div class="navbar-inner">
-    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.html"> <img alt=""/> <span>ABC</span></a>
+    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.php"> <img alt=""/> <span>ABC</span></a>
       <!-- theme selector starts -->
       <div class="btn-group pull-right theme-container" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-tint"></i><span class="hidden-phone"> Change Theme / Skin</span> <span class="caret"></span> </a>
         <ul class="dropdown-menu" id="themes">
@@ -68,7 +68,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="#">View Profile</a></li>
 						<li class="divider"></li>
-						<li><a href="login.html">Logout</a></li>
+						<li><a href="login.php">Logout</a></li>
 					</ul>
 				</div>
       <!-- user dropdown ends -->
@@ -94,17 +94,17 @@
       <div class="well nav-collapse sidebar-nav">
         <ul class="nav nav-tabs nav-stacked main-menu">
           <li class="nav-header hidden-tablet">Menu</li>
-          <li><a class="ajax-link" href="index.html"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-          <li><a class="ajax-link" href="profile.html"><i class="icon-user"></i><span class="hidden-tablet"> View Profile</span></a></li>
-		   <li><a class="ajax-link" href="edit-profile.html"><i class="icon-user"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
-          <li><a class="ajax-link" href="gallery.html"><i class="icon-briefcase"></i><span class="hidden-tablet"> Gallery</span></a></li>
-          <li><a class="ajax-link" href="Event-manager.html"><i class="icon-eye-close"></i><span class="hidden-tablet"> Event Management</span></a></li>
-		  <li><a class="ajax-link" href="schedule-manager.html"><i class="icon-tags"></i><span class="hidden-tablet"> Schedule Management</span></a></li>
-           <li><a class="ajax-link" href="message.html"><i class="icon-bullhorn"></i><span class="hidden-tablet">Message Centre</span></a></li>
-          <li><a class="ajax-link" href="notification.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> Notification</span></a></li>
-		  <li><a class="ajax-link" href="allstudent.html"><i class="icon-bell"></i><span class="hidden-tablet"> View All Student</span></a></li>
-           <li><a class="ajax-link" href="Teacher-atten.html"><i class=" icon-envelope"></i><span class="hidden-tablet">Teacher's Attandance</span></a></li>
-          <li><a class="ajax-link" href="teacher-performance.html"><i class="icon-picture"></i><span class="hidden-tablet"> Teacher's Performance</span></a></li>
+          <li><a class="ajax-link" href="index.php"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+          <li><a class="ajax-link" href="profile.php"><i class="icon-user"></i><span class="hidden-tablet"> View Profile</span></a></li>
+		   <li><a class="ajax-link" href="edit-profile.php"><i class="icon-user"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
+          <li><a class="ajax-link" href="gallery.php"><i class="icon-briefcase"></i><span class="hidden-tablet"> Gallery</span></a></li>
+          <li><a class="ajax-link" href="Event-manager.php"><i class="icon-eye-close"></i><span class="hidden-tablet"> Event Management</span></a></li>
+		  <li><a class="ajax-link" href="schedule-manager.php"><i class="icon-tags"></i><span class="hidden-tablet"> Schedule Management</span></a></li>
+           <li><a class="ajax-link" href="message.php"><i class="icon-bullhorn"></i><span class="hidden-tablet">Message Centre</span></a></li>
+          <li><a class="ajax-link" href="notification.php"><i class="icon-eye-open"></i><span class="hidden-tablet"> Notification</span></a></li>
+		  <li><a class="ajax-link" href="allstudent.php"><i class="icon-bell"></i><span class="hidden-tablet"> View All Student</span></a></li>
+           <li><a class="ajax-link" href="Teacher-atten.php"><i class=" icon-envelope"></i><span class="hidden-tablet">Teacher's Attandance</span></a></li>
+          <li><a class="ajax-link" href="teacher-performance.php"><i class="icon-picture"></i><span class="hidden-tablet"> Teacher's Performance</span></a></li>
 		 
           
         </ul>
@@ -126,7 +126,7 @@
       <!-- content starts -->
       <div>
         <ul class="breadcrumb">
-          <li> <a href="index.html">Home</a> <span class="divider">/</span> </li>
+          <li> <a href="index.php">Home</a> <span class="divider">/</span> </li>
           <li> <a href="#">Blank Page</a> </li>
         </ul>
       </div>

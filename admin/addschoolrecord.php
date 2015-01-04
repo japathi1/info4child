@@ -451,17 +451,6 @@ $TemporaryPassword =  generateRandomString();
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label" for="selectError3">Title:</label>
-											<div class="controls">
-											  <select name="Title" id="selectError3">
-												<option value="ChooseTitle">Choose Title</option>
-												<option value="Mr">Mr.</option>
-												<option value="Miss">Miss.</option>
-												<option value="Ms">Ms.</option>
-											  </select>
-											</div>
-										</div>
-										<div class="control-group">
 											<label class="control-label" for="focusedInput">Principal First Name:</label>
 											<div class="controls">
 											  <input name="PrincipalFirstName" class="input-xlarge focused" id="focusedInput" type="text">
@@ -477,38 +466,14 @@ $TemporaryPassword =  generateRandomString();
 											<label class="control-label">Sex:</label>
 											<div class="controls">
 											  <label class="radio">
-												<input type="radio" name="Sex" id="optionsRadios1" value="Male" checked="">
+												<input type="radio" name="Sex" id="optionsRadios1" value="male" checked="">
 												Male
 											  </label>
 											  <div style="clear:both"></div>
 											  <label class="radio">
-												<input type="radio" name="Sex" id="optionsRadios2" value="Female">
+												<input type="radio" name="Sex" id="optionsRadios2" value="female">
 												Female
 											  </label>
-											</div>
-										</div>
-										<div class="control-group">
-										  <label class="control-label" for="fileInput">ID Proof:</label>
-										  <div class="controls">
-											<div class="uploader" id="uniform-fileInput"><input class="input-file uniform_on" id="fileInput" type="file" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div>
-										  </div>
-										</div>
-										<div class="control-group">
-											<label class="control-label" for="focusedInput">Phone Code:</label>
-											<div class="controls">
-											  <input name="PhoneCode" class="input-xlarge focused" id="focusedInput" type="text">
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label" for="focusedInput">Phone No:</label>
-											<div class="controls">
-											  <input name="PhoneNo" class="input-xlarge focused" id="focusedInput" type="text">
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label" for="focusedInput">Mobile Code:</label>
-											<div class="controls">
-											  <input name="MobileCode" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
 										</div>
 										<div class="control-group">
@@ -522,13 +487,7 @@ $TemporaryPassword =  generateRandomString();
 											<div class="controls">
 											  <input name="Email" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label" for="focusedInput">Educational Qualification:</label>
-											<div class="controls">
-											  <input name="EducationalQualification" class="input-xlarge focused" id="focusedInput" type="text">
-											</div>
-										</div>							  
+										</div>						  
 										<div class="control-group">
 										  <label class="control-label" for="fileInput">Image Upload</label>
 										  <div class="controls">

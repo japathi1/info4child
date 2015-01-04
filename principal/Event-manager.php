@@ -43,7 +43,7 @@
 <!-- topbar starts -->
 <div class="navbar">
   <div class="navbar-inner">
-    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.html"> <img alt=""/> <span>ABC</span></a>
+    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.php"> <img alt=""/> <span>ABC</span></a>
       <!-- theme selector starts -->
       <div class="btn-group pull-right theme-container" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-tint"></i><span class="hidden-phone"> Change Theme / Skin</span> <span class="caret"></span> </a>
         <ul class="dropdown-menu" id="themes">
@@ -68,7 +68,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="#">View Profile</a></li>
 						<li class="divider"></li>
-						<li><a href="login.html">Logout</a></li>
+						<li><a href="login.php">Logout</a></li>
 					</ul>
 				</div>
       <!-- user dropdown ends -->
@@ -94,17 +94,17 @@
       <div class="well nav-collapse sidebar-nav">
         <ul class="nav nav-tabs nav-stacked main-menu">
           <li class="nav-header hidden-tablet">Menu</li>
-          <li><a class="ajax-link" href="index.html"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-          <li><a class="ajax-link" href="profile.html"><i class="icon-user"></i><span class="hidden-tablet"> View Profile</span></a></li>
-		   <li><a class="ajax-link" href="edit-profile.html"><i class="icon-user"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
-          <li><a class="ajax-link" href="gallery.html"><i class="icon-briefcase"></i><span class="hidden-tablet"> Gallery</span></a></li>
-          <li><a class="ajax-link" href="Event-manager.html"><i class="icon-eye-close"></i><span class="hidden-tablet"> Event Management</span></a></li>
-		  <li><a class="ajax-link" href="schedule-manager.html"><i class="icon-tags"></i><span class="hidden-tablet"> Schedule Management</span></a></li>
-           <li><a class="ajax-link" href="message.html"><i class="icon-bullhorn"></i><span class="hidden-tablet">Message Centre</span></a></li>
-          <li><a class="ajax-link" href="notification.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> Notification</span></a></li>
-		  <li><a class="ajax-link" href="allstudent.html"><i class="icon-bell"></i><span class="hidden-tablet"> View All Student</span></a></li>
-           <li><a class="ajax-link" href="Teacher-atten.html"><i class=" icon-envelope"></i><span class="hidden-tablet">Teacher's Attandance</span></a></li>
-          <li><a class="ajax-link" href="teacher-performance.html"><i class="icon-picture"></i><span class="hidden-tablet"> Teacher's Performance</span></a></li>
+          <li><a class="ajax-link" href="index.php"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+          <li><a class="ajax-link" href="profile.php"><i class="icon-user"></i><span class="hidden-tablet"> View Profile</span></a></li>
+		   <li><a class="ajax-link" href="edit-profile.php"><i class="icon-user"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
+          <li><a class="ajax-link" href="gallery.php"><i class="icon-briefcase"></i><span class="hidden-tablet"> Gallery</span></a></li>
+          <li><a class="ajax-link" href="Event-manager.php"><i class="icon-eye-close"></i><span class="hidden-tablet"> Event Management</span></a></li>
+		  <li><a class="ajax-link" href="schedule-manager.php"><i class="icon-tags"></i><span class="hidden-tablet"> Schedule Management</span></a></li>
+           <li><a class="ajax-link" href="message.php"><i class="icon-bullhorn"></i><span class="hidden-tablet">Message Centre</span></a></li>
+          <li><a class="ajax-link" href="notification.php"><i class="icon-eye-open"></i><span class="hidden-tablet"> Notification</span></a></li>
+		  <li><a class="ajax-link" href="allstudent.php"><i class="icon-bell"></i><span class="hidden-tablet"> View All Student</span></a></li>
+           <li><a class="ajax-link" href="Teacher-atten.php"><i class=" icon-envelope"></i><span class="hidden-tablet">Teacher's Attandance</span></a></li>
+          <li><a class="ajax-link" href="teacher-performance.php"><i class="icon-picture"></i><span class="hidden-tablet"> Teacher's Performance</span></a></li>
 		 
           
         </ul>
@@ -126,14 +126,14 @@
       <!-- content starts -->
       <div>
         <ul class="breadcrumb">
-          <li> <a href="index.html">Home</a> <span class="divider">/</span> </li>
-          <li> <a href="#">View Profile</a> </li>
+          <li> <a href="index.php">Home</a> <span class="divider">/</span> </li>
+          <li> <a href="#">Blank Page</a> </li>
         </ul>
       </div>
       <div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-picture"></i> View Profile</h2>
+						<h2><i class="icon-picture"></i> This Page Under Construction</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -141,145 +141,7 @@
 						</div>
 					</div>
 					<div class="box-content">
-						 <div class="row-fluid">
-               <div class="span12">
-                  <div class="widget">
-                       
-                        <div class="widget-body">
-                            <div class="span3">
-                                <div class="text-center profile-pic">
-                                    <img src="img/profile-pic.jpg" alt="">
-                                </div>
-                                <br>
-
-                                <ul class="nav nav-tabs nav-stacked">
-                                    <li><a href="javascript:void(0)"><i class="icon-adjust"></i>Change Profile Picture</a></li>
-                                    <li><a href="javascript:void(0)"><i class="icon-picture"></i> View Gallery</a></li>
-                                    <li><a href="javascript:void(0)"><i class="icon-edit" ></i> Edit Profile</a></li>
-                                </ul>
-                             
-                            </div>
-                            <div class="span6">
-                                <h3>Mr. Principal Singh <br/><small>(ABC Public School, Patna)</small></h3>
-                                
-                                <h5>Personel Information </h5>
-                              <table class="table table-condensed">
-							  
-							  <tbody>
-								<tr>
-									<td>Full Name:</td>
-									<td>Mr. Principal Singh</td>
-							   </tr>
-								<tr>
-									<td>Date of Birth</td>
-									<td>1998/09/29</td>
-									
-										                            
-								</tr>
-						
-								<tr>
-									<td>Email Id: </td>
-									<td>sanskarvalley.school@gmail.com</td>
-								
-									                                  
-								</tr>
-								<tr>
-									<td>Mobile:</td>
-									<td>1234567890</td>
-									                              
-								</tr>    
-                                                    
-							  </tbody>
-						 </table>
-                            <h5>Educational Information </h5>
-                              <table class="table table-condensed">
-							  
-							  <tbody>
-								<tr>
-									<td>Qualification:</td>
-									<td>B.tech (computer Science )</td>
-									
-										
-									                                 
-								</tr>
-								<tr>
-									<td>last Job:</td>
-									<td>Deen Dayal Public School</td>
-									
-										                            
-								</tr>
-						                               
-							  </tbody>
-						 </table>
-                                <h5>Other Achievement </h5>
-                              <table class="table table-condensed">
-							  
-							  <tbody>
-								<tr>
-									<td>2010</td>
-									<td>Best Principal Award</td>
-									
-										
-									                                 
-								</tr>
-								<tr>
-									<td>2012</td>
-									<td>Best Management Award</td>
-									
-										                            
-								</tr>
-						                               
-							  </tbody>
-						 </table>
-                           
-                              
-                                <h4>Class Record</h4>
-
-                               <div class="box-content">
-						 <div id="stackchart" class="center" style="height:300px;"></div>
-
-						<p class="stackControls center">
-							<input class="btn" type="button" value="With stacking">
-							<input class="btn" type="button" value="Without stacking">
-						</p>
-
-						<p class="graphControls center">
-							<input class="btn btn-primary" type="button" value="Bars">
-							<input class="btn btn-primary" type="button" value="Lines">
-							<input class="btn btn-primary" type="button" value="Lines with steps">
-						</p>
-					</div>
-                              
-                                
-                            </div>
-                            <div class="span3">
-                                <h4>School Exam Results</h4>
-                                <ul class="icons push">
-                                    <li><i class="icon-hand-right"></i> <strong>ABC Company</strong><br/><em>Duration: 4 years</em><br/><em>Description of the company..</em><br><a href="javascript:void(0)">abc-company.com</a></li>
-                                    <li><i class="icon-hand-right"></i> <strong>DEF Company</strong><br/><em>Duration: 3 years</em><br/><em>Description of the company..</em><br><a href="javascript:void(0)">def-company.com</a></li>
-                                    <li><i class="icon-hand-right"></i> <strong>GHI Company</strong><br/><em>Duration: 1.7 years</em><br/><em>Description of the company..</em><br><a href="javascript:void(0)">ghi-company.com</a></li>
-                                </ul>
-                                <h4>Current Status</h4>
-                                <div class="alert alert-success"><i class="icon-ok-sign"></i> Working in ABC Company</div>
-                                <h4>Some Projects</h4>
-                                <ul class="unstyled">
-                                    <li> <strong>Project 1</strong>: <a href="javascript:void(0)">exampleproject1.com</a></li>
-                                    <li> <strong>Project 2</strong>: <a href="javascript:void(0)">exampleproject2.com</a></li>
-                                    <li> <strong>Project 3</strong>: <a href="javascript:void(0)">exampleproject3.com</a></li>
-                                    <li> <strong>Project 4</strong>: <a href="javascript:void(0)">exampleproject4.com</a></li>
-                                    <li> <strong>Project 5</strong>: <a href="javascript:void(0)">exampleproject5.com</a></li>
-                                    <li> <strong>Project 6</strong>: <a href="javascript:void(0)">exampleproject6.com</a></li>
-                                    <li> <strong>Project 7</strong>: <a href="javascript:void(0)">exampleproject7.com</a></li>
-                                    <li> <strong>Project 8</strong>: <a href="javascript:void(0)">exampleproject8.com</a></li>
-                                    <li> <strong>Project 9</strong>: <a href="javascript:void(0)">exampleproject9.com</a></li>
-                                    <li> <strong>Project 10</strong>: <a href="javascript:void(0)">exampleproject10.com</a></li>
-                                </ul>
-                            </div>
-                            <div class="space5"></div>
-                        </div>
-                  </div>
-               </div>
-            </div>
+						 
 
 					</div>
 				</div><!--/span-->

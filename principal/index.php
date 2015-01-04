@@ -1,3 +1,98 @@
+<?php
+session_start();
+
+$uid = $_SESSION['uid'];
+$FirstName = $_SESSION['FirstName'];	
+$DesignationHardCode = $_SESSION['DesignationHardCode'];	
+
+if(($_SESSION['uid'] == "") || ($DesignationHardCode != "principal")){
+	header('Location: ../login/login.php');
+	exit();	
+}
+
+include '../configs/connection.php';
+
+//fetch data from principal table begins
+$sql = "SELECT * FROM principal WHERE pruid='$uid'";
+$result = mysqli_query($conn, $sql);
+
+if(mysqli_num_rows($result) > 0){
+    // login success - output data of each row
+    while($row = mysqli_fetch_assoc($result)){
+		$PrincipalFirstName = $row["PrincipalFirstName"];
+		$PrincipalLastName = $row["PrincipalLastName"];
+		$DateofBirth = $row["DateofBirth"];
+		$EmailId = $row["EmailId"];
+		$Mobile = $row["Mobile"];
+		$Sex = $row["Sex"];
+		$ImageUpload = $row["ImageUpload"];
+
+		$TenthBoard = $row["TenthBoard"];
+		$TenthSchoolName = $row["TenthSchoolName"];
+		$TenthDateOfCompleted = $row["TenthDateOfCompleted"];
+		$TenthMarksObtained = $row["TenthMarksObtained"];
+		$TwelfthBoard = $row["TwelfthBoard"];
+		$TwelftSchoolCollegeUniversity = $row["TwelftSchoolCollegeUniversity"];
+		$TwelftDateOfCompleted = $row["TwelftDateOfCompleted"];
+		$TwelftMarksObtained = $row["TwelftMarksObtained"];
+		$Graduation = $row["Graduation"];
+		$GraduationCollegeUniversity = $row["GraduationCollegeUniversity"];
+		$GraduationHonoursSubject = $row["GraduationHonoursSubject"];
+		$GraduationDateOfCompleted = $row["GraduationDateOfCompleted"];
+		$GraduationMarksObtained = $row["GraduationMarksObtained"];
+		$MasterDegree = $row["MasterDegree"];
+		$MasterCollegeUniversity = $row["MasterCollegeUniversity"];
+		$MasterHonoursSubject = $row["MasterHonoursSubject"];
+		$MasterDateOfCompleted = $row["MasterDateOfCompleted"];
+		$MasterMarksObtained = $row["MasterMarksObtained"];
+		$OtherDegree = $row["OtherDegree"];
+		$OtherCollegeUniversity = $row["OtherCollegeUniversity"];
+		$OtherHonoursSubject = $row["OtherHonoursSubject"];
+		$OtherDateOfCompleted = $row["OtherDateOfCompleted"];
+		$OtherMarksObtained = $row["OtherMarksObtained"];	
+		
+		$OrganisationName = $row["OrganisationName"];
+		$Designation = $row["Designation"];
+		$TimePeriod = $row["TimePeriod"];
+		$OrganisationRemarks = $row["OrganisationRemarks"];	
+		
+		$PresentAddress = $row["PresentAddress"];	
+		$PresentLandmark = $row["PresentLandmark"];	
+		$PresentCountry = $row["PresentCountry"];	
+		$PresentState = $row["PresentState"];	
+		$PresentCity = $row["PresentCity"];	
+		$PresentPinCode = $row["PresentPinCode"];	
+		$PermanentAddress = $row["PermanentAddress"];	
+		$PermanentLandmark = $row["PermanentLandmark"];	
+		$PermanentCountry = $row["PermanentCountry"];	
+		$PermanentState = $row["PermanentState"];	
+		$PermanentCity = $row["PermanentCity"];	
+		$PermanentPinCode = $row["PermanentPinCode"];	
+		
+		$PrincipalSchoolName = $row["PrincipalSchoolName"];
+		$YourClass = $row["YourClass"];
+		$YourSection = $row["YourSection"];
+		$YourSubject = $row["YourSubject"];
+		$YourClassRemarks = $row["YourClassRemarks"];
+
+    }
+}else{
+    echo "0 results";
+}
+//fetch data from principal table ends
+
+// profile picture begins
+$DBPPPath = "../configs/principal-profile-pic.php?pruid=".$uid;
+$DirectoryPPPath ="img/profile-pic.jpg";
+
+if(!empty($ImageUpload)){
+	$ProfilePicture = $DBPPPath;
+}else{
+	$ProfilePicture = $DirectoryPPPath;	
+}
+// profile picture ends
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +138,7 @@
 <!-- topbar starts -->
 <div class="navbar">
   <div class="navbar-inner">
-    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.html"> <img alt=""/> <span>ABC</span></a>
+    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.php"> <img alt=""/> <span>ABC</span></a>
       <!-- theme selector starts -->
       <div class="btn-group pull-right theme-container" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-tint"></i><span class="hidden-phone"> Change Theme / Skin</span> <span class="caret"></span> </a>
         <ul class="dropdown-menu" id="themes">
@@ -60,10 +155,10 @@
       </div>
       <!-- theme selector ends -->
       <!-- user dropdown starts -->
-      <div class="btn-group pull-right" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i><span class="hidden-phone"> Welcome! Mr. Principal</span> <span class="caret"></span> </a>
+      <div class="btn-group pull-right" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i><span class="hidden-phone">Welcome <?php echo $FirstName; ?>!</span> <span class="caret"></span> </a>
         <ul class="dropdown-menu">
-        <li><a href="#">View Profile</a></li>
-          <li><a href="#">Logout</a></li>
+        <li><a href="profile.php">View Profile</a></li>
+          <li><a href="../login/login.php">Logout</a></li>
         </ul>
       </div>
       <!-- user dropdown ends -->
@@ -89,17 +184,17 @@
       <div class="well nav-collapse sidebar-nav">
         <ul class="nav nav-tabs nav-stacked main-menu">
           <li class="nav-header hidden-tablet">Menu</li>
-          <li><a class="ajax-link" href="index.html"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-          <li><a class="ajax-link" href="profile.html"><i class="icon-user"></i><span class="hidden-tablet"> View Profile</span></a></li>
-		   <li><a class="ajax-link" href="edit-profile.html"><i class="icon-user"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
-          <li><a class="ajax-link" href="gallery.html"><i class="icon-briefcase"></i><span class="hidden-tablet"> Gallery</span></a></li>
-          <li><a class="ajax-link" href="Event-manager.html"><i class="icon-eye-close"></i><span class="hidden-tablet"> Event Management</span></a></li>
-		  <li><a class="ajax-link" href="schedule-manager.html"><i class="icon-tags"></i><span class="hidden-tablet"> Schedule Management</span></a></li>
-           <li><a class="ajax-link" href="message.html"><i class="icon-bullhorn"></i><span class="hidden-tablet">Message Centre</span></a></li>
-          <li><a class="ajax-link" href="notification.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> Notification</span></a></li>
-		  <li><a class="ajax-link" href="allstudent.html"><i class="icon-bell"></i><span class="hidden-tablet"> View All Student</span></a></li>
-           <li><a class="ajax-link" href="Teacher-atten.html"><i class=" icon-envelope"></i><span class="hidden-tablet">Teacher's Attandance</span></a></li>
-          <li><a class="ajax-link" href="teacher-performance.html"><i class="icon-picture"></i><span class="hidden-tablet"> Teacher's Performance</span></a></li>
+          <li><a class="ajax-link" href="index.php"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+          <li><a class="ajax-link" href="profile.php"><i class="icon-user"></i><span class="hidden-tablet"> View Profile</span></a></li>
+		   <li><a class="ajax-link" href="edit-profile.php"><i class="icon-user"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
+          <li><a class="ajax-link" href="gallery.php"><i class="icon-briefcase"></i><span class="hidden-tablet"> Gallery</span></a></li>
+          <li><a class="ajax-link" href="Event-manager.php"><i class="icon-eye-close"></i><span class="hidden-tablet"> Event Management</span></a></li>
+		  <li><a class="ajax-link" href="schedule-manager.php"><i class="icon-tags"></i><span class="hidden-tablet"> Schedule Management</span></a></li>
+           <li><a class="ajax-link" href="message.php"><i class="icon-bullhorn"></i><span class="hidden-tablet">Message Centre</span></a></li>
+          <li><a class="ajax-link" href="notification.php"><i class="icon-eye-open"></i><span class="hidden-tablet"> Notification</span></a></li>
+		  <li><a class="ajax-link" href="allstudent.php"><i class="icon-bell"></i><span class="hidden-tablet"> View All Student</span></a></li>
+           <li><a class="ajax-link" href="Teacher-atten.php"><i class=" icon-envelope"></i><span class="hidden-tablet">Teacher's Attandance</span></a></li>
+          <li><a class="ajax-link" href="teacher-performance.php"><i class="icon-picture"></i><span class="hidden-tablet"> Teacher's Performance</span></a></li>
 		 
           
         </ul>
@@ -142,31 +237,31 @@
 		
 		<div class="row-fluid">
 		<div class="span12">
-				<div class="span3"><img src="img/profile-pic.jpg"></div>
+				<div class="span3"><img src="<?php echo $ProfilePicture; ?>" width="240" height="240"></div>
 				<div class="span5 show-grid">
-                <h2>Welcome Principal </h2>
-             <h4>Sanskar Valley Patna </h4>
+                <h2>Welcome <?php echo $PrincipalFirstName . " ".$PrincipalLastName; ?>!</h2>
+             <h4><?php echo $PrincipalSchoolName; ?></h4>
              <table class="table table-condensed">
 							
 							  <tbody>
 								<tr>
 									<td style="border:none">Full Name:</td>
-									<td class="center" style="border:none">Cdr. Nirad Sinha</td>
+									<td class="center" style="border:none"><?php echo $PrincipalFirstName . " ".$PrincipalLastName; ?></td>
 								                        
 								</tr>
 								<tr>
 									<td style="border:none">Date of Birth:</td>
-									<td class="center" style="border:none">yyyy/mm/dd</td>
+									<td class="center" style="border:none"><?php echo $DateofBirth; ?></td>
 									                               
 								</tr>
 								<tr>
 									<td style="border:none">Phone:</td>
-									<td class="center" style="border:none">+91- 9430284579</td>
+									<td class="center" style="border:none"><?php echo $Mobile; ?></td>
 								                         
 								</tr>
 								<tr>
 									<td style="border:none">Email:</td>
-									<td style="border:none" class="center">sanskarvalley.school@gmail.com</td>
+									<td style="border:none" class="center"><?php echo $EmailId; ?></td>
 									                         
 								</tr>
 								                          
