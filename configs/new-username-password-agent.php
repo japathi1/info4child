@@ -35,6 +35,9 @@ if ($conn->query($sql) === TRUE) {
 	if($designation == "teacher"){
 		$sql = "UPDATE teacher SET IsActive='yes' WHERE teuid='$uid'";
 	}	
+	if($designation == "principal"){
+		$sql = "UPDATE principal SET IsActive='yes' WHERE pruid='$uid'";
+	}	
 	
 	if ($conn->query($sql) === TRUE) {
 		header('Location: ../login/register-done.php');
