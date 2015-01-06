@@ -37,7 +37,10 @@ if ($conn->query($sql) === TRUE) {
 	}	
 	if($designation == "principal"){
 		$sql = "UPDATE principal SET IsActive='yes' WHERE pruid='$uid'";
-	}	
+	}
+	if($designation == "management"){
+		$sql = "UPDATE management SET IsActive='yes' WHERE mauid='$uid'";
+	}		
 	
 	if ($conn->query($sql) === TRUE) {
 		header('Location: ../login/register-done.php');

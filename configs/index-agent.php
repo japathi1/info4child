@@ -26,7 +26,12 @@ if(mysqli_num_rows($result) > 0){
 			header('Location: ../admin/index.php');
 			//echo $row["designation"]."<br> Under construction";
 		}elseif($row["designation"] == "management"){
-			echo $row["designation"]."<br> Under construction";	
+			session_regenerate_id();
+			echo $_SESSION['uid'] = $row["uid"];
+			echo $_SESSION['FirstName'] = $row["FirstName"];	
+			echo $_SESSION['DesignationHardCode'] = "management";	
+			header('Location: ../managment/index.php');			
+			//echo $row["designation"]."<br> Under construction";	
 		}elseif($row["designation"] == "principal"){
 			session_regenerate_id();
 			echo $_SESSION['uid'] = $row["uid"];

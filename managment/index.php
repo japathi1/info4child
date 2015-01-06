@@ -1,3 +1,67 @@
+<?php
+session_start();
+
+$uid = $_SESSION['uid'];
+$FirstName = $_SESSION['FirstName'];	
+$DesignationHardCode = $_SESSION['DesignationHardCode'];	
+
+if(($_SESSION['uid'] == "") || ($DesignationHardCode != "management")){
+	header('Location: ../login/login.php');
+	exit();	
+}
+
+include '../configs/connection.php';
+
+//fetch data from principal table begins
+$sql = "SELECT * FROM management WHERE mauid='$uid'";
+$result = mysqli_query($conn, $sql);
+
+if(mysqli_num_rows($result) > 0){
+    // login success - output data of each row
+    while($row = mysqli_fetch_assoc($result)){
+		$SchoolName = $row["SchoolName"];
+		$SchoolLocation = $row["SchoolLocation"];
+		$SchoolEmailId = $row["SchoolEmailId"];
+		$SchoolPhone = $row["SchoolPhone"];
+		$SchoolWebsite = $row["SchoolWebsite"];
+		$SchoolOwnerFirstName = $row["SchoolOwnerFirstName"];
+		$SchoolOwnerLastName = $row["SchoolOwnerLastName"];
+		$OwnerEmailId = $row["OwnerEmailId"];
+		$OwnerMobile = $row["OwnerMobile"];
+		$OwnerSex = $row["OwnerSex"];
+		
+		$PresentAddress = $row["PresentAddress"];	
+		$PresentLandmark = $row["PresentLandmark"];	
+		$PresentCountry = $row["PresentCountry"];	
+		$PresentState = $row["PresentState"];	
+		$PresentCity = $row["PresentCity"];	
+		$PresentPinCode = $row["PresentPinCode"];	
+		$PermanentAddress = $row["PermanentAddress"];	
+		$PermanentLandmark = $row["PermanentLandmark"];	
+		$PermanentCountry = $row["PermanentCountry"];	
+		$PermanentState = $row["PermanentState"];	
+		$PermanentCity = $row["PermanentCity"];	
+		$PermanentPinCode = $row["PermanentPinCode"];
+		
+		$ImageUpload = $row["ImageUpload"];
+    }
+}else{
+    echo "0 results";
+}
+//fetch data from principal table ends
+
+// profile picture begins
+$DBPPPath = "../configs/managment-profile-pic.php?mauid=".$uid;
+$DirectoryPPPath ="img/profile-pic.jpg";
+
+if(!empty($ImageUpload)){
+	$ProfilePicture = $DBPPPath;
+}else{
+	$ProfilePicture = $DirectoryPPPath;	
+}
+// profile picture ends
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +107,7 @@
 <!-- topbar starts -->
 <div class="navbar">
   <div class="navbar-inner">
-    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.html"> <img alt=""/> <span>ABC</span></a>
+    <div class="container-fluid"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="index.php"> <img alt=""/> <span>ABC</span></a>
       <!-- theme selector starts -->
       <div class="btn-group pull-right theme-container" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-tint"></i><span class="hidden-phone"> Change Theme / Skin</span> <span class="caret"></span> </a>
         <ul class="dropdown-menu" id="themes">
@@ -60,10 +124,10 @@
       </div>
       <!-- theme selector ends -->
       <!-- user dropdown starts -->
-      <div class="btn-group pull-right" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i><span class="hidden-phone"> Welcome! Sanskar Valley</span> <span class="caret"></span> </a>
+      <div class="btn-group pull-right" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i><span class="hidden-phone">Welcome <?php echo $FirstName; ?>!</span> <span class="caret"></span> </a>
         <ul class="dropdown-menu">
-        <li><a href="#">View Profile</a></li>
-          <li><a href="#">Logout</a></li>
+        <li><a href="profile.php">View Profile</a></li>
+          <li><a href="../login/login.php">Logout</a></li>
         </ul>
       </div>
       <!-- user dropdown ends -->
@@ -89,17 +153,17 @@
       <div class="well nav-collapse sidebar-nav">
         <ul class="nav nav-tabs nav-stacked main-menu">
           <li class="nav-header hidden-tablet">Menu</li>
-          <li><a class="ajax-link" href="index.html"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-          <li><a class="ajax-link" href="profile.html"><i class="icon-user"></i><span class="hidden-tablet"> View Profile</span></a></li>
-		   <li><a class="ajax-link" href="edit-profile.html"><i class="icon-user"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
-          <li><a class="ajax-link" href="salary-module.html"><i class="icon-briefcase"></i><span class="hidden-tablet"> Salary Module</span></a></li>
-          <li><a class="ajax-link" href="fees-mgmt.html"><i class="icon-eye-close"></i><span class="hidden-tablet"> Student Fees mgmt</span></a></li>
-		  <li><a class="ajax-link" href="other-profile.html"><i class="icon-tags"></i><span class="hidden-tablet"> View Other's Profile</span></a></li>
-           <li><a class="ajax-link" href="notification.html"><i class="icon-bullhorn"></i><span class="hidden-tablet">Notification</span></a></li>
-          <li><a class="ajax-link" href="time-table.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> School Time Table</span></a></li>
-		  <li><a class="ajax-link" href="event-calender.html"><i class="icon-bell"></i><span class="hidden-tablet"> Event Calender</span></a></li>
-           <li><a class="ajax-link" href="message.html"><i class=" icon-envelope"></i><span class="hidden-tablet">Message Center</span></a></li>
-          <li><a class="ajax-link" href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
+          <li><a class="ajax-link" href="index.php"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+          <li><a class="ajax-link" href="profile.php"><i class="icon-user"></i><span class="hidden-tablet"> View Profile</span></a></li>
+		   <li><a class="ajax-link" href="edit-profile.php"><i class="icon-user"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
+          <li><a class="ajax-link" href="salary-module.php"><i class="icon-briefcase"></i><span class="hidden-tablet"> Salary Module</span></a></li>
+          <li><a class="ajax-link" href="fees-mgmt.php"><i class="icon-eye-close"></i><span class="hidden-tablet"> Student Fees mgmt</span></a></li>
+		  <li><a class="ajax-link" href="other-profile.php"><i class="icon-tags"></i><span class="hidden-tablet"> View Other's Profile</span></a></li>
+           <li><a class="ajax-link" href="notification.php"><i class="icon-bullhorn"></i><span class="hidden-tablet">Notification</span></a></li>
+          <li><a class="ajax-link" href="time-table.php"><i class="icon-eye-open"></i><span class="hidden-tablet"> School Time Table</span></a></li>
+		  <li><a class="ajax-link" href="event-calender.php"><i class="icon-bell"></i><span class="hidden-tablet"> Event Calender</span></a></li>
+           <li><a class="ajax-link" href="message.php"><i class=" icon-envelope"></i><span class="hidden-tablet">Message Center</span></a></li>
+          <li><a class="ajax-link" href="gallery.php"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
 		 
           
         </ul>
@@ -142,31 +206,26 @@
 		
 		<div class="row-fluid show-grid">
 		<div class="span12">
-				<div class="span3"><img src="img/profile-pic.jpg"></div>
+				<div class="span3"><img src="<?php echo $ProfilePicture; ?>" width="240" height="240"></div>
 				<div class="span5">
-                <h2 align="left">Welcome Sanskar Valley </h2>
-             <h4 align="left">Bikram, Patna </h4>
+                <h2 align="left">Welcome to <?php echo $SchoolName; ?></h2>
+             <h4 align="left"><?php echo $SchoolLocation; ?></h4>
              <table class="table table-condensed">
 							
 							  <tbody>
 								<tr>
 									<td style="border:none">Owner Name:</td>
-									<td class="center" style="border:none">Cdr. Nirad Sinha</td>
+									<td class="center" style="border:none"><?php echo $SchoolOwnerFirstName . " ".$SchoolOwnerLastName; ?></td>
 								                        
 								</tr>
 								<tr>
-									<td style="border:none">Date of Birth:</td>
-									<td class="center" style="border:none">yyyy/mm/dd</td>
-									                               
-								</tr>
-								<tr>
 									<td style="border:none">Phone:</td>
-									<td class="center" style="border:none">+91- 9430284579</td>
+									<td class="center" style="border:none"><?php echo $OwnerMobile; ?></td>
 								                         
 								</tr>
 								<tr>
 									<td style="border:none">Email:</td>
-									<td style="border:none" class="center">sanskarvalley.school@gmail.com</td>
+									<td style="border:none" class="center"><?php echo $OwnerEmailId; ?></td>
 									                         
 								</tr>
 								                          
