@@ -138,6 +138,156 @@ if(!empty($ImageUpload)){
 	<![endif]-->
 <!-- The fav icon -->
 <link rel="shortcut icon" href="img/favicon.ico">
+<script type="text/javascript">
+//Edit Principal Information begins
+function validEditPrincipalInformation(){
+	if(document.EditPrincipalInformation.PrincipalFirstName.value == ""){
+			alert("Please enter First Name");
+			document.EditPrincipalInformation.PrincipalFirstName.focus();
+			return false;
+	}
+
+	if(document.EditPrincipalInformation.PrincipalLastName.value == ""){
+			alert("Please enter Last Name");
+			document.EditPrincipalInformation.PrincipalLastName.focus();
+			return false;
+	}
+	if(document.EditPrincipalInformation.DateofBirth.value == ""){
+			alert("Please enter Date of Birth");
+			document.EditPrincipalInformation.DateofBirth.focus();
+			return false;
+	}	
+}
+//Edit Principal Information ends
+
+//Edit Educational Background begins
+function validEditEducationalBackground(){
+	if(document.EditEducationalBackground.TenthBoard.value == ""){
+			alert("Please enter 10th Board");
+			document.EditEducationalBackground.TenthBoard.focus();
+			return false;
+	}
+	if(document.EditEducationalBackground.TenthDateOfCompleted.value == ""){
+			alert("Please enter Date of Completed");
+			document.EditEducationalBackground.TenthDateOfCompleted.focus();
+			return false;
+	}
+	if(document.EditEducationalBackground.TenthMarksObtained.value == ""){
+			alert("Please enter Marks Obtained");
+			document.EditEducationalBackground.TenthMarksObtained.focus();
+			return false;
+	}
+	if(document.EditEducationalBackground.TwelfthBoard.value == ""){
+			alert("Please enter 12th Board");
+			document.EditEducationalBackground.TwelfthBoard.focus();
+			return false;
+	}
+	if(document.EditEducationalBackground.TwelftDateOfCompleted.value == ""){
+			alert("Please enter Date of Completed");
+			document.EditEducationalBackground.TwelftDateOfCompleted.focus();
+			return false;
+	}
+	if(document.EditEducationalBackground.TwelftMarksObtained.value == ""){
+			alert("Please enter Marks Obtained");
+			document.EditEducationalBackground.TwelftMarksObtained.focus();
+			return false;
+	}
+	if(document.EditEducationalBackground.Graduation.value == ""){
+			alert("Please enter Graduation");
+			document.EditEducationalBackground.Graduation.focus();
+			return false;
+	}
+	if(document.EditEducationalBackground.GraduationCollegeUniversity.value == ""){
+			alert("Please enter College/University");
+			document.EditEducationalBackground.GraduationCollegeUniversity.focus();
+			return false;
+	}
+	if(document.EditEducationalBackground.GraduationDateOfCompleted.value == ""){
+			alert("Please enter Date of Completed");
+			document.EditEducationalBackground.GraduationDateOfCompleted.focus();
+			return false;
+	}
+	if(document.EditEducationalBackground.GraduationMarksObtained.value == ""){
+			alert("Please enter Marks Obtained");
+			document.EditEducationalBackground.GraduationMarksObtained.focus();
+			return false;
+	}		
+}
+//Edit Educational Background ends
+
+//Edit Address Information begins
+function validEditAddressInformation(){
+	if(document.EditAddressInformation.PermanentAddress.value == ""){
+			alert("Please enter Permanent Address");
+			document.EditAddressInformation.PermanentAddress.focus();
+			return false;
+	}
+	if(document.EditAddressInformation.PermanentCountry.value == ""){
+			alert("Please enter Country");
+			document.EditAddressInformation.PermanentCountry.focus();
+			return false;
+	}
+	if(document.EditAddressInformation.PermanentState.value == ""){
+			alert("Please enter State");
+			document.EditAddressInformation.PermanentState.focus();
+			return false;
+	}
+	if(document.EditAddressInformation.PermanentCity.value == ""){
+			alert("Please enter City");
+			document.EditAddressInformation.PermanentCity.focus();
+			return false;
+	}
+	if(document.EditAddressInformation.PermanentPinCode.value == ""){
+			alert("Please enter Pin Code");
+			document.EditAddressInformation.PermanentPinCode.focus();
+			return false;
+	}	
+			
+}
+//Edit Address Information ends
+
+//Change Profile Picture begins
+function validChangeProfilePicture(){
+	if(document.ChangeProfilePicture.userfile.value == ""){
+			alert("Please select Profile Picture");
+			document.ChangeProfilePicture.userfile.focus();
+			return false;
+	}	
+			
+}
+//Change Profile Picture ends
+
+//Change Your Password begins
+function validChangeYourPassword(){
+	if(document.ChangeYourPassword.OldPassword.value == ""){
+			alert ( "Please enter Old Password");
+			document.ChangeYourPassword.OldPassword.focus();
+			return false;
+	}
+	if(document.ChangeYourPassword.password.value == ""){
+			alert ( "Please enter Password");
+			document.ChangeYourPassword.password.focus();
+			return false;
+	}
+	if(document.ChangeYourPassword.repassword.value == ""){
+			alert ( "Please re enter Password");
+			document.ChangeYourPassword.repassword.focus();
+			return false;
+	}
+	var password = document.getElementById ("password");
+	var repassword = document.getElementById ("repassword");
+	if (password.value.length < 8) {
+		alert ("The password must be at least 8 characters long");
+		return false;
+	}
+	if (repassword.value != password.value) {
+		alert ("These passwords don't match");
+		return false;
+	}	
+			
+}
+//Change Your Password ends	
+</script>
 </head>
 <body>
 <!-- topbar starts -->
@@ -286,7 +436,7 @@ if(!empty($ImageUpload)){
 							<form name="EditPrincipalInformation" class="form-horizontal" action="../configs/principal-edit-profile-agent.php" method="post" onSubmit="return validEditPrincipalInformation();">
 								<div class="form-horizontal">
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">First Name:</label>
+										<label class="control-label" for="focusedInput">First Name:*</label>
 										<div class="controls">
                                           <input name="EditPrincipalInformation" type="hidden" value="EditPrincipalInformation">
                                           <input name="pruid" type="hidden" value="<?php echo $uid; ?>">                          
@@ -294,13 +444,13 @@ if(!empty($ImageUpload)){
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">Last Name:</label>
+										<label class="control-label" for="focusedInput">Last Name:*</label>
 										<div class="controls">
 										  <input name="PrincipalLastName" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $PrincipalLastName; ?>">
 										</div>
 									</div>
 									<div class="control-group">
-									  <label class="control-label" for="date01">Date of Birth:</label>
+									  <label class="control-label" for="date01">Date of Birth:*</label>
 									  <div class="controls">
 										<input name="DateofBirth" type="text" class="input-xlarge datepicker" id="date01" value="<?php echo $DateofBirth; ?>">
 									  </div>
@@ -361,7 +511,7 @@ if(!empty($ImageUpload)){
 							<form name="EditEducationalBackground" class="form-horizontal" action="../configs/principal-edit-profile-agent.php" method="post" onSubmit="return validEditEducationalBackground();">
 								<div class="form-horizontal">
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">10th Board:</label>
+										<label class="control-label" for="focusedInput">10th Board:*</label>
 										<div class="controls">
                                           <input name="EditEducationalBackground" type="hidden" value="EditEducationalBackground">
                                           <input name="pruid" type="hidden" value="<?php echo $uid; ?>">                          
@@ -375,19 +525,19 @@ if(!empty($ImageUpload)){
 										</div>
 									</div>
 									<div class="control-group">
-									  <label class="control-label" for="date01">Date Of Completed:</label>
+									  <label class="control-label" for="date01">Date Of Completed:*</label>
 									  <div class="controls">
 										<input name="TenthDateOfCompleted" type="text" class="input-xlarge datepicker" id="date01" value="<?php echo $TenthDateOfCompleted; ?>">
 									  </div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">Marks Obtained(In Percentage):</label>
+										<label class="control-label" for="focusedInput">Marks Obtained(In Percentage):*</label>
 										<div class="controls">
 										  <input name="TenthMarksObtained" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $TenthMarksObtained; ?>">
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">12th Board:</label>
+										<label class="control-label" for="focusedInput">12th Board:*</label>
 										<div class="controls">
 										  <input name="TwelfthBoard" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $TwelfthBoard; ?>">
 										</div>
@@ -399,25 +549,25 @@ if(!empty($ImageUpload)){
 										</div>
 									</div>
 									<div class="control-group">
-									  <label class="control-label" for="date01">Date Of Completed:</label>
+									  <label class="control-label" for="date01">Date Of Completed:*</label>
 									  <div class="controls">
 										<input name="TwelftDateOfCompleted" type="text" class="input-xlarge datepicker" id="date01" value="<?php echo $TwelftDateOfCompleted; ?>">
 									  </div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">Marks Obtained(In Percentage):</label>
+										<label class="control-label" for="focusedInput">Marks Obtained(In Percentage):*</label>
 										<div class="controls">
 										  <input name="TwelftMarksObtained" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $TwelftMarksObtained; ?>">
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">Graduation:</label>
+										<label class="control-label" for="focusedInput">Graduation:*</label>
 										<div class="controls">
 										  <input name="Graduation" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $Graduation; ?>">
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">College/University:</label>
+										<label class="control-label" for="focusedInput">College/University:*</label>
 										<div class="controls">
 										  <input name="GraduationCollegeUniversity" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $GraduationCollegeUniversity; ?>">
 										</div>
@@ -429,13 +579,13 @@ if(!empty($ImageUpload)){
 										</div>
 									</div>
 									<div class="control-group">
-									  <label class="control-label" for="date01">Date Of Completed:</label>
+									  <label class="control-label" for="date01">Date Of Completed:*</label>
 									  <div class="controls">
 										<input name="GraduationDateOfCompleted" type="text" class="input-xlarge datepicker" id="date01" value="<?php echo $GraduationDateOfCompleted; ?>">
 									  </div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">Marks Obtained(In Percentage):</label>
+										<label class="control-label" for="focusedInput">Marks Obtained(In Percentage):*</label>
 										<div class="controls">
 										  <input name="GraduationMarksObtained" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $GraduationMarksObtained; ?>">
 										</div>

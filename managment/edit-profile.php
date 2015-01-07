@@ -108,6 +108,105 @@ if(!empty($ImageUpload)){
 	<![endif]-->
 <!-- The fav icon -->
 <link rel="shortcut icon" href="img/favicon.ico">
+<script type="text/javascript">
+//Edit managment Information begins
+function validEditSchoolInformation(){
+	if(document.EditSchoolInformation.SchoolName.value == ""){
+			alert("Please enter School Name");
+			document.EditSchoolInformation.SchoolName.focus();
+			return false;
+	}
+	if(document.EditSchoolInformation.SchoolLocation.value == ""){
+			alert("Please enter Location");
+			document.EditSchoolInformation.SchoolLocation.focus();
+			return false;
+	}
+	if(document.EditSchoolInformation.SchoolOwnerFirstName.value == ""){
+			alert("Please enter School Owner First Name");
+			document.EditSchoolInformation.SchoolOwnerFirstName.focus();
+			return false;
+	}
+	if(document.EditSchoolInformation.SchoolOwnerLastName.value == ""){
+			alert("Please enter School Owner LastName");
+			document.EditSchoolInformation.SchoolOwnerLastName.focus();
+			return false;
+	}	
+}
+//Edit managment Information ends
+
+//Edit Address Information begins
+function validEditAddressInformation(){
+	if(document.EditAddressInformation.PermanentAddress.value == ""){
+			alert("Please enter Permanent Address");
+			document.EditAddressInformation.PermanentAddress.focus();
+			return false;
+	}
+	if(document.EditAddressInformation.PermanentCountry.value == ""){
+			alert("Please enter Country");
+			document.EditAddressInformation.PermanentCountry.focus();
+			return false;
+	}
+	if(document.EditAddressInformation.PermanentState.value == ""){
+			alert("Please enter State");
+			document.EditAddressInformation.PermanentState.focus();
+			return false;
+	}
+	if(document.EditAddressInformation.PermanentCity.value == ""){
+			alert("Please enter City");
+			document.EditAddressInformation.PermanentCity.focus();
+			return false;
+	}
+	if(document.EditAddressInformation.PermanentPinCode.value == ""){
+			alert("Please enter Pin Code");
+			document.EditAddressInformation.PermanentPinCode.focus();
+			return false;
+	}	
+			
+}
+//Edit Address Information ends
+
+//Change Profile Picture begins
+function validChangeProfilePicture(){
+	if(document.ChangeProfilePicture.userfile.value == ""){
+			alert("Please select Profile Picture");
+			document.ChangeProfilePicture.userfile.focus();
+			return false;
+	}	
+			
+}
+//Change Profile Picture ends
+
+//Change Your Password begins
+function validChangeYourPassword(){
+	if(document.ChangeYourPassword.OldPassword.value == ""){
+			alert ( "Please enter Old Password");
+			document.ChangeYourPassword.OldPassword.focus();
+			return false;
+	}
+	if(document.ChangeYourPassword.password.value == ""){
+			alert ( "Please enter Password");
+			document.ChangeYourPassword.password.focus();
+			return false;
+	}
+	if(document.ChangeYourPassword.repassword.value == ""){
+			alert ( "Please re enter Password");
+			document.ChangeYourPassword.repassword.focus();
+			return false;
+	}
+	var password = document.getElementById ("password");
+	var repassword = document.getElementById ("repassword");
+	if (password.value.length < 8) {
+		alert ("The password must be at least 8 characters long");
+		return false;
+	}
+	if (repassword.value != password.value) {
+		alert ("These passwords don't match");
+		return false;
+	}	
+			
+}
+//Change Your Password ends	
+</script>
 </head>
 <body>
 <!-- topbar starts -->
@@ -253,7 +352,7 @@ if(!empty($ImageUpload)){
 							<form name="EditSchoolInformation" class="form-horizontal" action="../configs/managment-edit-profile-agent.php" method="post" onSubmit="return validEditSchoolInformation();">
 								<div class="form-horizontal" action="#">
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">School Name:</label>
+										<label class="control-label" for="focusedInput">School Name:*</label>
 										<div class="controls">
                                           <input name="EditSchoolInformation" type="hidden" value="EditSchoolInformation">
                                           <input name="mauid" type="hidden" value="<?php echo $uid; ?>">
@@ -261,7 +360,7 @@ if(!empty($ImageUpload)){
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">Location:</label>
+										<label class="control-label" for="focusedInput">Location:*</label>
 										<div class="controls">
 										  <input name="SchoolLocation" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $SchoolLocation; ?>">
 										</div>
@@ -290,13 +389,13 @@ if(!empty($ImageUpload)){
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">School Owner First Name:</label>
+										<label class="control-label" for="focusedInput">School Owner First Name:*</label>
 										<div class="controls">
 										  <input name="SchoolOwnerFirstName" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $SchoolOwnerFirstName; ?>">
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">School Owner Last Name:</label>
+										<label class="control-label" for="focusedInput">School Owner Last Name:*</label>
 										<div class="controls">
 										  <input name="SchoolOwnerLastName" class="input-xlarge focused" id="focusedInput" type="text" value="<?php echo $SchoolOwnerLastName; ?>">
 										</div>
