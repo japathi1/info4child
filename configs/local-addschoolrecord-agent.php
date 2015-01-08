@@ -37,7 +37,7 @@ if(isset($_POST['AddManagement'])){
 
 		//send email begins	
 		$SubEmail = $OwnerFirstName . ", Complete your Info4Child sign up‏";
-		$UserURL = "http://info4child.azurewebsites.net/login/new-user.php?uid=".$MAUID;
+		$UserURL = "http://localhost/info4child/login/new-user.php?uid=".$MAUID;
 
 		require("PHPMailer_5.2.4/class.phpmailer.php");
 		$mail = new PHPMailer();
@@ -106,7 +106,7 @@ if(isset($_POST['AddPrincipal'])){
 
 		//send email begins	
 		$SubEmail = $PrincipalFirstName . ", Complete your Info4Child sign up‏";
-		$UserURL = "http://info4child.azurewebsites.net/login/new-user.php?uid=".$PRUID;
+		$UserURL = "http://localhost/info4child/login/new-user.php?uid=".$PRUID;
 
 		require("PHPMailer_5.2.4/class.phpmailer.php");
 		$mail = new PHPMailer();
@@ -179,7 +179,7 @@ if(isset($_POST['AddTeacher'])){
 
 		//send email begins	
 		$SubEmail = $TeacherFirstName . ", Complete your Info4Child sign up‏";
-		$UserURL = "http://info4child.azurewebsites.net/login/new-user.php?uid=".$TEUID;
+		$UserURL = "http://localhost/info4child/login/new-user.php?uid=".$TEUID;
 
 		require("PHPMailer_5.2.4/class.phpmailer.php");
 		$mail = new PHPMailer();
@@ -283,7 +283,7 @@ if(isset($_POST['AddStudent'])){
 
 		//send email begins	
 		$SubEmail = $FirstName . ", Complete your Info4Child sign up‏";
-		$UserURL = "http://info4child.azurewebsites.net/login/new-user.php?uid=".$stuid;
+		$UserURL = "http://localhost/info4child/login/new-user.php?uid=".$stuid;
 
 		require("PHPMailer_5.2.4/class.phpmailer.php");
 		$mail = new PHPMailer();
