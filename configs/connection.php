@@ -1,8 +1,8 @@
 <?php
-$servername = "85.10.205.173";
-$username = "info4childroot";
-$password = "rootpass";
-$dbname = "info4childdb";
+$servername = "qmaxprojector.db.13186736.hostedresource.com";
+$username = "qmaxprojector";
+$password = "Projector123#";
+$dbname = "qmaxprojector";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

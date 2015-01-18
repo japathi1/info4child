@@ -60,7 +60,7 @@ if(isset($_GET['success'])){
 					alert("Please enter Username");
 					document.loginform.username.focus();
 					return false;
-			}
+			}			
 			if(document.loginform.password.value == ""){
 					alert ( "Please enter Password");
 					document.loginform.password.focus();
@@ -100,10 +100,10 @@ if(isset($_GET['success'])){
                         echo "</div>";
                     }				
                     ?>                    
-					<form name="loginform" class="form-horizontal" action="../configs/index-agent.php" method="post" onSubmit="return validlogin();">
+					<form data-toggle="validator" name="loginform" class="form-horizontal" action="../configs/index-agent.php" method="post" onSubmit="return validlogin();">
 						<fieldset>
 							<div class="input-prepend" title="Username" data-rel="tooltip">
-								<span class="add-on"><i class="icon-user"></i></span><input autofocus class="input-large span10" name="username" id="username" type="text" />
+								<span class="add-on"><i class="icon-user"></i></span><input autofocus class="input-large span10 form-control" name="username" id="inputName" type="text" />
 							</div>
 							<div class="clearfix"></div>
 							<div class="input-prepend" title="Password" data-rel="tooltip">
@@ -141,6 +141,8 @@ if(isset($_GET['success'])){
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 
+	<!-- bootstrap validator -->
+	<script src="js/validator.min.js"></script>
 	<!-- jQuery -->
 	<script src="js/jquery-1.7.2.min.js"></script>
 	<!-- jQuery UI -->
