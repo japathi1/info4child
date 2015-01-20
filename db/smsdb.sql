@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2015 at 09:41 PM
+-- Generation Time: Jan 20, 2015 at 08:15 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,41 @@ SET time_zone = "+00:00";
 --
 -- Database: `smsdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE IF NOT EXISTS `attendance` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(255) NOT NULL,
+  `DateMonth` varchar(255) NOT NULL,
+  `DateDay` varchar(255) NOT NULL,
+  `DateYear` varchar(255) NOT NULL,
+  `date` varchar(255) NOT NULL,
+  `timestamp` varchar(255) NOT NULL,
+  `IsPresent` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`id`, `uid`, `DateMonth`, `DateDay`, `DateYear`, `date`, `timestamp`, `IsPresent`) VALUES
+(1, 'st54ad976937467', '01', '01', '2015', '01/01/2015', '1421649597', '01~yes'),
+(3, 'st54ad976937467', '01', '02', '2015', '01/02/2015', '1421649597', '02~no'),
+(4, 'st54ad976937467', '01', '03', '2015', '01/03/2015', '1421649597', '03~yes'),
+(5, 'st54ad976937467', '01', '04', '2015', '01/04/2015', '1421649597', '04~yes'),
+(6, 'st54ad976937467', '01', '05', '2015', '01/05/2015', '1421649597', '05~yes'),
+(7, 'st54ad976937467', '01', '06', '2015', '01/06/2015', '1421649597', '06~no'),
+(8, 'st54ad976937467', '01', '07', '2015', '01/07/2015', '1421649597', '07~no'),
+(9, 'st54ad976937467', '01', '08', '2015', '01/08/2015', '1421649597', '08~yes'),
+(10, 'st54ad976937467', '01', '09', '2015', '01/09/2015', '1421649597', '09~yes'),
+(11, 'st54ad976937467', '01', '10', '2015', '01/10/2015', '1421649597', '10~yes'),
+(12, 'st54ad976937467', '01', '11', '2015', '01/11/2015', '1421649597', '11~yes');
 
 -- --------------------------------------------------------
 
