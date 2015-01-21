@@ -9,4 +9,7 @@ echo date("d");
 
 echo "<br>";
 echo date("F");
+
+echo "<br>";
+echo date("m");
 ?>
