@@ -131,6 +131,13 @@ html .fc,
 	background: #ffc;
 	}
 	
+.fc-state-highlight-present {
+	background: rgb(77,167,77);;
+	}
+.fc-state-highlight-absent {
+	background: rgb(203,75,75);;
+	}	
+	
 .fc-cell-overlay { /* semi-transparent rectangle while dragging */
 	background: #9cf;
 	opacity: .2;

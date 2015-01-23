@@ -116,8 +116,6 @@ if(mysqli_num_rows($resultIsPresent) > 0){
 		$rowIsPresentArray[] = $rowIsPresent["IsPresent"];
 	}
 }
-
-
 //fetch data from attendance table ends
 	
 ?>
@@ -380,8 +378,8 @@ function validAttendanceOnCalendar(){
 							<input class="btn btn-primary" type="button" value="Lines with steps">
 						</p>
 					</div>
+					<!--Attandance calendar begins-->
                     <div class="fc" style="width:100%">
-                    <!--Attandance calendar begins-->
                         <!--calendar header begins-->
 						<form name="AttendanceOnCalendar" class="form-horizontal" action="profile.php" method="post" onSubmit="return validAttendanceOnCalendar();">
 							<table class="fc-header" style="width:100%"><tbody><tr>
@@ -1055,8 +1053,8 @@ function validAttendanceOnCalendar(){
 						<div style="position:absolute;z-index:8;top:0;left:0"></div>
 						</div>
 					</div>
-                    <!--Attandance calendar ends-->                    
                     </div>
+					<!--Attandance calendar ends-->
                               
                                 
                             </div>
