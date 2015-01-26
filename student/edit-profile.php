@@ -32,6 +32,8 @@ if(mysqli_num_rows($result) > 0){
 		$EmailId = $row["EmailId"];
 		$Class = $row["Class"];
 		$Section = $row["Section"];
+		$RegisterationNo = $row["RegisterationNo"];
+		$RollNo = $row["RollNo"];
 		$ImageUpload = $row["ImageUpload"];
 		$Sex = $row["Sex"];
 		
@@ -782,6 +784,19 @@ function validChangeYourPassword(){
 									  </select>
 									</div>
 								</div>
+								<div class="control-group">
+									<label class="control-label" for="focusedInput">Registeration No</label>
+									<div class="controls">
+									  <input name="RegisterationNo" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $RegisterationNo; ?>">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="focusedInput">Roll No</label>
+									<div class="controls">
+									  <input name="RollNo" class="input-xlarge focused" id="focusedInput2" type="text" value="<?php echo $RollNo; ?>">
+									</div>
+								</div>                                
+                                                                
 								<div class="control-group">
 									<label class="control-label" for="focusedInput">Class Teacher:*</label>
 									<div class="controls">

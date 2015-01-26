@@ -1,3 +1,55 @@
+<?php
+session_start();
+
+$uid = $_SESSION['uid'];
+$FirstName = $_SESSION['FirstName'];	
+$DesignationHardCode = $_SESSION['DesignationHardCode'];	
+
+if(($_SESSION['uid'] == "") || ($DesignationHardCode != "teacher")){
+	header('Location: ../login/login.php');
+	exit();	
+}
+
+include '../configs/connection.php';
+
+//fetch data from teacher table begins
+$sql = "SELECT * FROM teacher WHERE teuid='$uid'";
+$result = mysqli_query($conn, $sql);
+
+if(mysqli_num_rows($result) > 0){
+    // login success - output data of each row
+    while($row = mysqli_fetch_assoc($result)){
+		$TeacherSchoolName = $row["TeacherSchoolName"];
+		$YourClass = $row["YourClass"];
+		$YourSection = $row["YourSection"];
+    }
+}else{
+    echo "0 results";
+}
+//fetch data from teacher table ends
+
+//Student Attendance begins
+if(isset($_POST['ListofStudForAttendance'])){
+	$ListofStudForAttendance = $_POST['ListofStudForAttendance'];
+	if($ListofStudForAttendance == "ListofStudForAttendance"){
+		$School = $TeacherSchoolName;
+		$Class = $_POST['ClassFromTe'];
+		$Section = $_POST['SectionFromTe'];		
+	}
+}else{
+	$School = $TeacherSchoolName;
+	$Class = $YourClass;
+	$Section = $YourSection;
+}
+
+//fetch data from student table begins
+$sql = "SELECT * FROM student WHERE School='$School' AND Class='$Class' AND Section='$Section'";
+$resultStudent = mysqli_query($conn, $sql);
+//fetch data from student table ends
+
+//Student Attendance ends
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,13 +114,13 @@
       <!-- user dropdown starts -->
       <div class="btn-group pull-right">
 					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-user"></i><span class="hidden-phone">Welcome! Rakesh Goyal </span>
+						<i class="icon-user"></i><span class="hidden-phone">Welcome <?php echo $FirstName; ?>!</span>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">View Profile</a></li>
-						<li class="divider"></li>
-						<li><a href="login.php">Logout</a></li>
+                        <li><a href="profile.php">View Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="../login/login.php">Logout</a></li>
 					</ul>
 				</div>
       <!-- user dropdown ends -->
@@ -129,23 +181,111 @@
       <div>
         <ul class="breadcrumb">
           <li> <a href="index.php">Home</a> <span class="divider">/</span> </li>
-          <li> <a href="gallery.php">View Profile</a> </li>
+          <li> <a href="attandence.php">Manage Attandance</a> </li>
         </ul>
       </div>
       <div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-picture"></i> Blank Page</h2>
+						<h2><i class="icon-calendar"></i> Attendance Manager</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
 							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
 					</div>
-					<div class="box-content">
-						 
-
-					</div>
+                <div class="box-content">
+					<form class="form-horizontal" name="AttendanceOnCalendar" action="attandence.php" method="post" onSubmit="return validListofStudForAttendance();">
+						<div class="control-group">
+							<label class="control-label" for="selectError3">Choose Your Class and Section:</label>
+							<div class="controls">
+                              <input name="ListofStudForAttendance" type="hidden" value="ListofStudForAttendance">
+							  <select name="ClassFromTe" id="selectError3">
+                                <option value="5"<?php if($Class == "5"){echo " selected";} ?>>STD. 5</option>
+                                <option value="6"<?php if($Class == "6"){echo " selected";} ?>>STD. 6</option>
+                                <option value="7"<?php if($Class == "7"){echo " selected";} ?>>STD. 7</option>
+                                <option value="8"<?php if($Class == "8"){echo " selected";} ?>>STD. 8</option>
+                                <option value="9"<?php if($Class == "9"){echo " selected";} ?>>STD. 9</option>
+                                <option value="10"<?php if($Class == "10"){echo " selected";} ?>>STD. 10</option>
+                                <option value="11"<?php if($Class == "11"){echo " selected";} ?>>STD. 11</option>
+                                <option value="12"<?php if($Class == "12"){echo " selected";} ?>>STD. 12</option>
+							  </select>
+							  <select name="SectionFromTe" id="selectError3">
+                                <option value="A"<?php if($Section == "A"){echo " selected";} ?>>Section A</option>
+                                <option value="B"<?php if($Section == "B"){echo " selected";} ?>>Section B</option>
+                                <option value="C"<?php if($Section == "C"){echo " selected";} ?>>Section C</option>
+                                <option value="D"<?php if($Section == "D"){echo " selected";} ?>>Section D</option>
+							  </select>
+                              <input name="AttendanceDate" type="text" class="input-xlarge datepicker" id="date01" value="<?php echo date("m/d/Y"); ?>">	
+							  <button class="btn btn-primary" type="submit">View Student</button>							  
+							</div>							
+						</div>
+					</form>
+					<div class="clearfix"></div>
+				</div>	
+                <div class="box-content">
+					<table class="table table-striped table-bordered bootstrap-datatable">
+						<thead>
+							<tr>
+								<th>Registeration No.</th>
+								<th>Roll No.</th>
+								<th>Student Name</th>
+								<th class="present">Present</th>
+								<th class="absent">Absent</th>
+							</tr>
+						</thead>   
+						<tbody>
+                        
+                        	<?php
+							if(mysqli_num_rows($resultStudent) > 0){
+								// login success - output data of each row
+								while($rowStudent = mysqli_fetch_assoc($resultStudent)){
+									echo "<tr>";
+										echo "<td class=\"center\">".$rowStudent["RegisterationNo"]."</td>";
+										echo "<td class=\"center\">".$rowStudent["RollNo"]."</td>";
+										echo "<td class=\"center\">".$rowStudent["FirstName"]." ".$rowStudent["LastName"]."</td>";
+										echo "<td class=\"center\" style=\"background-color:rgb(77,167,77); color:#FFF\">";
+											//Present data begins
+											echo "<form class=\"form-horizontal\" name=\"xx\" action=\"../configs/student-attandence-agent.php\" method=\"post\" onSubmit=\"return validxx();\">";
+												echo "<input name=\"MakeStudentAttendance\" type=\"hidden\" value=\"MakeStudentAttendance\">";											
+												echo "<input name=\"uidSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["stuid"]."\">";
+												echo "<input name=\"AttendanceDate\" type=\"hidden\" value=\"".date("m/d/Y")."\">";
+												echo "<input name=\"MadeBy\" type=\"hidden\" value=\"".$FirstName."\">";
+												echo "<input name=\"IsPresent\" type=\"hidden\" value=\"".date("m")."~yes"."\">";																					
+												echo "<button class=\"btn btn-default\" type=\"submit\">Present</button>";
+											echo "</form>";
+											//Present data ends
+										echo "</td>";
+										echo "<td class=\"center\" style=\"background-color:rgb(203,75,75); color:#FFF\">";
+											//Absent data begins
+											echo "<form class=\"form-horizontal\" name=\"xx\" action=\"../configs/student-attandence-agent.php\" method=\"post\" onSubmit=\"return validxx();\">";
+												echo "<input name=\"MakeStudentAttendance\" type=\"hidden\" value=\"MakeStudentAttendance\">";
+												echo "<input name=\"uidSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["stuid"]."\">";
+												echo "<input name=\"AttendanceDate\" type=\"hidden\" value=\"".date("m/d/Y")."\">";
+												echo "<input name=\"MadeBy\" type=\"hidden\" value=\"".$FirstName."\">";
+												echo "<input name=\"IsPresent\" type=\"hidden\" value=\"".date("m")."~no"."\">";											
+											
+																					
+												echo "<button class=\"btn btn-default\" type=\"submit\">Absent</button>";
+											echo "</form>";
+											//Absent data ends
+										echo "</td>";
+									echo "</tr>";									
+								}
+							}else{
+								echo "<tr>";
+									echo "<td class=\"center\">---</td>";
+									echo "<td class=\"center\">---</td>";
+									echo "<td class=\"center\">---</td>";
+									echo "<td class=\"center\" style=\"background-color:rgb(77,167,77); color:#FFF\">---</td>";
+									echo "<td class=\"center\" style=\"background-color:rgb(203,75,75); color:#FFF\">---</td>";
+								echo "</tr>";								
+							}							
+                            ?>
+						</tbody>
+					</table>            	      
+				</div>	
+                
 				</div><!--/span-->
 			
 			</div>
@@ -244,3 +384,6 @@
 <script src="js/charisma.js"></script>
 </body>
 </html>
+<?php
+include '../configs/connection-close.php';
+?>

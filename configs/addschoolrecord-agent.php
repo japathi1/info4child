@@ -219,6 +219,8 @@ if(isset($_POST['AddStudent'])){
 		$EmailId = $_POST['EmailId'];
 		$Class = $_POST['Class'];
 		$Section = $_POST['Section'];
+		$RegisterationNo = $_POST['RegisterationNo'];
+		$RollNo = $_POST['RollNo'];		
 		$ClassTeacherName = $_POST['ClassTeacherName'];
 		$DateofBirth = $_POST['DateofBirth'];
 		$Sex = $_POST['Sex'];
@@ -242,6 +244,8 @@ if(isset($_POST['AddStudent'])){
 									EmailId,
 									Class,
 									Section,
+									RegisterationNo,
+									RollNo,									
 									ClassTeacherName,
 									DateofBirth,
 									Sex,
@@ -265,6 +269,8 @@ if(isset($_POST['AddStudent'])){
 									'$EmailId',
 									'$Class',
 									'$Section',
+									'$RegisterationNo',
+									'$RollNo',									
 									'$ClassTeacherName',
 									'$DateofBirth',
 									'$Sex',

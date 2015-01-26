@@ -5163,3 +5163,14 @@ src:url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
 .glyphicon-tree-deciduous:before {
 	content:"\e200"
 }
+
+.present{
+  background:rgb(77,167,77);
+  color:#fff;
+  text-shadow:1px 1px 1px #ccc;
+}
+.absent{
+  background:rgb(203,75,75);
+   color:#fff;
+   text-shadow:1px 1px 1px #ccc;
+	  }

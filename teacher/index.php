@@ -157,8 +157,9 @@ if(!empty($ImageUpload)){
       <!-- user dropdown starts -->
       <div class="btn-group pull-right" > <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i><span class="hidden-phone">Welcome <?php echo $FirstName; ?>!</span> <span class="caret"></span> </a>
         <ul class="dropdown-menu">
-        <li><a href="profile.php">View Profile</a></li>
-          <li><a href="../login/login.php">Logout</a></li>
+        	<li><a href="profile.php">View Profile</a></li>
+            <li class="divider"></li>
+        	<li><a href="../login/login.php">Logout</a></li>
         </ul>
       </div>
       <!-- user dropdown ends -->

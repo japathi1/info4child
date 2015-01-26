@@ -129,6 +129,8 @@ if(isset($_POST['EditAcademicInformation'])){
 		$stuid = $_POST['stuid'];
 		$Class = $_POST['Class'];
 		$Section = $_POST['Section'];
+		$RegisterationNo = $_POST['RegisterationNo'];
+		$RollNo = $_POST['RollNo'];
 		$ClassTeacherName = $_POST['ClassTeacherName'];
 		$SiblingStudentID = $_POST['SiblingStudentID'];
 		$Sibling = $_POST['Sibling'];
@@ -138,6 +140,8 @@ if(isset($_POST['EditAcademicInformation'])){
 		$sql = "UPDATE student
 				SET Class = '$Class',
 					Section = '$Section',
+					RegisterationNo = '$RegisterationNo',
+					RollNo = '$RollNo',
 					ClassTeacherName = '$ClassTeacherName',
 					SiblingStudentID = '$SiblingStudentID',
 					Sibling = '$Sibling',

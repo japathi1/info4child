@@ -623,7 +623,7 @@ $TemporaryPassword =  generateRandomString();
 											<label class="control-label" for="selectError3">School:*</label>
 											<div class="controls">
                                               <input name="AddStudent" type="hidden" value="AddStudent">
-											  <select name="School" id="selectError3">
+											  <select name="School" id="selectError3" class="span3">
 												<option value="ChooseSchool">Choose School</option>
 												<?php                                                
                                                 while($schoolrow = mysqli_fetch_assoc($schoolresult)){
@@ -657,24 +657,51 @@ $TemporaryPassword =  generateRandomString();
 											  <input name="EmailId" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
 										</div>
+                                    
+                                        <div class="control-group">
+                                            <label class="control-label" for="selectError3">Class:*</label>
+                                            <div class="controls">									
+                                              <select name="Class" id="selectError3" class="span3" >
+                                                <option value="5">STD. 5</option>
+                                                <option value="6">STD. 6</option>
+                                                <option value="7">STD. 7</option>
+                                                <option value="8">STD. 8</option>
+                                                <option value="9">STD. 9</option>
+                                                <option value="10">STD. 10</option>
+                                                <option value="11">STD. 11</option>
+                                                <option value="12">STD. 12</option>									  
+                                              </select>
+                                            </div>
+                                        </div>								
+                                        <div class="control-group">
+                                            <label class="control-label" for="selectError3">Section:</label>
+                                            <div class="controls">
+                                              <select name="Section" id="selectError3" class="span3">
+                                                <option value="A">Section A</option>
+                                                <option value="B">Section B</option>
+                                                <option value="C">Section C</option>
+                                                <option value="D">Section D</option>
+                                              </select>
+                                            </div>
+                                        </div>
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Class:*</label>
+											<label class="control-label" for="focusedInput">Registeration No</label>
 											<div class="controls">
-											  <input name="Class" class="input-xlarge focused" id="focusedInput" type="text">
+											  <input name="RegisterationNo" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label" for="focusedInput">Section:</label>
+											<label class="control-label" for="focusedInput">Roll No</label>
 											<div class="controls">
-											  <input name="Section" class="input-xlarge focused" id="focusedInput" type="text">
+											  <input name="RollNo" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
-										</div>
+										</div>                                                                                 
 										<div class="control-group">
 											<label class="control-label" for="focusedInput">Class Teacher Name</label>
 											<div class="controls">
 											  <input name="ClassTeacherName" class="input-xlarge focused" id="focusedInput" type="text">
 											</div>
-										</div>
+										</div>                                                                               
 										<div class="control-group">
 										  <label class="control-label" for="date01">Date of Birth:*</label>
 										  <div class="controls">
@@ -704,7 +731,7 @@ $TemporaryPassword =  generateRandomString();
 										<div class="control-group">
 											<label class="control-label" for="selectError3">Blood Group:*</label>
 											<div class="controls">
-											  <select name="BloodGroup" id="selectError3">
+											  <select name="BloodGroup" id="selectError3" class="span3">
 											  <option value="BloodGroup">Choose Blood Group</option>
 												<option value="A+">A+</option>
 												<option value="B+">B+</option>
