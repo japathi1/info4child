@@ -10,6 +10,12 @@ if(($_SESSION['uid'] == "") || ($DesignationHardCode != "teacher")){
 	exit();	
 }
 
+if(isset($_GET['success'])){
+	$success = $_GET['success'];
+}else{
+	$success = "NotYesOrNo";	
+}
+
 include '../configs/connection.php';
 
 //fetch data from teacher table begins
@@ -29,21 +35,29 @@ if(mysqli_num_rows($result) > 0){
 //fetch data from teacher table ends
 
 //Student Attendance begins
-if(isset($_POST['ListofStudForAttendance'])){
-	$ListofStudForAttendance = $_POST['ListofStudForAttendance'];
-	if($ListofStudForAttendance == "ListofStudForAttendance"){
-		$School = $TeacherSchoolName;
-		$Class = $_POST['ClassFromTe'];
-		$Section = $_POST['SectionFromTe'];		
-	}
-}else{
-	$School = $TeacherSchoolName;
-	$Class = $YourClass;
-	$Section = $YourSection;
+
+if(isset($_SESSION['ListofStudForAttendance'])){
+	$SchoolForAtt = $_SESSION['SchoolForAtt'];
+	$ClassForAtt = $_SESSION['ClassForAtt'];
+	$SectionForAtt = $_SESSION['SectionForAtt'];
+	$AttendanceDate = $_SESSION['AttendanceDate'];
+	$AttendanceDateMonth = substr($AttendanceDate, 0, -8);
+	$AttendanceDateDay = substr($AttendanceDate, 3, -5);
+	$AttendanceDateYear = substr($AttendanceDate, 6);	
+}
+
+if(!isset($_SESSION['ListofStudForAttendance'])){
+	$SchoolForAtt = $TeacherSchoolName;
+	$ClassForAtt = $YourClass;
+	$SectionForAtt = $YourSection;
+	$AttendanceDate = date("m/d/Y");	
+	$AttendanceDateMonth = date("m");
+	$AttendanceDateDay = date("d");
+	$AttendanceDateYear	 = date("Y");	
 }
 
 //fetch data from student table begins
-$sql = "SELECT * FROM student WHERE School='$School' AND Class='$Class' AND Section='$Section'";
+$sql = "SELECT * FROM student WHERE School='$SchoolForAtt' AND Class='$ClassForAtt' AND Section='$SectionForAtt'";
 $resultStudent = mysqli_query($conn, $sql);
 //fetch data from student table ends
 
@@ -184,6 +198,22 @@ $resultStudent = mysqli_query($conn, $sql);
           <li> <a href="attandence.php">Manage Attandance</a> </li>
         </ul>
       </div>
+        <!--submit alert begins --->
+        <?php
+        if($success == "yes"){
+            echo "<div class=\"alert alert-success\">";
+                echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
+                echo "<strong>Well done!</strong> You got students list successfully";
+            echo "</div>";
+        }
+        if($success == "no"){
+            echo "<div class=\"alert alert-danger\">";
+              echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
+              echo "<strong>Oh snap!</strong> Change a few things up and try saving again.";
+            echo "</div>";
+        }				
+        ?>	            
+        <!--submit alert ends --->	      
       <div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -195,28 +225,29 @@ $resultStudent = mysqli_query($conn, $sql);
 						</div>
 					</div>
                 <div class="box-content">
-					<form class="form-horizontal" name="AttendanceOnCalendar" action="attandence.php" method="post" onSubmit="return validListofStudForAttendance();">
+					<form class="form-horizontal" name="AttendanceOnCalendar" action="../configs/teacher-list-of-student-agent.php" method="post" onSubmit="return validListofStudForAttendance();">
 						<div class="control-group">
 							<label class="control-label" for="selectError3">Choose Your Class and Section:</label>
 							<div class="controls">
                               <input name="ListofStudForAttendance" type="hidden" value="ListofStudForAttendance">
+                              <input name="TeacherSchoolName" type="hidden" value="<?php echo $TeacherSchoolName; ?>">
 							  <select name="ClassFromTe" id="selectError3">
-                                <option value="5"<?php if($Class == "5"){echo " selected";} ?>>STD. 5</option>
-                                <option value="6"<?php if($Class == "6"){echo " selected";} ?>>STD. 6</option>
-                                <option value="7"<?php if($Class == "7"){echo " selected";} ?>>STD. 7</option>
-                                <option value="8"<?php if($Class == "8"){echo " selected";} ?>>STD. 8</option>
-                                <option value="9"<?php if($Class == "9"){echo " selected";} ?>>STD. 9</option>
-                                <option value="10"<?php if($Class == "10"){echo " selected";} ?>>STD. 10</option>
-                                <option value="11"<?php if($Class == "11"){echo " selected";} ?>>STD. 11</option>
-                                <option value="12"<?php if($Class == "12"){echo " selected";} ?>>STD. 12</option>
+                                <option value="5"<?php if($ClassForAtt == "5"){echo " selected";} ?>>STD. 5</option>
+                                <option value="6"<?php if($ClassForAtt == "6"){echo " selected";} ?>>STD. 6</option>
+                                <option value="7"<?php if($ClassForAtt == "7"){echo " selected";} ?>>STD. 7</option>
+                                <option value="8"<?php if($ClassForAtt == "8"){echo " selected";} ?>>STD. 8</option>
+                                <option value="9"<?php if($ClassForAtt == "9"){echo " selected";} ?>>STD. 9</option>
+                                <option value="10"<?php if($ClassForAtt == "10"){echo " selected";} ?>>STD. 10</option>
+                                <option value="11"<?php if($ClassForAtt == "11"){echo " selected";} ?>>STD. 11</option>
+                                <option value="12"<?php if($ClassForAtt == "12"){echo " selected";} ?>>STD. 12</option>
 							  </select>
 							  <select name="SectionFromTe" id="selectError3">
-                                <option value="A"<?php if($Section == "A"){echo " selected";} ?>>Section A</option>
-                                <option value="B"<?php if($Section == "B"){echo " selected";} ?>>Section B</option>
-                                <option value="C"<?php if($Section == "C"){echo " selected";} ?>>Section C</option>
-                                <option value="D"<?php if($Section == "D"){echo " selected";} ?>>Section D</option>
+                                <option value="A"<?php if($SectionForAtt == "A"){echo " selected";} ?>>Section A</option>
+                                <option value="B"<?php if($SectionForAtt == "B"){echo " selected";} ?>>Section B</option>
+                                <option value="C"<?php if($SectionForAtt == "C"){echo " selected";} ?>>Section C</option>
+                                <option value="D"<?php if($SectionForAtt == "D"){echo " selected";} ?>>Section D</option>
 							  </select>
-                              <input name="AttendanceDate" type="text" class="input-xlarge datepicker" id="date01" value="<?php echo date("m/d/Y"); ?>">	
+                              <input name="AttendanceDate" type="text" class="input-xlarge datepicker" id="date01" value="<?php echo $AttendanceDate; ?>">	
 							  <button class="btn btn-primary" type="submit">View Student</button>							  
 							</div>							
 						</div>
@@ -249,9 +280,12 @@ $resultStudent = mysqli_query($conn, $sql);
 											echo "<form class=\"form-horizontal\" name=\"xx\" action=\"../configs/student-attandence-agent.php\" method=\"post\" onSubmit=\"return validxx();\">";
 												echo "<input name=\"MakeStudentAttendance\" type=\"hidden\" value=\"MakeStudentAttendance\">";											
 												echo "<input name=\"uidSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["stuid"]."\">";
-												echo "<input name=\"AttendanceDate\" type=\"hidden\" value=\"".date("m/d/Y")."\">";
+												echo "<input name=\"DateMonthSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateMonth."\">";
+												echo "<input name=\"DateDaySubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateDay."\">";
+												echo "<input name=\"DateYearSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateYear."\">";
+												echo "<input name=\"AttendanceDate\" type=\"hidden\" value=\"".$AttendanceDate."\">";
 												echo "<input name=\"MadeBy\" type=\"hidden\" value=\"".$FirstName."\">";
-												echo "<input name=\"IsPresent\" type=\"hidden\" value=\"".date("m")."~yes"."\">";																					
+												echo "<input name=\"IsPresent\" type=\"hidden\" value=\"".$AttendanceDateDay."~yes"."\">";																					
 												echo "<button class=\"btn btn-default\" type=\"submit\">Present</button>";
 											echo "</form>";
 											//Present data ends
@@ -261,9 +295,12 @@ $resultStudent = mysqli_query($conn, $sql);
 											echo "<form class=\"form-horizontal\" name=\"xx\" action=\"../configs/student-attandence-agent.php\" method=\"post\" onSubmit=\"return validxx();\">";
 												echo "<input name=\"MakeStudentAttendance\" type=\"hidden\" value=\"MakeStudentAttendance\">";
 												echo "<input name=\"uidSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["stuid"]."\">";
-												echo "<input name=\"AttendanceDate\" type=\"hidden\" value=\"".date("m/d/Y")."\">";
+												echo "<input name=\"DateMonthSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateMonth."\">";
+												echo "<input name=\"DateDaySubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateDay."\">";
+												echo "<input name=\"DateYearSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateYear."\">";
+												echo "<input name=\"AttendanceDate\" type=\"hidden\" value=\"".$AttendanceDate."\">";
 												echo "<input name=\"MadeBy\" type=\"hidden\" value=\"".$FirstName."\">";
-												echo "<input name=\"IsPresent\" type=\"hidden\" value=\"".date("m")."~no"."\">";											
+												echo "<input name=\"IsPresent\" type=\"hidden\" value=\"".$AttendanceDateDay."~no"."\">";											
 											
 																					
 												echo "<button class=\"btn btn-default\" type=\"submit\">Absent</button>";

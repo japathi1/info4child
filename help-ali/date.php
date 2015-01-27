@@ -12,4 +12,8 @@ echo date("F");
 
 echo "<br>";
 echo date("m");
+
+
+echo "<br>";
+echo time(); 
 ?>
