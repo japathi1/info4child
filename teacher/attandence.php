@@ -209,7 +209,7 @@ $resultStudent = mysqli_query($conn, $sql);
         if($success == "no"){
             echo "<div class=\"alert alert-danger\">";
               echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
-              echo "<strong>Oh snap!</strong> Change a few things up and try saving again.";
+              echo "<strong>Oh snap!</strong> Change a few things up and try again.";
             echo "</div>";
         }				
         ?>	            
@@ -272,7 +272,21 @@ $resultStudent = mysqli_query($conn, $sql);
 								// login success - output data of each row
 								while($rowStudent = mysqli_fetch_assoc($resultStudent)){
 									echo "<tr>";
-										echo "<td class=\"center\">".$rowStudent["RegisterationNo"]."</td>";
+										echo "<td class=\"center\"";
+											//Student Presentees and Absentees check begins
+											$sql = "SELECT * FROM attendance WHERE uid='{$rowStudent["stuid"]}' AND AttSchool='$SchoolForAtt' AND AttClass='$ClassForAtt' AND AttSection='$SectionForAtt' AND date='$AttendanceDate' AND IsPresent='$AttendanceDateDay~yes'";
+											$resultStudentPresent = mysqli_query($conn, $sql);
+											if(mysqli_num_rows($resultStudentPresent) > 0){
+												echo "style=\"background-color:rgb(77,167,77); color:#FFF\"";
+											}
+											
+											$sql1 = "SELECT * FROM attendance WHERE uid='{$rowStudent["stuid"]}' AND AttSchool='$SchoolForAtt' AND AttClass='$ClassForAtt' AND AttSection='$SectionForAtt' AND date='$AttendanceDate' AND IsPresent='$AttendanceDateDay~no'";
+											$resultStudentAbsent = mysqli_query($conn, $sql1);
+											if(mysqli_num_rows($resultStudentAbsent) > 0){
+												echo "style=\"background-color:rgb(203,75,75); color:#FFF\"";
+											}
+											//Student Presentees and Absentees check ends										
+										echo ">".$rowStudent["RegisterationNo"]."</td>";
 										echo "<td class=\"center\">".$rowStudent["RollNo"]."</td>";
 										echo "<td class=\"center\">".$rowStudent["FirstName"]." ".$rowStudent["LastName"]."</td>";
 										echo "<td class=\"center\" style=\"background-color:rgb(77,167,77); color:#FFF\">";
@@ -280,6 +294,9 @@ $resultStudent = mysqli_query($conn, $sql);
 											echo "<form class=\"form-horizontal\" name=\"xx\" action=\"../configs/student-attandence-agent.php\" method=\"post\" onSubmit=\"return validxx();\">";
 												echo "<input name=\"MakeStudentAttendance\" type=\"hidden\" value=\"MakeStudentAttendance\">";											
 												echo "<input name=\"uidSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["stuid"]."\">";
+												echo "<input name=\"SchoolSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["School"]."\">";
+												echo "<input name=\"ClassSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["Class"]."\">";
+												echo "<input name=\"SectionSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["Section"]."\">";
 												echo "<input name=\"DateMonthSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateMonth."\">";
 												echo "<input name=\"DateDaySubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateDay."\">";
 												echo "<input name=\"DateYearSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateYear."\">";
@@ -295,6 +312,9 @@ $resultStudent = mysqli_query($conn, $sql);
 											echo "<form class=\"form-horizontal\" name=\"xx\" action=\"../configs/student-attandence-agent.php\" method=\"post\" onSubmit=\"return validxx();\">";
 												echo "<input name=\"MakeStudentAttendance\" type=\"hidden\" value=\"MakeStudentAttendance\">";
 												echo "<input name=\"uidSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["stuid"]."\">";
+												echo "<input name=\"SchoolSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["School"]."\">";
+												echo "<input name=\"ClassSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["Class"]."\">";
+												echo "<input name=\"SectionSubmitForAtt\" type=\"hidden\" value=\"".$rowStudent["Section"]."\">";												
 												echo "<input name=\"DateMonthSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateMonth."\">";
 												echo "<input name=\"DateDaySubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateDay."\">";
 												echo "<input name=\"DateYearSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateYear."\">";
