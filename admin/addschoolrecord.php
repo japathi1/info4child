@@ -538,7 +538,13 @@ $TemporaryPassword =  generateRandomString();
                                                 ?>                                                
 											  </select>
 											</div>
-										</div>				
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedInput">Employee Id:*</label>
+											<div class="controls">
+											  <input name="EmployeeId" class="input-xlarge focused" id="focusedInput" type="text">
+											</div>
+										</div>										
 										<div class="control-group">
 											<label class="control-label" for="focusedInput">Teacher First Name:*</label>
 											<div class="controls">

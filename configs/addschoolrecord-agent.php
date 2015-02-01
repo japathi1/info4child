@@ -138,7 +138,8 @@ if(isset($_POST['AddPrincipal'])){
 if(isset($_POST['AddTeacher'])){
 	echo $AddTeacher = $_POST['AddTeacher'];
 	if($AddTeacher == "AddTeacher"){
-		$TeacherSchoolName = $_POST['TeacherSchoolName'];	
+		$TeacherSchoolName = $_POST['TeacherSchoolName'];
+		$EmployeeId = $_POST['EmployeeId'];
 		$TeacherFirstName = $_POST['TeacherFirstName'];	
 		$TeacherLastName = $_POST['TeacherLastName'];	
 		$ContactNo = $_POST['ContactNo'];	
@@ -152,6 +153,7 @@ if(isset($_POST['AddTeacher'])){
 		
 		$sql = "INSERT INTO teacher (TitleDesignation,
 										TeacherSchoolName,
+										EmployeeId,
 										TeacherFirstName,
 										TeacherLastName,
 										Mobile,
@@ -165,6 +167,7 @@ if(isset($_POST['AddTeacher'])){
 										) VALUES (
 										'teacher',										
 										'$TeacherSchoolName',
+										'$EmployeeId',
 										'$TeacherFirstName',
 										'$TeacherLastName',
 										'$ContactNo',
