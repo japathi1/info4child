@@ -193,7 +193,7 @@ if(!empty($ImageUpload)){
            <li><a class="ajax-link" href="message.php"><i class="icon-bullhorn"></i><span class="hidden-tablet">Message Centre</span></a></li>
           <li><a class="ajax-link" href="notification.php"><i class="icon-eye-open"></i><span class="hidden-tablet"> Notification</span></a></li>
 		  <li><a class="ajax-link" href="allstudent.php"><i class="icon-bell"></i><span class="hidden-tablet"> View All Student</span></a></li>
-           <li><a class="ajax-link" href="Teacher-atten.php"><i class=" icon-envelope"></i><span class="hidden-tablet">Teacher's Attandance</span></a></li>
+           <li><a class="ajax-link" href="teacher-atten.php"><i class=" icon-envelope"></i><span class="hidden-tablet">Teacher's Attandance</span></a></li>
           <li><a class="ajax-link" href="teacher-performance.php"><i class="icon-picture"></i><span class="hidden-tablet"> Teacher's Performance</span></a></li>
 		 
           

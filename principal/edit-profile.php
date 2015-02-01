@@ -348,15 +348,13 @@ function validChangeYourPassword(){
           <li><a class="ajax-link" href="profile.php"><i class="icon-user"></i><span class="hidden-tablet"> View Profile</span></a></li>
 		   <li><a class="ajax-link" href="edit-profile.php"><i class="icon-user"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
           <li><a class="ajax-link" href="gallery.php"><i class="icon-briefcase"></i><span class="hidden-tablet"> Gallery</span></a></li>
-          <li><a class="ajax-link" href="event-calender.php"><i class="icon-eye-close"></i><span class="hidden-tablet"> Event Calender</span></a></li>
-		  <li><a class="ajax-link" href="time-table.php"><i class="icon-tags"></i><span class="hidden-tablet"> Class Time Table</span></a></li>
+          <li><a class="ajax-link" href="Event-manager.php"><i class="icon-eye-close"></i><span class="hidden-tablet"> Event Management</span></a></li>
+		  <li><a class="ajax-link" href="schedule-manager.php"><i class="icon-tags"></i><span class="hidden-tablet"> Schedule Management</span></a></li>
            <li><a class="ajax-link" href="message.php"><i class="icon-bullhorn"></i><span class="hidden-tablet">Message Centre</span></a></li>
           <li><a class="ajax-link" href="notification.php"><i class="icon-eye-open"></i><span class="hidden-tablet"> Notification</span></a></li>
-		  <li><a class="ajax-link" href="student-profile.php"><i class="icon-bell"></i><span class="hidden-tablet"> View Student Profile</span></a></li>
-           <li><a class="ajax-link" href="attandence.php"><i class=" icon-envelope"></i><span class="hidden-tablet"> Attandance</span></a></li>
-          <li><a class="ajax-link" href="report-card.php"><i class="icon-picture"></i><span class="hidden-tablet"> Report Card</span></a></li>
-           <li><a class="ajax-link" href="medical.php"><i class="icon-picture"></i><span class="hidden-tablet"> Manage Medical Report</span></a></li>
-            <li><a class="ajax-link" href="assignment.php"><i class="icon-picture"></i><span	class="hidden-tablet"> Generate Assignment</span></a></li>
+		  <li><a class="ajax-link" href="allstudent.php"><i class="icon-bell"></i><span class="hidden-tablet"> View All Student</span></a></li>
+           <li><a class="ajax-link" href="teacher-atten.php"><i class=" icon-envelope"></i><span class="hidden-tablet">Teacher's Attandance</span></a></li>
+          <li><a class="ajax-link" href="teacher-performance.php"><i class="icon-picture"></i><span class="hidden-tablet"> Teacher's Performance</span></a></li>
 		 
           
         </ul>

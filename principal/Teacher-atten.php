@@ -1,3 +1,64 @@
+<?php
+session_start();
+
+$uid = $_SESSION['uid'];
+$FirstName = $_SESSION['FirstName'];	
+$DesignationHardCode = $_SESSION['DesignationHardCode'];	
+
+if(($_SESSION['uid'] == "") || ($DesignationHardCode != "principal")){
+	header('Location: ../login/login.php');
+	exit();	
+}
+
+if(isset($_GET['success'])){
+	$success = $_GET['success'];
+}else{
+	$success = "NotYesOrNo";	
+}
+
+include '../configs/connection.php';
+
+//fetch data from principal table begins
+$sql = "SELECT * FROM principal WHERE pruid='$uid'";
+$result = mysqli_query($conn, $sql);
+
+if(mysqli_num_rows($result) > 0){
+    // login success - output data of each row
+    while($row = mysqli_fetch_assoc($result)){
+		$PrincipalSchoolName = $row["PrincipalSchoolName"];
+    }
+}else{
+    echo "0 results";
+}
+//fetch data from principal table ends
+
+//teacher atten begins
+
+if(isset($_SESSION['ListofTachForAttendance'])){
+	$SchoolForAtt = $_SESSION['SchoolForAtt'];
+	$AttendanceDate = $_SESSION['AttendanceDate'];
+	$AttendanceDateMonth = substr($AttendanceDate, 0, -8);
+	$AttendanceDateDay = substr($AttendanceDate, 3, -5);
+	$AttendanceDateYear = substr($AttendanceDate, 6);	
+}
+
+if(!isset($_SESSION['ListofTachForAttendance'])){
+	$SchoolForAtt = $PrincipalSchoolName;
+	$AttendanceDate = date("m/d/Y");	
+	$AttendanceDateMonth = date("m");
+	$AttendanceDateDay = date("d");
+	$AttendanceDateYear	 = date("Y");	
+}
+
+
+//fetch data from teacher table begins
+$sql = "SELECT * FROM teacher WHERE TeacherSchoolName='$PrincipalSchoolName'";
+$resultTeacher = mysqli_query($conn, $sql);
+//fetch data from teacher table ends
+
+//teacher teacher ends
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,13 +123,13 @@
       <!-- user dropdown starts -->
       <div class="btn-group pull-right">
 					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-user"></i><span class="hidden-phone">Welcome! Principal </span>
+						<i class="icon-user"></i><span class="hidden-phone">Welcome <?php echo $FirstName; ?>!</span>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">View Profile</a></li>
-						<li class="divider"></li>
-						<li><a href="login.php">Logout</a></li>
+                        <li><a href="profile.php">View Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="../login/login.php">Logout</a></li>
 					</ul>
 				</div>
       <!-- user dropdown ends -->
@@ -98,13 +159,15 @@
           <li><a class="ajax-link" href="profile.php"><i class="icon-user"></i><span class="hidden-tablet"> View Profile</span></a></li>
 		   <li><a class="ajax-link" href="edit-profile.php"><i class="icon-user"></i><span class="hidden-tablet"> Edit Profile</span></a></li>
           <li><a class="ajax-link" href="gallery.php"><i class="icon-briefcase"></i><span class="hidden-tablet"> Gallery</span></a></li>
-          <li><a class="ajax-link" href="Event-manager.php"><i class="icon-eye-close"></i><span class="hidden-tablet"> Event Management</span></a></li>
-		  <li><a class="ajax-link" href="schedule-manager.php"><i class="icon-tags"></i><span class="hidden-tablet"> Schedule Management</span></a></li>
+          <li><a class="ajax-link" href="event-calender.php"><i class="icon-eye-close"></i><span class="hidden-tablet"> Event Calender</span></a></li>
+		  <li><a class="ajax-link" href="time-table.php"><i class="icon-tags"></i><span class="hidden-tablet"> Class Time Table</span></a></li>
            <li><a class="ajax-link" href="message.php"><i class="icon-bullhorn"></i><span class="hidden-tablet">Message Centre</span></a></li>
           <li><a class="ajax-link" href="notification.php"><i class="icon-eye-open"></i><span class="hidden-tablet"> Notification</span></a></li>
-		  <li><a class="ajax-link" href="allstudent.php"><i class="icon-bell"></i><span class="hidden-tablet"> View All Student</span></a></li>
-           <li><a class="ajax-link" href="Teacher-atten.php"><i class=" icon-envelope"></i><span class="hidden-tablet">Teacher's Attandance</span></a></li>
-          <li><a class="ajax-link" href="teacher-performance.php"><i class="icon-picture"></i><span class="hidden-tablet"> Teacher's Performance</span></a></li>
+		  <li><a class="ajax-link" href="student-profile.php"><i class="icon-bell"></i><span class="hidden-tablet"> View Student Profile</span></a></li>
+           <li><a class="ajax-link" href="attandence.php"><i class=" icon-envelope"></i><span class="hidden-tablet"> Attandance</span></a></li>
+          <li><a class="ajax-link" href="report-card.php"><i class="icon-picture"></i><span class="hidden-tablet"> Report Card</span></a></li>
+           <li><a class="ajax-link" href="medical.php"><i class="icon-picture"></i><span class="hidden-tablet"> Manage Medical Report</span></a></li>
+            <li><a class="ajax-link" href="assignment"><i class="icon-picture"></i><span	class="hidden-tablet"> Generate Assignment</span></a></li>
 		 
           
         </ul>
@@ -127,23 +190,132 @@
       <div>
         <ul class="breadcrumb">
           <li> <a href="index.php">Home</a> <span class="divider">/</span> </li>
-          <li> <a href="#">Blank Page</a> </li>
+          <li> <a href="attandence.php">Manage Attandance</a> </li>
         </ul>
       </div>
+        <!--submit alert begins --->
+        <?php
+        if($success == "yes"){
+            echo "<div class=\"alert alert-success\">";
+                echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
+                echo "<strong>Well done!</strong> You got students list successfully";
+            echo "</div>";
+        }
+        if($success == "no"){
+            echo "<div class=\"alert alert-danger\">";
+              echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
+              echo "<strong>Oh snap!</strong> Change a few things up and try again.";
+            echo "</div>";
+        }				
+        ?>	            
+        <!--submit alert ends --->	      
       <div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-picture"></i> This Page Under Construction</h2>
+						<h2><i class="icon-calendar"></i> Attendance Manager</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
 							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
 					</div>
-					<div class="box-content">
-						 
-
-					</div>
+                <div class="box-content">
+					<form class="form-horizontal" name="AttendanceOnCalendar" action="../configs/principal-list-of-teacher-agent.php" method="post" onSubmit="return validListofTachForAttendance();">
+						<div class="control-group">
+							<label class="control-label" for="selectError3">Choose Date:</label>
+							<div class="controls">
+                              <input name="ListofTachForAttendance" type="hidden" value="ListofTachForAttendance">
+                              <input name="PrincipalSchoolName" type="hidden" value="<?php echo $PrincipalSchoolName; ?>">
+                              <input name="AttendanceDate" type="text" class="input-xlarge datepicker" id="date01" value="<?php echo $AttendanceDate; ?>">	
+							  <button class="btn btn-primary" type="submit">View Teacher</button>							  
+							</div>							
+						</div>
+					</form>
+					<div class="clearfix"></div>
+				</div>	
+                <div class="box-content">
+					<table class="table table-striped table-bordered bootstrap-datatable">
+						<thead>
+							<tr>
+								<th>Employee Id</th>
+								<th>Subject</th>
+								<th>Name</th>
+								<th class="present">Present</th>
+								<th class="absent">Absent</th>
+							</tr>
+						</thead>   
+						<tbody>
+                        
+                        	<?php
+							if(mysqli_num_rows($resultTeacher) > 0){
+								// login success - output data of each row
+								while($rowTeacher = mysqli_fetch_assoc($resultTeacher)){
+									echo "<tr>";
+										echo "<td class=\"center\"";
+											//Student Teacher and Absentees check begins
+											$sql = "SELECT * FROM attendance WHERE uid='{$rowTeacher["teuid"]}' AND AttSchool='$SchoolForAtt' AND date='$AttendanceDate' AND IsPresent='$AttendanceDateDay~yes'";
+											$resultTeacherPresent = mysqli_query($conn, $sql);
+											if(mysqli_num_rows($resultTeacherPresent) > 0){
+												echo "style=\"background-color:rgb(77,167,77); color:#FFF\"";
+											}
+											
+											$sql1 = "SELECT * FROM attendance WHERE uid='{$rowTeacher["teuid"]}' AND AttSchool='$SchoolForAtt' AND date='$AttendanceDate' AND IsPresent='$AttendanceDateDay~no'";
+											$resultTeacherAbsent = mysqli_query($conn, $sql1);
+											if(mysqli_num_rows($resultTeacherAbsent) > 0){
+												echo "style=\"background-color:rgb(203,75,75); color:#FFF\"";
+											}
+											//Student Teacher and Absentees check ends										
+										echo ">".$rowTeacher["EmployeeId"]."</td>";
+										echo "<td class=\"center\">".$rowTeacher["YourSubject"]."</td>";
+										echo "<td class=\"center\">".$rowTeacher["TeacherFirstName"]." ".$rowTeacher["TeacherLastName"]."</td>";
+										echo "<td class=\"center\" style=\"background-color:rgb(77,167,77); color:#FFF\">";
+											//Present data begins
+											echo "<form class=\"form-horizontal\" name=\"xx\" action=\"../configs/teacher-attandence-agent.php\" method=\"post\" onSubmit=\"return validxx();\">";
+												echo "<input name=\"MakeTeacherAttendance\" type=\"hidden\" value=\"MakeTeacherAttendance\">";											
+												echo "<input name=\"uidSubmitForAtt\" type=\"hidden\" value=\"".$rowTeacher["teuid"]."\">";
+												echo "<input name=\"SchoolSubmitForAtt\" type=\"hidden\" value=\"".$rowTeacher["TeacherSchoolName"]."\">";
+												echo "<input name=\"DateMonthSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateMonth."\">";
+												echo "<input name=\"DateDaySubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateDay."\">";
+												echo "<input name=\"DateYearSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateYear."\">";
+												echo "<input name=\"AttendanceDate\" type=\"hidden\" value=\"".$AttendanceDate."\">";
+												echo "<input name=\"MadeBy\" type=\"hidden\" value=\"".$FirstName."\">";
+												echo "<input name=\"IsPresent\" type=\"hidden\" value=\"".$AttendanceDateDay."~yes"."\">";																					
+												echo "<button class=\"btn btn-default\" type=\"submit\">Present</button>";
+											echo "</form>";
+											//Present data ends
+										echo "</td>";
+										echo "<td class=\"center\" style=\"background-color:rgb(203,75,75); color:#FFF\">";
+											//Absent data begins
+											echo "<form class=\"form-horizontal\" name=\"xx\" action=\"../configs/teacher-attandence-agent.php\" method=\"post\" onSubmit=\"return validxx();\">";
+												echo "<input name=\"MakeTeacherAttendance\" type=\"hidden\" value=\"MakeTeacherAttendance\">";											
+												echo "<input name=\"uidSubmitForAtt\" type=\"hidden\" value=\"".$rowTeacher["teuid"]."\">";
+												echo "<input name=\"SchoolSubmitForAtt\" type=\"hidden\" value=\"".$rowTeacher["TeacherSchoolName"]."\">";
+												echo "<input name=\"DateMonthSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateMonth."\">";
+												echo "<input name=\"DateDaySubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateDay."\">";
+												echo "<input name=\"DateYearSubmitForAtt\" type=\"hidden\" value=\"".$AttendanceDateYear."\">";
+												echo "<input name=\"AttendanceDate\" type=\"hidden\" value=\"".$AttendanceDate."\">";
+												echo "<input name=\"MadeBy\" type=\"hidden\" value=\"".$FirstName."\">";
+												echo "<input name=\"IsPresent\" type=\"hidden\" value=\"".$AttendanceDateDay."~no"."\">";																					
+												echo "<button class=\"btn btn-default\" type=\"submit\">Absent</button>";
+											echo "</form>";
+											//Absent data ends
+										echo "</td>";
+									echo "</tr>";									
+								}
+							}else{
+								echo "<tr>";
+									echo "<td class=\"center\">---</td>";
+									echo "<td class=\"center\">---</td>";
+									echo "<td class=\"center\">---</td>";
+									echo "<td class=\"center\" style=\"background-color:rgb(77,167,77); color:#FFF\">---</td>";
+									echo "<td class=\"center\" style=\"background-color:rgb(203,75,75); color:#FFF\">---</td>";
+								echo "</tr>";								
+							}							
+                            ?>
+						</tbody>
+					</table>            	      
+				</div>
+                
 				</div><!--/span-->
 			
 			</div>
@@ -242,3 +414,6 @@
 <script src="js/charisma.js"></script>
 </body>
 </html>
+<?php
+include '../configs/connection-close.php';
+?>
