@@ -303,7 +303,11 @@ $resultStudent = mysqli_query($conn, $sql);
 												echo "<input name=\"AttendanceDate\" type=\"hidden\" value=\"".$AttendanceDate."\">";
 												echo "<input name=\"MadeBy\" type=\"hidden\" value=\"".$FirstName."\">";
 												echo "<input name=\"IsPresent\" type=\"hidden\" value=\"".$AttendanceDateDay."~yes"."\">";																					
-												echo "<button class=\"btn btn-default\" type=\"submit\">Present</button>";
+												if(($YourClass == $ClassForAtt) AND ($YourSection == $SectionForAtt)){
+													echo "<button class=\"btn btn-default\" type=\"submit\">Present</button>";
+												}else{
+													echo "<button class=\"btn btn-default disabled\" type=\"button\">Present</button>";
+												}
 											echo "</form>";
 											//Present data ends
 										echo "</td>";
@@ -322,8 +326,12 @@ $resultStudent = mysqli_query($conn, $sql);
 												echo "<input name=\"MadeBy\" type=\"hidden\" value=\"".$FirstName."\">";
 												echo "<input name=\"IsPresent\" type=\"hidden\" value=\"".$AttendanceDateDay."~no"."\">";											
 											
-																					
-												echo "<button class=\"btn btn-default\" type=\"submit\">Absent</button>";
+												if(($YourClass == $ClassForAtt) AND ($YourSection == $SectionForAtt)){
+													echo "<button class=\"btn btn-default\" type=\"submit\">Absent</button>";
+												}else{
+													echo "<button class=\"btn btn-default disabled\" type=\"button\">Absent</button>";
+												}									
+												
 											echo "</form>";
 											//Absent data ends
 										echo "</td>";
